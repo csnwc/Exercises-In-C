@@ -2,7 +2,6 @@ all : exercisesInC.pdf
 
 exercisesInC.pdf : 
 	cd Tex; pdflatex exercisesInC.tex; pdflatex exercisesInC.tex; mv exercisesInC.pdf ..
-	cd Tex; pdflatex exercisesInC.tex; pdflatex exercisesInC.tex; mv exercisesInC.pdf ..
 
 clean:
 	rm -fr Tex/exercisesInC.log
