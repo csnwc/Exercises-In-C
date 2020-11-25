@@ -1,0 +1,18 @@
+\nsection{Boolean Arrays}
+
+In C90 there is no real way of having Booleans.
+You can \verb^typedef^ and/or \verb^enum^erate one, but in reality this is
+just an integer, not truly a single bit.
+Therefore, we'd like to be able to create an ADT that allows Boolean Arrays
+to be created, such that the storage of a single bit, requires only one bit of memory.
+
+\noindent
+This will involve manipulation of the bits of a (for instance) \verb^unsigned char^
+using the C bitwise logical operators `xor' (\verb#^#), `or' (\verb^|^) and `and' (\verb^&^).
+\wwwurl{https://en.wikipedia.org/wiki/Bitwise\_operation}
+
+\begin{exercise}
+Given the files \verb^testboolarr.c^ and \verb^boolarr.h^, complete the Boolean Array ADT using
+a reallocating array of unsigned chars. Each cell of the underlying array stores $8$ bits
+of the data. 
+\end{exercise}

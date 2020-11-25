@@ -1,0 +1,33 @@
+\nsection{Cash Machine (ATM)}
+
+Some cash dispensers only contain
+$\pounds 20$ notes. When a user types in how much money
+they'd like to be given, you need to check that the amount requested
+can be dispensed exactly using only $\pounds 20$ notes. If not, a choice
+of the two closest (one lower, one higher) amounts is presented.
+
+\begin{exercise}
+Write a program that inputs a number from the user and then
+prompts them for a better choice if it is not correct. For example~:
+
+\begin{terminaloutput}
+How much money would you like ? 175
+I can give you 160 or 180, try again.
+How much money would you like ? 180
+OK, dispensing ...
+\end{terminaloutput}
+
+or~:
+
+\begin{terminaloutput}
+How much money would you like ? 25
+I can give you 20 or 40, try again.
+How much money would you like ? 45
+I can give you 40 or 60, try again.
+How much money would you like ? 80
+OK, dispensing ...
+\end{terminaloutput}
+
+In this assessment you may assume the input from the
+user is ``sensible'' i.e.\ is not a negative number etc.
+\end{exercise}

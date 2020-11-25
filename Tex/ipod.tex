@@ -1,0 +1,31 @@
+\nsection{Music Playlisters}
+
+Most MP3 players have a ``random'' or ``shuffle'' feature.
+The problem with these is that they can sometimes be {\bf too} random;
+a particular song could be played twice in succession if the new song to
+play is truly chosen randomly each time without taking into account what has already been played.
+
+To solve this, many of them randomly order the entire playlist so that
+each song appears in a random place, but once only.
+The output might look something this:
+
+\begin{terminaloutput}
+How many songs required ? 5
+4 3 5 1 2
+\end{terminaloutput}
+
+or~:
+
+\begin{terminaloutput}
+How many songs required ? 10
+1 9 10 2 4 7 3 6 5 8
+\end{terminaloutput}
+
+\begin{exercise}\label{ipod:ex_a}
+Write a program that gets a number from the user (to represent the number
+of songs required) and outputs a randomised list.
+\end{exercise}
+
+\begin{exercise}
+Rewrite Exercise~\ref{ipod:ex_a} so that the program passes an array of integers (e.g. \verb^[1,2,3,4,5,6,7,8,9,10]^) to a function which shuffles them {\bf in-place} (no other arrays are used) and with an algorithm having complexity $O(n)$. 
+\end{exercise}

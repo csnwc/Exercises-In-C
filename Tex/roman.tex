@@ -1,0 +1,84 @@
+\nsection{Roman Numerals}
+
+Adapted from:\\
+\wwwurl{http://mathworld.wolfram.com/RomanNumerals.html}
+
+\begin{quote}
+``Roman numerals are a system of numerical notations used by the
+Romans. They are an additive (and subtractive) system in which
+letters are used to denote certain "base" numbers, and arbitrary
+numbers are then denoted using combinations of symbols.
+Unfortunately, little is known about the origin of the Roman numeral
+system.
+
+The following table gives the Latin letters used in Roman numerals
+and the corresponding numerical values they represent~:
+\end{quote}
+
+\begin{center}
+\begin{tabular}{|l|l|}\hline
+I   &   1\\
+V   &   5\\
+X   &   10\\
+L   &   50\\
+C   &  100\\
+D   &  500\\
+M   & 1000\\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{quote}
+For example, the number 1732 would be denoted MDCCXXXII in Roman
+numerals. However, Roman numerals are not a purely additive number
+system. In particular, instead of using four symbols to represent a
+4, 40, 9, 90, etc. (i.e., IIII, XXXX, VIIII, LXXXX, etc.), such
+numbers are instead denoted by preceding the symbol for 5, 50, 10,
+100, etc., with a symbol indicating subtraction. For example, 4 is
+denoted IV, 9 as IX, 40 as XL, etc.''
+\end{quote}
+
+It turns out that every number between 1 and 3999 can be represented
+as a Roman numeral made up of the following one- and two-letter
+combinations:
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|}\hline
+I   &   1  & IV  &    4\\
+V   &   5  & IX  &    9\\
+X   &   10 & XL  &   40\\
+L   &   50 & XC  &   90\\
+C   &  100 & CD  &  400\\
+D   &  500 & CM  &  900\\
+M   & 1000 &     &     \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{exercise}
+Write a program that reads a roman numeral (in the range
+\verb^1 - 3999^) and outputs the corresponding valid arabic integer. Amongst
+others, check that \verb^MCMXCIX^ returns \verb^1999^,
+\verb^MCMLXVII^ returns \verb^1967^ and that \verb^MCDXCI^ returns
+\verb^1491^.
+
+You should use the following template~:
+
+\begin{codesnippet}
+#include <stdio.h>
+
+int romanToArabic( char *roman );
+
+int main(int argc, char **argv)
+{
+   if( argc==2 ){
+       printf("The roman numeral %s is equal to %d\n", \
+       argv[1], romanToArabic(argv[1]));
+   }else{
+       printf("ERROR: Incorrect usage, try e.g. %s XXI\n", argv[0]);
+   }
+   return 0;
+}
+\end{codesnippet}
+
+You need to add the function \verb^romanToArabic()^.
+\end{exercise}

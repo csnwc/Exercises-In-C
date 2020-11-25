@@ -1,0 +1,152 @@
+\nsection{Neill's Adventure Language}
+
+Some of the very earliest computer games were text-based adventures e.g.
+Colossal Cave \wwwurl{https://en.wikipedia.org/wiki/Colossal_Cave_Adventure}
+
+Here we write a simple language (NAL) which allows us to write (simplified) versions of such games, focussing on setting variables and printing.
+The grammar is as follows:
+\begin{codesnippet}
+<PROGRAM>   := "{" <INSTRS>
+<INSTRS>    := "}" | <INSTRUCT> <INSTRS>
+<INSTRUCT>  := <FILE> | <ABORT> | <INPUT> | <IFCOND> | <INC> | <SET> |
+               <JUMP> | <PRINT> | <RND>
+
+% Execute the instructions in file, then return here e.g. :
+% FILE "test1.nal"
+<FILE>      := "FILE" <STRCON>
+
+% Halt/abort all execution right now !
+<ABORT>     := "ABORT"
+
+% Fill a number-variable with a number, or 2 string-variables with string :
+% IN2STR ( $C, $ZER )  or  INNUM ( %NV ) 
+<INPUT>     := "IN2STR" "(" <STRVAR> "," <STRVAR> ")" | "INNUM" "(" <NUMVAR> ")"
+
+% Jump to the nth word in this file (the first word is number zero!)
+% Brackets count as one word, "things in quotes" count as one word, e.g. :
+% JUMP 5
+<JUMP>      := "JUMP" <NUMCON> 
+
+% Output the value of variable, or constant, to screen with (without a linefeed)
+<PRINT>     := "PRINT" <VARCON>
+<PRINTN>    := "PRINTN" <VARCON>
+
+% Set a variable to a random number in the range 0 - 99 e.g. :
+% RND ( %N )
+% Number should be seeded via the clock to be different on successive executions
+<RND>      := "RND" "(" <NUMVAR> ")"
+
+% If condition/test is true, execute INSTRS after brace, else skip braces
+<IFCOND>    := <IFEQUAL> "{" <INSTRS> | <IFGREATER> "{" <INSTRS>
+<IFEQUAL>   := "IFEQUAL" "(" <VARCON> "," <VARCON> ")"
+<IFGREATER> := "IFGREATER" "(" <VARCON> "," <VARCON> ")"
+
+% Add 1 to a number-variable e.g. :
+% INC ( %ABC )
+<INC>       := "INC" "(" <NUMVAR> ")"
+
+% Set a variable. All variables are GLOBAL, and persist across the use of FILE etc.
+% $A = "Hello"  or  %B = 17.6
+<SET>       := <VAR> "=" <VARCON>
+
+% Some helpful variable/constant rules
+% (Here ROT18 is ROT13 for letters and rot5 for digits)
+<VARCON>    := <VAR> | <CON>
+<VAR>       := <STRVAR> | <NUMVAR>
+<CON>       := <STRCON> | <NUMCON>
+<STRVAR>    := $[A-Z]+
+<NUMVAR>    := %[A-Z]+
+<STRCON>    := A plain-text string in double-quotes, e.g. "HELLO.TXT",
+               or a ROT18 string in hashes e.g. #URYYB.GKG#
+<NUMCON>    := A number e.g. 14.301
+\end{codesnippet}
+
+Note that string constants can be entered via the use of double quotes, or using hashes to encode strings using ROT18 \wwwurl{https://en.wikipedia.org/wiki/ROT13}
+in which characters are encoded/decoded according to:
+\begin{terminaloutput}
+Plain: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+ROT13: NOPQRSTUVWXYZABCDEFGHIJKLM
+Plain: abcdefghijklmnopqrstuvwxyz
+ROT13: nopqrstuvwxyzabcdefghijklm
+Plain: 0123456789
+ROT5 : 5678901234
+\end{terminaloutput}
+the algorithm allows obvious `spoilers' to be hidden from users
+browsing through \verb^.nal^ files, but is simple to apply.
+
+A simple program showing the use of assignment, conditionals and ROT18 is shown:
+\begin{codesnippet}
+{
+   $A = "Neill"
+   %E = 12.4
+   IFEQUAL ( $A , #Arvyy# ) {
+      PRINT #Uryyb Jbeyq!#
+   }
+}
+\end{codesnippet}
+Here string-variables \verb^($)^ and number-variables \verb^(%)^ are
+initialised.
+
+The use of `JUMP' is shown next - this allows execution to move a chosen word in the program. Strings inside quotes count as one word, so the following contains six words:
+\begin{codesnippet}
+{
+   PRINT "Warning : Infinite Loop !"
+   JUMP 1
+}
+\end{codesnippet}
+`FILE' allows another file to be executed (as <PROG>) and then execution returns to the original when finished. All variables are shared across files and are global:
+\begin{codesnippet}
+{
+   PRINT "In test4, before"
+   FILE "test1.nal"
+   PRINT "In test4, after"
+}
+\end{codesnippet}
+`RND' sets a variable to a number in the range $0 - 99$, while `INC' adds one to a number-variable.
+\begin{codesnippet}
+{
+   %C = 0
+   RND ( %A )
+   PRINT %A
+   INC ( %C )
+   IFGREATER ( %C , 9 ) {
+      ABORT
+   }
+   JUMP 4
+}
+\end{codesnippet}
+`ABORT' halts execution instantly.
+
+A simple guessing game is shown below:
+\begin{codesnippet}
+{
+
+   PRINT "I'm thinking of a number (0-99).\nCan you guess it?"
+   RND ( %MINE )
+   %CNT = 0
+
+   INC ( %CNT )
+   PRINT "Type in your guess"
+   INNUM ( %GUESS )
+   IFGREATER ( %CNT , 7 ) {
+      PRINT #Gbb znal gevrf :-(#
+      ABORT
+   }
+   IFGREATER ( %GUESS , %MINE ) {
+      PRINT "Too Big ! Try again ... "
+      JUMP 10
+   }
+   IFGREATER ( %MINE , %GUESS ) {
+      PRINT "Too Small ! Try again ... "
+      JUMP 10
+   }
+   IFEQUAL ( %MINE , %GUESS ) {
+      PRINT #Lbh thrffrq pbeerpgyl, lbh jva :-)#
+      PRINTN "Number of goes = "
+      PRINT %CNT
+      ABORT
+   }
+
+}
+\end{codesnippet}
+`INNUM' gets a number (float) from the user, and the use of `PRINT' (with a newline after), and `PRINTN' (without a newline after) is demonstrated.

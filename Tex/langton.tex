@@ -1,0 +1,44 @@
+\nsection{Langton's Ant}
+
+\wwwurl{http://en.wikipedia.org/wiki/Langton's_ant}
+
+\begin{exercise}
+Write a program that shows the behaviour of Langton's Ant and
+displays it on the screen using text. The ant will start in the
+middle, and each cell will have $2$ states : \verb^`#'^ (white)
+or \verb^`.'^ (black).
+
+At each step, the ant:
+\begin{itemize}
+\item At a white square, turn $90\degree$ right, flip the color of
+    the square, move forward one unit
+\item At a black square, turn $90\degree$ left, flip the color of
+    the square, move forward one unit
+\end{itemize}
+
+After each step, display the board, and wait for the user
+to type a character before repeating.
+\end{exercise}
+
+After $30$ or so iterations, the board might look something like~:
+
+\begin{tikzpicture}
+  \matrix [twocolour board]
+  { 
+ & & & & & & & & & & & & & & & \\
+ & & & & & & & & & & & & & & & \\
+ & & & & & & & & & & & & & & & \\
+ & & & & & & & & & & & & & & & \\
+ & & & & & & & & & & & & & & & \\
+ & & & & & & & & & & & & & & & \\
+ & & & & & & &+&+& & & & & & & \\
+ & & & & & &+& & &+& & & & & & \\
+ & & & & & &+& &+&+&+& & & & & \\
+ & & & & & & & & &+&+& & & & & \\
+ & & & & & & & &+&+& & & & & & \\
+ & & & & & & & & & & & & & & & \\
+ & & & & & & & & & & & & & & & \\
+ & & & & & & & & & & & & & & & \\
+ & & & & & & & & & & & & & & & \\
+  };
+\end{tikzpicture}

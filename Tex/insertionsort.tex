@@ -1,0 +1,46 @@
+\nsection{A Simple Spelling Checker}
+
+Here, we reads words one at a time
+from file and carefully place them in the {\bf correct} part of
+our data structure. This has a complexty of $O(n^2)$.
+
+For this purpose, a list of valid words (unsorted) is available
+from the usual place.
+
+\begin{exercise}
+\label{ex:arrayinsertsort}
+Write a program which, based on a
+list implemented using {\bf arrays}, reads the words in
+one at a time, inserting them into the {\bf correct} part of the list
+so that the words are alphabetically sorted.
+The name of the file should be passed as \verb^argv[1]^,
+and you can assume the array is of a fixed-size,
+and large enough to hold all words.
+How long does it take to build the list ?
+\end{exercise}
+
+\begin{exercise}
+Now extend Exercise~\ref{ex:arrayinsertsort}
+so that when the user is prompted for a word,
+they are told whether this word is present in the list or not.
+Use a binary search to achieve this.
+How much faster is this than a linear search~?
+\end{exercise}
+
+\begin{exercise}
+Now extend Exercise~\ref{ex:arrayinsertsort}
+so that when the user is prompted for a word,
+they are told whether this word is present in the list or not.
+Use an interpolation search to achieve this.
+How much faster is this than a linear search~?
+\end{exercise}
+
+\begin{exercise}
+Write a program which, based on a
+linked list data structure, reads the words in
+one at a time, inserting them into the {\bf correct} part of the list
+so that the words are alphabetically sorted.
+The name of the file should be passed as \verb^argv[1]^.
+How long does it take to build the list~?
+\end{exercise}
+

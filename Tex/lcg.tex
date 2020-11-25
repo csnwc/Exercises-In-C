@@ -1,0 +1,27 @@
+\nsection{Linear Congruent Generator}
+
+One simple way to generate `random' numbers is via a Linear Congruent Generator which
+might look something like this:
+\begin{codesnippet}
+   int seed = 0;
+   /* Linear Congruential Generator */
+   for(i=0; i<LOOPS; i++){
+      seed = (A*seed + C) % M;
+      /* Seed now contains your new random number */
+   }
+\end{codesnippet}
+here, $A$, $C$ and $M$ are constants defined in the code. All of these pseudo-generators have a period of repetition
+that is shorter than $M$. For instance, with $A$ set to $9$, $C$ set to $5$ and $M$ set to $11$ the sequence of numbers is~:
+\begin{terminaloutput}
+5
+6
+4
+8
+0
+5
+\end{terminaloutput}
+and so repeats after $5$ numbers (period equals $5$).
+
+\begin{exercise}
+Adapt the above program so that it prints the period of the LCG, where you've \verb^#defined^ the constants $A, C$ and $M$ and \verb^seed^ always begins at zero. For the constants described above, the program would output $5$. For $A=7$, $C=5$ and $M=11$ it will output $10$.
+\end{exercise}

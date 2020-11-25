@@ -1,0 +1,70 @@
+\tikzstyle{wired}=[draw=gray!30, line width=0.15mm]
+\tikzstyle{number}=[anchor=center, color=white]
+% Sectors are numbered 0-19 counterclockwise from the top.
+
+% \strip{color}{sector}{outer_radius}{inner_radius}
+\newcommand{\strip}[4]{
+    \filldraw[#1, wired]
+      ({18 *  #2}      :                   #3) arc
+      ({18 *  #2}      : {18 * (#2 + 1)} : #3) --
+      ({18 * (#2 + 1)} :                   #4) arc
+      ({18 * (#2 + 1)} : {18 *  #2}      : #4) -- cycle;
+}
+
+% \sector{color}{sector}{radius}
+\newcommand{\sector}[3]{
+    \filldraw[#1, wired]
+      (0, 0) --
+      ({18 * #2} :                   #3) arc
+      ({18 * #2} : {18 * (#2 + 1)} : #3) -- cycle;
+}
+
+\newcommand{\dartboard}{
+ % These are the official dartboard dimensions as per BDO's regulations.
+  % The whole board's background.
+  \fill[black] (0, 0) circle (225.5mm);
+  % Even sections.
+  \foreach\i in {0,2,...,18} {
+    \sector{black}{\i}{162mm}
+    \strip{red}{\i}{170mm}{162mm} % Double strip.
+    \strip{red}{\i}{107mm}{ 99mm} % Treble strip.
+  }
+  % Odd sections.
+  \foreach\i in {1,3,...,19} {
+    \sector{white}{\i}{162mm}
+    \strip{green}{\i}{170mm}{162mm} % Double strip.
+    \strip{green}{\i}{107mm}{ 99mm} % Treble strip.
+  }
+  % Bull's ring and eye.
+  \filldraw[green, wired] (0, 0) circle (15.9mm);
+  \filldraw[red,   wired] (0, 0) circle (6.35mm);
+ % Labels.
+  \foreach \sector/\label in {%
+      0/20,  1/ 1,  2/18,  3/ 4,  4/13,
+      5/ 6,  6/10,  7/15,  8/ 2,  9/17,
+     10/ 3, 11/19, 12/ 7, 13/16, 14/ 8,
+     15/11, 16/14, 17/ 9, 18/12, 19/ 5}%
+  {
+    \node[number] at ({18 * (-\sector + .5)} : 197.75mm) {\sffamily\label};
+  }
+}
+
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=.10]
+\begin{scope}[rotate=81]
+\dartboard
+\end{scope}
+\begin{scope}
+\node[text=black] (trb) at (-200mm, 300mm) {Treble 20};
+\draw [-Circle,ocre] (trb.east) -- (-0mm,100mm);
+\node[text=black] (dbl) at (175mm, 300mm) {Double 4};
+\draw [-Circle,ocre] (dbl.south) -- (135mm,95mm);
+\end{scope}
+\end{tikzpicture}
+\end{figure}
+
+In the traditional `pub' game, darts, there are 62 different possible scores~:
+single 1 - 20 (the white and black areas), double 1 - 20 (the outer red and green segments)
+(i.e. 2, 4, 6, 8 $\ldots$), treble 1 - 20 (i.e. 3, 6, 9, 12 $\ldots$) (the inner red or green segments), 25 (small green circle) and 50 (the small red inner circle).

@@ -1,0 +1,71 @@
+\nsection{The Devil's Dartboard}
+
+\input{darts_bg}
+
+It's not obvious, if you were inventing darts from scratch, how best to
+lay out the numbers. The London board shown seems to have small numbers near high numbers,
+so that if you just miss the $20$ for example, you'll hit a small number instead.
+
+Here we look at a measure for the `difficulty' of a dartboard.
+One approach is to simply sum up the values of adjacent triples, squaring 
+this number. So for the London board shown, this would be:
+\begin{math}
+(20+1+18)^2 + (1+18+4)^2 + (18+4+13)^2 \dots (5+20+1)^2 = 20478
+\end{math}
+
+For our purposes a {\bf lower} number is better\footnote{It's beyond
+the scope here to explain why!}. For more details see~:
+\wwwurl{http://www.mathpages.com/home/kmath025.htm}
+
+\begin{exercise}
+Write a program that repeatedly chooses two
+positions on the board and swaps their numbers. If this leads to a lower cost,
+keep the board. If not, unswap them. Repeat this {\it greedy search}
+$5000000$ times, and print out the best board found.
+Begin with the trivial monotonic sequence.
+The output may look something like~:
+\begin{terminaloutput}
+Total = 19966 :  3 19 11  2 18 12  1 20 10  4 16  8
+14  5 13 15  6  7 17  9 
+\end{terminaloutput}
+or
+\begin{terminaloutput}
+Total = 19910 :  3 18 10  5 16  9  8 14 11  4 19  6
+7 20  2 13 15  1 17 12 
+\end{terminaloutput}
+
+The score of $19874$ seems to be the lowest possible that may be obtained via this technique.
+\end{exercise}
+
+%\begin{exercise}
+%You can also argue that the $16$ next to the $8$ is a bad idea. Alternate
+%odd-and-even numbers is appealing.
+%Is~:
+%\begin{terminaloutput}
+%Total = 19886 : 20  3 10 19  2 11 18  1 14 13  4 15 12  5 16  9  6 17  8  7 
+%\end{terminaloutput}
+%the best possible ?
+%\end{exercise}
+%
+%
+%\wwwurl{https://cms.math.ca/crux/v26/n4/page215-217.pdf}
+%
+%Here is a polynomial-time algorithm that, if it does not always produce a
+%Devil's Dartboard, seems to come pretty close, especially for large $n$.
+%The permutation p is defined by induction. Choose p(k + 1) such that the
+%3-sum $p(k-1) + p(k) + p(k + 1)$ is as close as possible to the mean $m =
+%3(n + 1)/2$ of the 3-sums. In the case of a tie, select $p(k + 1)$ so that
+%consecutive 3-sums (different from $m$) fall on opposite sides of $m$,
+%beginning with a 3-sum greater than $m$. To get the induction started,
+%set $p(1) = n$ and $p(2) = 1$.
+%
+%For example, if $n = 6$, we have $m = 3(6+ 1)/2 = 10.5$. The algorithm
+%then produces the Devil's Dartboard 6, 1, 4, 5, 2, 3.
+%
+%For $n = 20$, the algorithm generates the permutation $20, 1, 11, 19,
+%2, 10, 18, 4, 9, 17, 6, 8, 16, 7, 12, 13, 5, 14, 15, 3$ which is not as
+%good as the traditional London board.
+
+
+
+

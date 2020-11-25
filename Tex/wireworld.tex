@@ -1,0 +1,35 @@
+\nsection{Wireworld}
+
+Wireworld is a cellular automaton due to Brian Silverman, formed from a 2D grid
+of cells, designed to simulate digital electronics. Each cell can be in one
+of four states, either `empty', `electron head', `electron tail' or `copper' (or `conductor').
+
+The next generation of the cells follows the rules, where $n$ is the number of electron heads found in the 8-surrounding cells:
+\begin{itemize}
+\item empty $->$ empty
+\item electron head $->$ electron tail
+\item electron tail $->$ copper
+\item copper $->$ electron head if $n==1$ or $n==2$
+\item copper $->$ copper otherwise
+\end{itemize}
+\noindent See also:\\
+\wwwurl{https://en.wikipedia.org/wiki/Wireworld}
+\wwwurl{http://www.heise.ws/fourticklogic.html}
+
+{\samepage
+\begin{exercise}
+\label{ex:wirew}
+Write a program which is run using the \verb^argc^ and
+\verb^argv^ parameters to \verb^main^. The usage is
+as follows~:
+\begin{terminaloutput}
+$ wireworld wirefile.txt
+\end{terminaloutput}
+where \verb^wirefile.txt^ is a file specifying the initial
+state of the board. This file codes empty cells as ` ', 
+heads as `H', tails as `t' and copper as `c'.
+Display the board for $1000$ generations using plain text.
+You may assume that the grid is always $40$ cells by $40$
+
+\end{exercise}
+}

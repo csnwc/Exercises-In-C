@@ -1,0 +1,103 @@
+\input{tikzsets}
+
+In a heavily constrained version of this game we make some simplifying assumptions:
+\begin{itemize}
+\item Words are always four letters long.
+\item We only seek ladders of five words in total. 
+\item Only one letter is changed at a time.
+\item A letter is only changed from its initial state, to its target state. This is important, since if you decide to change the second letter then you will always know what it's changing from, to what it's changing to.
+\end{itemize}
+
+So, in the example above, it is enough to give the first word, the last word, and the position of the character which changed on each line. On line one, the fourth letter `D' was changed to an `E', on the next line the first character `W' was changed to a `T' and so on. The whole ladder can be defined by ``WILD'', ``TAME'' and the sequence $4,1,2,3$. 
+
+\begin{center}
+\begin{tikzpicture}
+\matrix (wild2tame) [matrix of nodes]
+{
+W&I&L&D \\
+W&I&L&E \\
+T&I&L&E \\
+T&A&L&E \\
+T&A&M&E \\
+};
+\node at (wild2tame-1-4) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\node at (wild2tame-2-1) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\node at (wild2tame-3-2) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\node at (wild2tame-4-3) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\end{tikzpicture}
+\end{center}
+
+Since each letter changes exactly once, the order in which this happens is a {\em permutation} of the numbers $1,2,3,4$, which we have looked at elsewhere.
+ 
+\begin{exercise}
+For the constrained version of the game, given a file of valid four
+letter words, write a program which when given two words on the command
+line (\verb^argv[1]^ and \verb^argv[2]^) outputs the correct solution,
+if available. Use an exhaustive search over the $24$ permutations until
+one leads to no invalid words being required.
+Make sure your program works, with amongst others, the following:
+\begin{center}
+\begin{tikzpicture}
+\matrix (wild2tame) [matrix of nodes]
+{
+C&O&L&D \\
+C&O&R&D \\
+C&A&R&D \\
+W&A&R&D \\
+W&A&R&M \\
+};
+\node at (wild2tame-1-3) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\node at (wild2tame-2-2) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\node at (wild2tame-3-1) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\node at (wild2tame-4-4) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\end{tikzpicture}
+\hspace*{1in}
+\begin{tikzpicture}
+\matrix (wild2tame) [matrix of nodes]
+{
+P&O&K&E \\
+P&O&L&E \\
+P&O&L&L \\
+M&O&L&L \\
+M&A&L&L \\
+};
+\node at (wild2tame-1-3) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\node at (wild2tame-2-4) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\node at (wild2tame-3-1) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\node at (wild2tame-4-2) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\end{tikzpicture}
+\hspace*{1in}
+\begin{tikzpicture}
+\matrix (wild2tame) [matrix of nodes]
+{
+C&U&B&E \\
+C&U&B&S \\
+T&U&B&S \\
+T&U&N&S \\
+T&O&N&S \\
+};
+\node at (wild2tame-1-4) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\node at (wild2tame-2-1) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\node at (wild2tame-3-3) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\node at (wild2tame-4-2) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\end{tikzpicture}
+\end{center}
+\end{exercise}
+
+\begin{exercise}
+Adapt the program above so that if the first and last words share a letter (the edit distance is less than $4$), you can find the word ladder required, as in:
+\begin{center}
+\begin{tikzpicture}
+\matrix (wild2tame) [matrix of nodes]
+{
+W&A&S&P \\
+W&A&S&H \\
+W&I&S&H \\
+F&I&S&H \\
+};
+\node at (wild2tame-1-4) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\node at (wild2tame-2-2) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\node at (wild2tame-3-1) [minimum width=14pt,shape=circle,draw=red,fill=ocre,fill opacity=0.4]{};
+\end{tikzpicture}
+\end{center}
+\end{exercise}

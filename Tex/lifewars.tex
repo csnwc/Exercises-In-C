@@ -1,0 +1,69 @@
+\nsection{Life Wars}
+
+Inspired by the classic game, {\it Core Wars}
+\wwwurl{http://en.wikipedia.org/wiki/Core_War}
+here we look at a two player version of Conway's 
+Game of Life.
+
+In our game, each of two `players' submit
+a Life 1.06 file and cells from these inserted into an
+empty board. The cells are coded based on which player
+created them (say `+' and `@'). The game is then run, and
+the player having most cells left after a fixed number of
+iterations, over many games, is deemed the winner.
+
+The rules are~:
+\begin{enumerate}
+\item The board is $150$ cells wide, and $90$ cells tall.
+\item The board is toroidal; that is, it wraps around from the left
+edge to the right, and the top to the bottom.
+\item Each player can submit a Life 1.06 file that is maximum of $100$
+lines long, {\bf including} the header line.
+\item Since each of the Life 1.06 files describe absolute positions
+for cells, each player is assigned a random origin for their cells. 
+If there is any collision when attempting to add the cells initially
+(i.e. both players happen to specify a cell in the same square),
+then new origins are chosen randomly and the process begun from scratch.
+\item The `standard' B3/S23 rules are used.
+\item The colour of cells is never taken into account (i.e. cells are still either `alive' or `dead').
+The sole exception to this is that when a cell is born, it takes the colour of the majority its
+neighbours.
+\item There are $5000$ generations played every game.
+\item A running count of how many cells each player has left at the end
+of each game is kept. The board is cleared and the next game randomly
+restarted.
+\item There are $50$ games run in total.
+\item The player with the highest number of cells over all $50$ games
+is the winner.
+\end{enumerate}
+
+It's easy to extend these rules, of course, to allow for three or more players,
+but it's unclear for three players what would happen in the majority vote if there
+was a draw (i.e. a new cell is born based on three cells around it, one belonging
+to each player.  Other rule variants are also possible
+(e.g. {\it Highlife} (B36/S23),
+but once again, the birth rule for $3$ or $6$ neighbours would cause majority
+voting issues for two and three players.
+
+\begin{exercise}
+Write  a program that accepts two Life 1.06 files and reports which of them is the winner.
+The first few games might look like:
+\begin{terminaloutput}
+% /lifewars blinkerpuffer2.lif bigglider.lif 
+
+        0    50    12  Player 1
+        1   370   141  Player 1
+        2   437   281  Player 1
+        3   450   602  Player 2
+        4   540   623  Player 2
+        5   991   629  Player 1
+        6  1063   674  Player 1
+        7  1211   707  Player 1
+        8  1263   735  Player 1
+        9  1358   758  Player 1
+.
+.
+.
+    Player 1 wins by 7857 cells to 2373 cells
+\end{terminaloutput}
+\end{exercise}

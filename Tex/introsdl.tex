@@ -1,0 +1,31 @@
+\nsection{SDL - Intro}
+
+Many programming languages have no inherent graphics capabilities.
+To get windows to appear on the screen, or to draw lines and shapes,
+you need to make use of an external library. Here we use SDL\footnote{
+actually, we are using the most recent version SDL2, which is installed
+on all the lab machines}, a cross-platform library providing the user with
+(amongst other things) such graphical capabilities.
+
+\wwwurl{https://www.libsdl.org/}
+
+The use of SDL is, unsurprisingly, non-trival, so some simple wrapper
+files have been created (\verb^neillsdl2.c^ and \verb^neillsdl2.h^).
+These give you some simple functions to initialise a window, draw
+rectangles, wait for the user to press a key etc.
+
+An example program using this functionality is
+provided in a file \verb^blocks.c^.
+
+This program initialises a window, then sits in a loop, drawing
+randomly positioned and coloured squares, until the
+user presses the mouse or a key. 
+
+\begin{exercise}
+Using the \verb^Makefile^ provided, compile and run this program,
+using something like : \verb^make -f sdl_makefile^
+
+SDL is already installed on lab machines. At home, if you're using a
+ubuntu-style linux machine, use: \verb^sudo apt install libsdl2-dev^
+to install it.
+\end{exercise}

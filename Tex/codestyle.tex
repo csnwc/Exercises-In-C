@@ -1,0 +1,15 @@
+\section*{Code Style}
+\begin{itemize}
+\item Your code {bf must} compile without warnings using the gcc flags:
+\begin{verbatim}
+-pedantic -Wall -Wextra -Wfloat-equal -ansi -O2
+\end{verbatim}
+\item Do {\bf NOT} use any global variables.
+%\item {\bf If} you need to use \verb^rand()^ in your code, feel free to set
+%the seed of the random number generator to give different outputs
+%each time your program is run, for instance using~:
+%\begin{verbatim}
+%srand(time(NULL));
+%\end{verbatim}
+%remembering to \verb^#include <time.h>^
+\end{itemize}

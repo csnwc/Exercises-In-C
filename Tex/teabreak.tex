@@ -1,0 +1,75 @@
+\nsection{Anagrams}
+
+An anagram is a collection of letters that
+when unscrambled, using all the leters, make
+a single word. For instance \verb^magrana^ can
+be rearranged to make the word \verb^anagram^.
+
+\begin{exercise}
+Using a file of valid words, allow the user
+to enter an anagram, and have the answer(s)
+printed. For instance~:
+\begin{terminaloutput}
+ % ./anagram sternaig
+angriest
+astringe
+ganister
+gantries
+ingrates
+rangiest
+reasting
+stearing
+\end{terminaloutput}
+\end{exercise}
+
+\begin{exercise}
+Using a file of valid words, find all
+words which are anagrams of each other.
+Each word should appear in a maximum of one list.
+Output will look something like~:
+\begin{terminaloutput}
+ % ./selfanagram
+.
+.
+7 merits mister miters mitres remits smiter timers
+.
+.
+.
+6 noters stoner tenors tensor toners trones
+.
+.
+.
+6 opts post pots spot stop tops
+.
+.
+.
+6 restrain retrains strainer terrains trainers transire
+.
+\end{terminaloutput}
+\end{exercise}
+
+If you wished to create ``interesting'' anagrams, rather than simply
+a random jumble of letters, you could combine together two
+shorter words which are an anagram of a longer one.
+
+\begin{exercise}
+Write a program which uses an exhaustive
+search of all the possible pairs of short words to make the target word
+to be computed.
+For instance, a few of the many pairs that
+can be used to make an anagram of \verb^compiler^ are~:
+\begin{terminaloutput}
+ % ./teabreak compiler
+LiceRomp
+LimeCrop
+LimpCore
+MileCrop
+MoreClip
+PermCoil
+PromLice
+RelicMop
+\end{terminaloutput}
+\end{exercise}
+
+The name \verb^Campbell^ comes out as \verb^CalmPleb^ which is a
+bit harsh. Can't {\bf ever} remember being called calm ... 

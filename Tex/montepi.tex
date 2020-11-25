@@ -1,0 +1,21 @@
+\nsection{Monte Carlo $\Pi$}
+
+At :\\
+\wwwurl{http://mathfaculty.fullerton.edu/mathews/n2003/montecarlopimod.html}
+
+a square whose sides are of length $r$, and a quarter-circle, whose radius is of $r$ are drawn.
+
+
+If you throw random darts at the square, then many, but not all, also hit the circle. A dart landing at position $(x,y)$ only hits the circle if $x^2 + y^2 \leq r^2$.
+
+The area of the circle is $\frac{\pi}{4} r^2$, and the area of the square is $r^2$.
+
+Therefore, a way to approximate $\pi$, is to choose random $(x,y)$ pairs inside the square $h_a$, and count the $h_c$ ones that hit the circle. Then:
+\begin{equation}
+	\pi \approx \frac{4 h_c}{h_a}
+\end{equation}
+
+\begin{exercise}
+Write a program to run this simulation, and display the improving version of the approximation to $\pi$.
+\end{exercise}
+

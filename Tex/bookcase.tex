@@ -1,0 +1,289 @@
+  \newcommand{\K}{|[fill=white,text=black]|K}
+\renewcommand{\R}{|[fill=black,text=red]|R}
+  \newcommand{\G}{|[fill=black,text=green]|G}
+  \newcommand{\Y}{|[fill=black,text=yellow]|Y}
+\renewcommand{\B}{|[fill=black,text=blue]|B}
+  \newcommand{\M}{|[fill=black,text=magenta]|M}
+  \newcommand{\C}{|[fill=black,text=cyan]|C}
+\renewcommand{\W}{|[fill=black,text=white]|W}
+  \newcommand{\X}{|[fill=black,text=white]|.}
+
+\nsection{Happy Bookcases}
+
+In a quiet part of our building, there are some rather strange bookcases.
+They are (like most bookcases) generally happy, but they become unhappy when their books are not arranged correctly (which,
+even in a Computer Science Department, is somewhat unusual).  After years
+of dedicated research, a team of scientists led by Simon Lock and Sion
+Hannuna came to understand the trick to making the bookcases happy again.
+It turned out that a bookcase is only happy if~:
+\begin{itemize}
+\item Each shelf only has books of one colour (or is empty).
+\item All books of the same colour are on the same shelf.
+\item The only books that exists are black(K), red(R), green(G),
+yellow(Y), blue(B), magenta(M), cyan(C) or white(W).
+\end{itemize}
+
+\noindent
+However, to make things worse, there are some complex rules about how
+books may be rearranged~:
+\begin{enumerate}
+\item You can only move one book at a time.
+\item The only book that can move is the rightmost one from each shelf.
+\item The book must move to become the rightmost book on its new shelf.
+\item You can't put more books on a shelf than its maximum size.
+\end{enumerate}
+
+\noindent
+So, for instance, the bookcase below has three shelves,
+each of which can fit three books;
+the first contains only one book, the second has three books,
+and the third shelf has two books on it.
+
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\Y&\X&\X\\
+\B&\B&\Y\\
+\Y&\B&\X\\
+};
+\end{tikzpicture}
+
+\noindent
+By following the rules, highly-trained librarians can
+rearrange the books to make the bookcase happy again.
+One such way of re-arranging the books correctly is shown below~:
+
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\Y&\Y&\X\\
+\B&\B&\X\\
+\Y&\B&\X\\
+};
+\end{tikzpicture}
+\hspace{2em}
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\Y&\Y&\X\\
+\B&\B&\B\\
+\Y&\X&\X\\
+};
+\end{tikzpicture}
+\hspace{2em}
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\Y&\Y&\Y\\
+\B&\B&\B\\
+\X&\X&\X\\
+};
+\end{tikzpicture}
+
+\noindent
+Here's another example of an unhappy bookcase, and how to reaarange the
+books to make it happy~:
+
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\R&\G&\X&\X\\
+\G&\R&\X&\X\\
+\K&\K&\X&\X\\
+\K&\K&\X&\X\\
+};
+\end{tikzpicture}
+\hspace*{2em}
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\R&\X&\X&\X\\
+\G&\R&\X&\X\\
+\K&\K&\G&\X\\
+\K&\K&\X&\X\\
+};
+\end{tikzpicture}
+\hspace*{2em}
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\R&\R&\X&\X\\
+\G&\X&\X&\X\\
+\K&\K&\G&\X\\
+\K&\K&\X&\X\\
+};
+\end{tikzpicture}
+\hspace*{2em}
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\R&\R&\X&\X\\
+\G&\G&\X&\X\\
+\K&\K&\X&\X\\
+\K&\K&\X&\X\\
+};
+\end{tikzpicture}
+\hspace*{2em}
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\R&\R&\X&\X\\
+\G&\G&\X&\X\\
+\K&\X&\X&\X\\
+\K&\K&\K&\X\\
+};
+\end{tikzpicture}
+\hspace*{2em}
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\R&\R&\X&\X\\
+\G&\G&\X&\X\\
+\X&\X&\X&\X\\
+\K&\K&\K&\K\\
+};
+\end{tikzpicture}
+
+
+\begin{exercise}
+Write a program that reads in a bookcase definition file (specified on the command line), and shows the `moves' to make the bookcase happy. Such a file looks something like~:
+\begin{terminaloutput}
+4 3 7
+RG.
+GR.
+CY.
+YC.
+\end{terminaloutput}
+
+\noindent The first line has two or three numbers on it; the height of
+the bookcase (number of shelves), the width (maximum books per shelf)
+and an {\bf optional} hint as to the minimum number of bookcases
+involved when `solving' this bookcase. (This number
+is meaningless for a bookcase that cannot be made happy.) The number
+includes the original bookcase, and the final `happy' one in the count.
+For the bookcase shown in this file, one possible solution is~:
+
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\R&\G&\X\\
+\G&\R&\X\\
+\C&\Y&\X\\
+\Y&\C&\X\\
+};
+\end{tikzpicture}
+\hspace*{2em}
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\R&\X&\X\\
+\G&\R&\X\\
+\C&\Y&\G\\
+\Y&\C&\X\\
+};
+\end{tikzpicture}
+\hspace*{2em}
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\R&\R&\X\\
+\G&\X&\X\\
+\C&\Y&\G\\
+\Y&\C&\X\\
+};
+\end{tikzpicture}
+\hspace*{2em}
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer  sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\R&\R&\X\\
+\G&\G&\X\\
+\C&\Y&\X\\
+\Y&\C&\X\\
+};
+\end{tikzpicture}
+\hspace*{2em}
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer  sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\R&\R&\Y\\
+\G&\G&\X\\
+\C&\X&\X\\
+\Y&\C&\X\\
+};
+\end{tikzpicture}
+\hspace*{2em}
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer  sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\R&\R&\Y\\
+\G&\G&\X\\
+\C&\C&\X\\
+\Y&\X&\X\\
+};
+\end{tikzpicture}
+\hspace*{2em}
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer  sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\R&\R&\X\\
+\G&\G&\X\\
+\C&\C&\X\\
+\Y&\Y&\X\\
+};
+\end{tikzpicture}
+
+\noindent
+In the file, an empty space is defined by a full-stop character.
+You may assume that the maximum height and width of a bookcase is $9$.
+
+\noindent
+The brute-force algorithm for searching over all moves to make
+the bookcase happy goes like this~:
+\begin{enumerate}
+\item You will use a list of bookcases (here list could either be an array, or a linked list).
+\item The initial bookcase is put into the front of this list.
+\item Take a bookcase from the {\bf front} of the list.
+\item For this (parent) bookcase, find the resulting (child) bookcases
+which can be created from all the valid possible single book moves. Put
+each of these bookcases into the {\bf end} of the list. There may be
+as many as $height \times (height-1)$ of these. If you have found a
+happy bookcase, stop. Else, go to $3$.
+\end{enumerate}
+
+\noindent
+To help with printing out the correct moves when a solution has been
+found, each structure in the list will need to contain (amongst other
+things) a bookcase and a record of its parent bookcase, i.e. the bookcase
+that it was created from. For an array, this could simply be which element 
+of the array was the parent, or for a linked list, this will be a pointer.
+
+\noindent
+The program reads the name of the bookcase definition file from \verb^argv[1]^.
+If it finds a successful way to make the bookcase happy, it prints out
+the number of bookcases that would be printed in the solution and {\bf nothing else}, or else exactly the phrase `No Solution?'' if none can be found~:
+\begin{terminaloutput}
+$ ./bookcase rrggccyy-437.bc
+7
+$ ./bookcase rrrr-22.bc
+No Solution?
+$ ./bookcase ccbb-23.bc
+1
+\end{terminaloutput}
+
+If the `verbose' flag is used (argv[2]), your program will additionally print out the solution (reverse order is fine)~:
+\begin{terminaloutput}
+$ ./bookcase ccbb-23.bc verbose
+1
+
+CC.
+BB.
+
+$ ./bookcase rgbrmrykwrrr-3521.bc verbose
+No Solution?
+
+$ ./bookcase yby-222.bc verbose
+2
+
+Y.
+BY
+
+YY
+B.
+
+\end{terminaloutput}
+
+\noindent
+Your program~:
+\begin{itemize}
+\item {\bf Must} use the algorithm detailed above (which is similar to a queue and therefore a breadth-first search). Other search algorithms are possible (e.g. best-first, guided, recursive etc.) but the quality of coding is being assessed, not the quality of the algorithm used!
+\item {\bf Should} check for invalid bookcase definition files, and report in a graceful way if there is a problem, aborting with \verb^exit(EXIT_FAILURE)^ if so.
+\item {\bf May} display the bookcases in colour if you wish - if so use
+\verb^neillsimplescreen^ to do so.
+\item {\bf Should not} print anything else out to screen after successfully
+completing the search, except that which is shown above. Automated checking
+may be used, and therefore the ouput must be precise.
+\item {\bf Should} call the function \verb^test()^ to perform any assertion
+testing etc.
+\end{itemize}
+
+\subsection*{Extension}
+
+Basic assignment = {\Large $90\%$}.
+Extension = {\Large $10\%$}.
+
+\noindent
+If you'd like to try an extension, make sure to submit {\it extension.c}
+and a brief description in a {\it extension.txt} file. This could
+involve a faster search technique, better graphical display, user input
+or something else of your choosing. The extension will be
+marked in the same way as the main assignment.
+
+
+\end{exercise}

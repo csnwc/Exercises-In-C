@@ -1,0 +1,103 @@
+\nsection{Conway's Soldiers}
+
+The one player game, {\it Conway's Soldiers} (sometimes known as {\it
+Solitaire Army}), is similar to peg solitaire. For this exercise,
+Conway's board is a $7$ (width) $\times$ $8$ (height) board with tiles
+on it. The lower half of the board is entirely filled with tiles (pegs),
+and the upper half is completely empty.  A tile can move by jumping
+another tile, either horizontally or vertically (but never diagonally)
+onto an empty square. The jumped tile is then removed from the board.
+A few possible moves are shown below:\\
+
+\newcommand{\A}{|[fill=ocre,text=black]|X}
+\newcommand{\B}{|[fill=gray,text=black]|.}
+
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}]
+\matrix [matrix of nodes,draw=white,nodes in empty cells]
+{
+\B&\B&\B&\B&\B&\B&\B\\
+\B&\B&\B&\B&\B&\B&\B\\
+\B&\B&\B&\B&\B&\B&\B\\
+\B&\B&\B&\B&\B&\B&\B\\
+\A&\A&\A&\A&\A&\A&\A\\
+\A&\A&\A&\A&\A&\A&\A\\
+\A&\A&\A&\A&\A&\A&\A\\
+\A&\A&\A&\A&\A&\A&\A\\
+};
+\end{tikzpicture}
+\hspace*{0.3in}
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}]
+\matrix [matrix of nodes,draw=white,nodes in empty cells]
+{
+\B&\B&\B&\B&\B&\B&\B\\
+\B&\B&\B&\B&\B&\B&\B\\
+\B&\B&\B&\B&\B&\B&\B\\
+\B&\B&\A&\B&\B&\B&\B\\
+\A&\A&\B&\A&\A&\A&\A\\
+\A&\A&\B&\A&\A&\A&\A\\
+\A&\A&\A&\A&\A&\A&\A\\
+\A&\A&\A&\A&\A&\A&\A\\
+};
+\end{tikzpicture}
+\hspace*{0.3in}
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}]
+\matrix [matrix of nodes,draw=white,nodes in empty cells]
+{
+\B&\B&\B&\B&\B&\B&\B\\
+\B&\B&\B&\B&\B&\B&\B\\
+\B&\B&\B&\B&\B&\B&\B\\
+\B&\B&\A&\A&\B&\B&\B\\
+\A&\A&\B&\B&\A&\A&\A\\
+\A&\A&\B&\B&\A&\A&\A\\
+\A&\A&\A&\A&\A&\A&\A\\
+\A&\A&\A&\A&\A&\A&\A\\
+};
+\end{tikzpicture}
+\hspace*{0.3in}
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}]
+\matrix [matrix of nodes,draw=white,nodes in empty cells]
+{
+\B&\B&\B&\B&\B&\B&\B\\
+\B&\B&\B&\B&\B&\B&\B\\
+\B&\B&\B&\B&\B&\B&\B\\
+\B&\B&\B&\B&\A&\B&\B\\
+\A&\A&\B&\B&\A&\A&\A\\
+\A&\A&\B&\B&\A&\A&\A\\
+\A&\A&\A&\A&\A&\A&\A\\
+\A&\A&\A&\A&\A&\A&\A\\
+};
+\end{tikzpicture}
+
+
+
+
+The user enters the location of an empty square they'd like to
+get a tile into, and the program demonstrates the moves that enables
+the tile to reach there (or warns them it's impossible). To do this you
+will use a list of boards. The initial board is put into this list.
+Each board in the list is, in turn, read from the list and all possible
+moves from that board added into the list. The next board is taken, and
+all its resulting boards are added, and so on.
+
+%However, one problem
+%with is that repeated boards may be put into the queue and cycles
+%occur.  This soon creates an explosively large number of boards
+%(several million). You can solve this by only adding a board into the
+%list if an identical one has never been put into the list before.  A
+%linear search is acceptable for this task.
+%
+Each structure in the list
+will contain (amongst other things) a board and a record of its parent
+board, i.e. the board that it was created from.
+
+\begin{exercise}
+Write a program that:
+\begin{itemize}
+\item Inputs a target location for a tile to reach (x in argv[1], y in argv[2]).
+\item Demonstrates the correct solution (reverse order is fine) using plain text.
+\end{itemize}
+\end{exercise}
+
+Use the algorithm described above and not anything else.
+
+

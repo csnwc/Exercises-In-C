@@ -1,0 +1,247 @@
+\nsection{Correctness}
+
+These style rules ensure your code is as-correct-as-can-be with the aid
+of the compiler and other tools:
+\begin{description}
+\item[FLAGS] Having no warnings (or errors!) when compiling and executing with the flags:\\
+For array bounds checking, \verb^NULL^ pointers being dereferenced etc:
+\begin{terminaloutput}
+-Wall -Wextra -Wfloat-equal -pedantic -std=c90
+-fsanitize=undefined -fsanitize=address -g3
+\end{terminaloutput}
+For memory leaks:
+\begin{terminaloutput}
+-Wall -Wextra -Wfloat-equal -pedantic -std=c90
+-g3
+\end{terminaloutput}
+then run:
+\begin{terminaloutput}
+valgrind --leak-check=full ./myexec
+\end{terminaloutput}
+For `final' production-ready code:
+\begin{terminaloutput}
+-Wall -Wextra -Wfloat-equal -pedantic -std=c90
+-O3
+\end{terminaloutput}
+
+You can use more flags than this, obviously, but these will
+make sure a few of the essential warnings that commonly indicate
+the presence of bugs and leaks are checked. These guidelines are meant to
+be independent of the particular compiler used though. Sometimes it is helpful to use many compilers too, e.g. \verb^gcc^ and \verb^clang^.
+
+If you have unused variables (for example) in your code, it doesn't matter whether your compiler happened to tell you about it or not - it's still wrong !
+
+\item[BRACE] Always brace all functions, \verb^for^s, \verb^while^s, \verb^if/else^ etc.
+Somewhat contraversial, this ensures that `extra' lines tagged onto loops are
+dealt with correctly. For instance:
+\begin{codesnippet}
+while(i < 10)
+   printf("%d\n", i);
+   i++;
+\end{codesnippet}
+looks like it should print out \verb^i^ $10$ times, but instead runs infinitely.
+The programmer probably meant:
+\begin{codesnippet}
+while(i < 10){
+   printf("%d\n", i);
+   i++;
+}
+\end{codesnippet}
+
+\item[GOTO] You do not use any of the keywords \verb^continue^, \verb^goto^ or \verb^break^. The one exception is inside \verb^switch^, where \verb^break^ is allowed because it is essential !
+These keywords usually lead to tangled and complex `spaghetti' coding style.
+I often recommend that you rewrite the offending code uing functions, which {\bf can} have multiple \verb^return^s
+in them.
+
+\item[NAMES] Meaningful identifiers. Make sure that functions names and variables having meaningful, but succinct,  names.
+
+\item[REPC] Repetitive code. If you've cut-and-paste large chunks of code, and made minor changes to it, you've done it wrong. Make it a function, and pass parameters that make the changes required.
+\begin{codesnippet}
+int inbounds1(int i){
+   if(i >=0 && i < MAX){
+      return 1;
+   }
+   else{ 
+      return 0;
+   }
+}
+
+int inbounds2(int i){
+   if(i >=0 && i < LEN){
+      return 1;
+   }
+   else{ 
+      return 0;
+   }
+}
+\end{codesnippet}
+might make more sense as:
+\begin{codesnippet}
+int inbounds2(int i, int mx){
+   if(i >=0 && i < mx){
+      return 1;
+   }
+   else{ 
+      return 0;
+   }
+}
+\end{codesnippet}
+
+\item[GLOB] No global variables. Global variables are declared `above' \verb^main()^, are in scope of all functions, and can be altered {\bf anywhere} in the code. This makes it rather unclear {\bf which} functions should be reading or writing them. You can make a case for saying that occasionally they could be useful (or better) than the alternatives, but for now, they are banned !
+
+\item[RETV] Any functions that returns a value, should have it used:
+\begin{codesnippet}
+scanf("%d", &i);
+\end{codesnippet}
+is incorrect. It returns a value that is ignored. Instead do:
+\begin{codesnippet}
+	if(scanf("%d", &i) != 1{
+	   /* PANIC */
+\end{codesnippet}
+
+The only exceptions are \verb^printf^ and \verb^putchar^ which do return values but
+which are typically ignored.
+
+\item[MATCH] For every \verb^fopen^ there should be a matching \verb^fclose^.
+For every \verb^malloc^ there should be a \verb^free^.
+This helps avoid memory leaks, when your program or functions are later used
+in a larger project.
+
+\item[STDERR] When exiting your program in an error state, make sure that you \verb^fprintf^ the error on \verb^stderr^ and not \verb^stdout^. Use \verb^exit^, e.g.
+\begin{codesnippet}
+if(argc != 2){
+   fprintf(stderr, "Usage : %s <filename>\n", argv[0]);
+   exit(EXIT_FAILURE);
+}
+\end{codesnippet}
+
+
+\end{description}
+
+\nsection{Prettifying}
+
+These rules are about making your code easier to read and having a consistent
+style in a form that others are expecting to see.
+
+\begin{description}
+
+\item[LLEN] Line length. Many people use terminal and editors that are
+of a fixed-width. Having excessively long lines may cause the viewer to scroll to
+off the screen. Keep lines short, perhaps $< 60$ characters. However, in a similar way
+to the {\bf FLEN} rule below, it's really about the complexity of the line that's the issue,
+not its absolute length. A programmer would generally find:
+{\small
+\begin{codesnippet}
+bool arrcleanse(cell oldarr[HEIGHT][WIDTH], cell newarr[HEIGHT][WIDTH], int h, int w)
+\end{codesnippet}
+}
+a great deal easier to read than:
+\begin{codesnippet}
+if(a < b && j++ >= szpar(e ? true : false) || h==4){
+\end{codesnippet}
+despite it being twice as long.
+
+\item[TABS] Don't use tabs to indent your code. Every editor views these differently, so you have no guarentee that I'm seeing the same layout as you do. Use spaces. This also prevents issues when cuttig-and-pasting from one source to another.
+
+\item[INDENT] Indentation: choose a style for indentation
+and keep to it. I happen to use $3$ spaces, put opening braces
+for functions on a new line, but at the end of \verb^if^,\verb^else^, \verb^for^, \verb^while^ etc, then close them on a new line, underneath the `i' of the \verb^if^:
+\begin{codesnippet}
+int smallest(int a, int b)
+{
+   if(a < b){
+      return a;
+   }
+   else{
+      return b;
+   }
+}
+\end{codesnippet}
+You can use any style you like, as long as it's consistent.
+
+\item[MAIN] The code should have function prototypes/definitions first, then \verb^main()^, followed by the function implementation. This means the reader always know where to find \verb^main()^, since it will be near the top of the file.
+
+
+\item[CAPS] Constants are \verb^#define^d, and use all CAPITALS. For instance:
+\begin{codesnippet}
+#define WEEKS 52
+#define MAX(a,b) (a < b ? b:a)
+\end{codesnippet}
+
+
+\item[FLEN] Short functions. All functions are short. It's quite
+difficult to put a maximum number of lines on this, but use $20$ as a
+starting point. Exceptions include a function that simply prints a list
+of instructions. There would be no benefit in splitting it into smaller
+functions. Short functions are easier to plan, write and test.
+
+I find it more useful to think about how hard the function is to
+understand, rather than its length. Therefore, a $30$ line, simple
+function is fine, but an extremely complex and dense $15$ line function
+might need to be split up, or more self-documentation added.
+
+
+\end{description}
+
+\nsection{Readability}
+
+Your code should be self-documenting. Comments will be written when there
+is something complex to explain, and only read when something has gone
+catastrophically wrong. In many cases clever use of coding will avoid the
+need for them.  The compiler never sees them, so cannot check them. If you
+change your code, but not your comments, they can be highly misleading.
+
+As Kevlin Henney said~:
+\begin{quote}
+A common fallacy is to assume authors of incomprehensible code will somehow
+be able to express themselves lucidly and clearly in comments. 
+\end{quote}
+
+\begin{description}
+\item[MAGIC] No magic numbers. There should be no inexplicable numbers in your code, such
+as:
+\begin{codesnippet}
+	if(i < 36){
+\end{codesnippet}
+
+It's probably unclear to the reader where the $36$ has come from, or what it means,
+even if it is obvious to the programmer at the time of writing the code. Instead,
+\verb^#define^ them with a meaningful name.
+Array overruns are often cured by being consistent with \verb^#define^s.
+
+\item[BRIEF] Comments are brief, and non-trivial. Worthless commenting often
+looks something like:
+\begin{codesnippet}
+/* Set the variable i to zero */
+int i = 0;
+\end{codesnippet}
+The programmer extracts no additional information from it. However, for more
+difficult edge cases, a comment might be useful.
+\begin{codesnippet}
+/* Have we reached the end of the list ? */
+if(t1->h == NULL){ 
+\end{codesnippet}
+
+\item[TYPE] You should use \verb^typedef^s, \verb^enum^s and \verb^struct^s to
+increase readability. 
+
+\item[INFIN] No loops should be infinite. I'll never ask you to write a program that is meant to run forever. Therefore statements such as
+\begin{codesnippet}
+while(1){
+\end{codesnippet}
+or
+\begin{codesnippet}
+for(;;;){
+\end{codesnippet}
+are to be avoided.
+
+\item[2DINDEX] 2D Arrays in C are indexed \verb^[row][col]^.  Sometimes
+it may still work correctly, especially if you've consistently confused
+the two.  Therefore, if you write code that indexes it \verb^[col][row]^,
+or \verb^[x][y]^ it will confuse anyone else trying to understand (or
+reuse) your code. If you were to sketch a graph using \verb^(i,j)^ you'd
+almost certainly make $i$ the horizontal axis, and $j$ the vertical.
+Therfore, for any two variables it makes more sense to write \verb^[b][a]^
+or \verb^[j][i]^.
+
+\end{description}

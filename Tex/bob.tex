@@ -1,0 +1,43 @@
+\nsection{Planet Bob}
+
+On the planet Bob, everyone's name has three letters.
+These names either take the form of consonant-vowel-consonant or
+else vowel-consonant-vowel. For the purposes here, vowels are the 
+letters \verb^{a,e,i,o,u}^ and consonants are all other letters.
+There are two other rules~:
+\begin{enumerate}
+\item The first letter and third letters of the name must always be the same.
+\item The name is only `valid' if,
+when you sum up the values of the three letters ($a=1, b=2$ etc.),
+the sum is prime.
+\end{enumerate}
+
+The name ``bob'' is a valid name: it has the form consonant-vowel-consonant,
+the first letter and third letters are the same (`b') and  the three letters sum to $19 (2+15+2)$, which is prime.
+The name ``aba' is \textbf{not} valid, since the sum of the three
+letters is $4 (1+2+1)$ which is \textbf{not} prime.
+
+
+\begin{exercise}
+Write a program that outputs all the valid names and
+numbers them. The first few names should look like~:
+\begin{terminaloutput}
+  1 aca
+  2 aka
+  3 aqa
+  4 bab
+  5 bib
+  6 bob
+  7 cac
+  8 cec
+  9 ded
+ 10 did
+ 11 dod
+ 12 dud
+ 13 ece
+ 14 ege
+ 15 eme
+ 16 ese
+ 17 faf
+\end{terminaloutput}
+\end{exercise}

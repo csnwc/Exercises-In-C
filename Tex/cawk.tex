@@ -1,0 +1,91 @@
+
+\nsection{The UNIX awk program}
+
+Sometimes handling files containing numerical data in C
+may be somewhat arduous. A `simple' program to swap the first
+and second columns of a file is quite long in C.
+
+For this reason, there is a simple language called awk which
+allows simple manipulation to be done on a line by line basis.
+For example:
+\begin{verbatim}
+{
+print $2, $1;
+}
+\end{verbatim}
+swaps the first and second fields in a file.
+The whole program is applied to every line of the input file in turn.
+
+Other examples of awk would include printing fields in reverse order:
+\begin{verbatim}
+{ for (i = NF; i > 0; --i) print $i }
+\end{verbatim}
+
+\noindent Adding up first column, print sum and average
+\begin{verbatim}
+{ s += $1 }
+END{print "sum is",s," average is",s/NR}
+\end{verbatim}
+
+\noindent Notice the `special' variables \verb^NR^ and \verb^NF^.
+Other special variables include \verb^FS^ which defines how
+fields are separated (default space and tab).
+See `man awk' for more information.
+
+\subsection*{The CAWK formal grammar}
+
+This assignment involves writing a recursive descent parser
+for a simple, cut-down version of awk called `cawk'. It is based
+on the following formal grammar:
+
+{\small
+\begin{verbatim}
+<PROG>       := "{" <ILST> |
+                "{" <ILST> "END" "{" <ILST>
+<ILST>       := <INSTR> <ILST> | "}"
+<INSTR>      := <LET> | <IF> | <PRINT> | <FOR>
+<LET>        := "LET" <USER> "=" <POLISH> 
+<USER>       : = "$A" | .. | "$Z"
+<RD>         := <USER> | "$[" <INDEX> "]" | <SPEC>
+<INDEX>      := number | <USER> | <SPEC>
+<SPEC>       := "$#" | "$@"
+<NUMVAR>     := number | <RD>
+<POLISH>     := <OPER><POLISH> | ";"
+<OPER>       := <NUMVAR> | <OPERATOR>
+<OPERATOR>   := "+" | "-" | "*" | "/"
+<IF>         := "IF" "(" <TEST> ")" "{" <ILST>
+<TEST>       := <NUMVAR> <COND> <NUMVAR>
+<COND>       := "<" | ">" | "==" | "!="
+<PRINT>      := "PRINT" <NUMVAR> | "PRINT" string
+<FOR>        := "FOR" <USER> "=" <NUMVAR> "TO"
+                <NUMVAR> "STEP" <NUMVAR> "{" <ILST>
+\end{verbatim}
+
+\noindent Note, you may assume that the program consists of
+a list of words separated by white-space.
+\begin{verbatim}
+$# is the number of records.
+$@ is the number of fields in the current record.
+$[ 0 ] is the entire line
+$[ i ] is the ith field of the record 
+\end{verbatim}
+}
+
+\section*{Examples of CAWK}
+\begin{verbatim}
+{
+PRINT $[ 2 ]
+PRINT $[ 1 ]
+PRINT "\n"
+}
+\end{verbatim}
+
+\noindent Print fields in reverse order:
+\begin{verbatim}
+{
+   FOR $I = $@ TO 1 STEP -1 {
+      PRINT $[ $I ]
+   }
+   PRINT "\n"
+}
+\end{verbatim}

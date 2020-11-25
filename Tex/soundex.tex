@@ -1,0 +1,68 @@
+\nsection{Soundex Coding}
+
+First applied to the 1880 census, Soundex is a phonetic index, not a
+strictly alphabetical one. Its key feature is that it codes surnames
+(last names) based on the way a name sounds rather than on how it is
+spelled. For example, surnames that sound the same but are spelled
+differently, like Smith and Smyth, have the same code and are indexed
+together.  The intent was to help researchers find a surname quickly
+even though it may have received different spellings. If a name like
+Cook, though, is spelled Koch or Faust is Phaust, a search for a
+different set of Soundex codes and cards based on the variation of the
+surname's first letter is necessary.
+
+To use Soundex, researchers must first code the surname of the person
+or family in which they are interested. Every Soundex code consists of
+a letter and three numbers, such as B536, representing names such as
+Bender. The letter is always the first letter of the surname, whether
+it is a vowel or a consonant.
+
+The detailed description of the algorithm may be found at~:\\
+\wwwurl{http://www.highprogrammer.com/alan/numbers/soundex.html}
+
+\begin{quote}
+{\it 
+The first letter is simply the first letter in the word. The remaining numbers range from 1 to 6, indicating different categories of sounds created by consanants following the first letter. If the word is too short to generate 3 numbers, 0 is added as needed. If the generated code is longer than 3 numbers, the extra are thrown away.
+
+\begin{center}
+\begin{tabular}{|l|l|l|}\hline
+Code& 	Letters	Description \\ \hline
+1	& B, F, P, V	Labial \\ \hline
+2	& C, G, J, K, Q, S, X, Z	Gutterals and sibilants \\ \hline
+3	& D, T	Dental \\ \hline
+4	& L	Long liquid \\ \hline
+5	& M, N	Nasal \\ \hline
+6	& R	Short liquid \\ \hline
+SKIP	& A, E, H, I, O, U, W, Y	Vowels (and H, W, and Y) are skipped \\ \hline
+\end{tabular}
+\end{center}
+
+There are several special cases when calculating a soundex code:
+
+\begin{itemize}
+\item Letters with the same soundex number that are immediately next to each other are discarded. So Pfizer becomes Pizer, Sack becomes Sac, Czar becomes Car, Collins becomes Colins, and Mroczak becomes Mrocak.
+\item If two letters with the same soundex number seperated by "H" or "W", only use the first letter. So Ashcroft is treated as Ashroft.
+\end{itemize}
+
+Sample Soundex codes:
+
+\begin{center}
+\begin{tabular}{|l|l|} \hline
+Word	 	& Soundex \\ \hline
+Washington	& W252 \\ \hline
+Wu	 	& W000 \\ \hline
+DeSmet	 	& D253 \\ \hline
+Gutierrez	& G362 \\ \hline
+Pfister	 	& P236 \\ \hline
+Jackson	 	& J250 \\ \hline
+Tymczak	 	& T522 \\ \hline
+Ashcraft	& A261 \\ \hline
+\end{tabular}
+\end{center}
+}
+\end{quote}
+
+\begin{exercise}
+Write a program that takes the name entered as \verb^argv[1]^
+and prints the corresponding soundex code for it.
+\end{exercise}

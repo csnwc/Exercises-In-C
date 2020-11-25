@@ -1,0 +1,21 @@
+\nsection{ANSI Escape Sequences}
+C has no inherent functionality to allow printing in colour etc.
+Therefore, some terminals allow certain control codes to be printed
+to move the cursor, change the foreground and background colour, and
+so on.
+Note that only some terminals support these control code - if you're
+using a different one, garbage may appear on the screen instead.
+\wwwurl{https://en.wikipedia.org/wiki/ANSI_escape_code}
+
+I've created a very simple set of functions which shows a small
+fraction of this functionality called \verb^demo_neillsimplescreen.c^
+which using the functions found in \verb^neillsimplescreen.c^
+
+To build and execute this code, use the \verb^Makefile^ provided by typing:
+\begin{terminaloutput}
+$ make demo_neillsimplescreen
+gcc demo_neillsimplescreen.c neillsimplescreen.c
+-o demo_neillsimplescreen -Wall -Wextra -pedantic 
+-std=c90 -g3 -fsanitize=undefined -fsanitize=address -lm
+$ ./demo_neillsimplescreen 
+\end{terminaloutput}

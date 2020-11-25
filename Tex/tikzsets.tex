@@ -1,0 +1,106 @@
+\tikzset{word ladder/.style={
+  matrix of nodes
+  , execute at empty cell={\node[draw=gray,text=gray,fill=white]{0};}
+  , nodes in empty cells=false
+  , nodes={shape=rectangle, draw=none,fill=none,text=black,minimum width=0.6cm,minimum height=0.35cm,outer sep=0pt,align=center,inner sep=0pt,font=\small}
+  , row sep={0.35cm,between origins}
+  , column sep={0.6cm,between origins}
+},
+}
+
+\tikzset{spacehash board/.style={
+  matrix of nodes
+  , execute at empty cell={\node[draw=gray,text=gray,fill=white]{ };}
+  , nodes in empty cells=false
+  , nodes={draw=gray,fill=ocre,text=gray,text depth=0.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}
+  , row sep={#1,between origins}
+  , column sep={#1,between origins}
+},
+}
+
+\tikzset{noughtsone board/.style={
+  matrix of nodes
+  , execute at empty cell={\node[draw=gray,text=gray,fill=white]{0};}
+  , nodes in empty cells=false
+  , nodes={draw=gray,fill=ocre,text=gray,minimum width=#1,minimum height=#1,outer sep=0pt,align=center,inner sep=0pt}
+  , row sep={#1,between origins}
+  , column sep={#1,between origins}
+},
+  noughtsone board/.default=0.5cm
+}
+
+\tikzset{twocolour board/.style={
+  matrix of nodes
+  , execute at empty cell={\node[text=white,fill=white]{+};}
+  , nodes in empty cells=false
+  , nodes={draw=gray,fill=ocre,minimum width=#1,minimum height=#1,outer sep=0pt,align=center,inner sep=0pt,font=\tiny}
+  , text=ocre
+  , row sep={#1,between origins}
+  , column sep={#1,between origins}
+},
+  twocolour board/.default=0.5cm
+}
+\tikzset{twocolour board/.style={
+  matrix of nodes
+  , execute at empty cell={\node[text=white,fill=white]{+};}
+  , nodes in empty cells=false
+  , nodes={draw=gray,fill=ocre,minimum width=#1,minimum height=#1,outer sep=0pt,align=center,inner sep=0pt,font=\tiny}
+  , text=ocre
+  , row sep={#1,between origins}
+  , column sep={#1,between origins}
+},
+  twocolour board/.default=0.5cm
+}
+
+%% Candy Crush-style games, colour & label
+\tikzset{crushstyle board/.style={
+  matrix of nodes
+  , nodes={draw=gray,fill=ocre,minimum width=#1,minimum height=#1,outer sep=0pt,align=center,inner sep=0pt,font=\tiny}
+  , text=ocre
+  , row sep={#1,between origins}
+  , column sep={#1,between origins}
+},
+  crushstyle board/.default=0.5cm
+}
+
+%% WaTor-style games, colour & label
+\tikzset{watorstyle board/.style={
+  matrix of nodes
+  , nodes={fill=cyan,minimum width=#1,minimum height=#1,outer sep=0pt,align=center,inner sep=0pt,font=\tiny}
+  , text=black
+  , row sep={#1,between origins}
+  , column sep={#1,between origins}
+},
+  watorstyle board/.default=0.25cm
+}
+
+%% 8-tile style
+\tikzset{eighttilestyle board/.style={
+  matrix of nodes, ampersand replacement={\&}
+  , execute at empty cell={\node[draw=gray,text=gray,fill=gray]{0};}
+  , nodes={fill=gray,minimum width=#1,minimum height=#1,outer sep=0pt,align=center,inner sep=0pt,font=\tiny}
+  , text=ocre
+  , row sep={#1,between origins}
+  , column sep={#1,between origins}
+},
+  eighttilestyle board/.default=0.25cm
+}
+
+\tikzset{sixelstyle/.style={
+  matrix of nodes, ampersand replacement={\&}
+  , nodes={draw=black,fill=gray,text=gray
+     %,minimum height=1pt, minimum width=1pt
+     %,row sep=1pt, column sep=1pt
+}
+},
+   sixelstyle/.default=0.3em
+}
+
+\tikzset{sepsixstyle/.style={
+  matrix of nodes, ampersand replacement={\&}
+  , nodes={draw=white,fill=gray,text=gray,
+     minimum height=1pt, minimum width=1pt,
+     row sep=1pt, column sep=1pt}
+},
+   sixelstyle/.default=0.3em
+}

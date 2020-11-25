@@ -1,0 +1,97 @@
+\nsection{Rule 110}
+
+\input{tikzsets}
+
+Rather interesting patterns can be created using
+{\it Cellular Automata}. Here we will use a simple
+example, one known as {\it Rule 110}~:
+The idea is that in a 1D array, cells can be either
+on
+\begin{tikzpicture}
+\draw[fill=ocre,draw=gray] (0,0) rectangle (2ex,2ex);
+\end{tikzpicture}
+or off
+\begin{tikzpicture}
+\draw[fill=none,draw=gray] (0,0) rectangle (2ex,2ex);
+\end{tikzpicture}
+(perhaps represented by the integer values
+$1$ and $0$).
+A new 1D array is created in which we decide upon the
+state of each cell in the array based on the cell above
+and its two immediate neighbours.
+
+If the three cells above are all `on', then the cell is set
+to `off' ($111 \rightarrow 0$). If the three cells above
+are `on', `on', `off' then the new cell is set to `on' ($110 \rightarrow 1$).
+The rules, in full, are:\\
+$111 \rightarrow 0$\\
+$110 \rightarrow 1$\\
+$101 \rightarrow 1$\\
+$100 \rightarrow 0$\\
+$011 \rightarrow 1$\\
+$010 \rightarrow 1$\\
+$001 \rightarrow 1$\\
+$000 \rightarrow 0$\\
+
+You take a 1D array, filled with zeroes or ones,
+and based on these, you create a new 1D array of
+zeroes and ones. Any particular cell uses the three
+cells `above' it to make the decision about its
+value. If the first line has all zeroes
+and a single one in the middle, then the automata evolves as:
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+{\fontsize{5}{5}\selectfont
+\matrix [noughtsone board=0.375cm]
+{
+& & & & & & & & & & & & & & & & & & & & & & & & & & & & & &1& & &\\
+& & & & & & & & & & & & & & & & & & & & & & & & & & & & &1&1& & &\\
+& & & & & & & & & & & & & & & & & & & & & & & & & & & &1&1&1& & &\\
+& & & & & & & & & & & & & & & & & & & & & & & & & & &1&1& &1& & &\\
+& & & & & & & & & & & & & & & & & & & & & & & & & &1&1&1&1&1& & &\\
+& & & & & & & & & & & & & & & & & & & & & & & & &1&1& & & &1& & &\\
+& & & & & & & & & & & & & & & & & & & & & & & &1&1&1& & &1&1& & &\\
+& & & & & & & & & & & & & & & & & & & & & & &1&1& &1& &1&1&1& & &\\
+& & & & & & & & & & & & & & & & & & & & & &1&1&1&1&1&1&1& &1& & &\\
+& & & & & & & & & & & & & & & & & & & & &1&1& & & & & &1&1&1& & &\\
+& & & & & & & & & & & & & & & & & & & &1&1&1& & & & &1&1& &1& & &\\
+& & & & & & & & & & & & & & & & & & &1&1& &1& & & &1&1&1&1&1& & &\\
+& & & & & & & & & & & & & & & & & &1&1&1&1&1& & &1&1& & & &1& & &\\
+& & & & & & & & & & & & & & & & &1&1& & & &1& &1&1&1& & &1&1& & &\\
+& & & & & & & & & & & & & & & &1&1&1& & &1&1&1&1& &1& &1&1&1& & &\\
+& & & & & & & & & & & & & & &1&1& &1& &1&1& & &1&1&1&1&1& &1& & &\\
+& & & & & & & & & & & & & &1&1&1&1&1&1&1&1& &1&1& & & &1&1&1& & &\\
+& & & & & & & & & & & & &1&1& & & & & & &1&1&1&1& & &1&1& &1& & &\\
+& & & & & & & & & & & &1&1&1& & & & & &1&1& & &1& &1&1&1&1&1& & &\\
+& & & & & & & & & & &1&1& &1& & & & &1&1&1& &1&1&1&1& & & &1& & &\\
+& & & & & & & & & &1&1&1&1&1& & & &1&1& &1&1&1& & &1& & &1&1& & &\\
+& & & & & & & & &1&1& & & &1& & &1&1&1&1&1& &1& &1&1& &1&1&1& & &\\
+& & & & & & & &1&1&1& & &1&1& &1&1& & & &1&1&1&1&1&1&1&1& &1& & &\\
+& & & & & & &1&1& &1& &1&1&1&1&1&1& & &1&1& & & & & & &1&1&1& & &\\
+& & & & & &1&1&1&1&1&1&1& & & & &1& &1&1&1& & & & & &1&1& &1& & &\\
+& & & & &1&1& & & & & &1& & & &1&1&1&1& &1& & & & &1&1&1&1&1& & &\\
+& & & &1&1&1& & & & &1&1& & &1&1& & &1&1&1& & & &1&1& & & &1& & &\\
+& & &1&1& &1& & & &1&1&1& &1&1&1& &1&1& &1& & &1&1&1& & &1&1& & &\\
+& &1&1&1&1&1& & &1&1& &1&1&1& &1&1&1&1&1&1& &1&1& &1& &1&1&1& & &\\
+&1&1& & & &1& &1&1&1&1&1& &1&1&1& & & & &1&1&1&1&1&1&1&1& &1& & &\\
+};
+}
+\end{tikzpicture}
+\caption{1D cellular automaton using Rule 110. Top line shows initial state,
+each subsequent line is produced from the line above it. Each cell has
+a rule to switch it `on' or 'off' based on the state of the three cells
+above it in the diagram.}
+\label{rulle110_fig}
+\end{figure}
+
+\begin{exercise} Write a program that outputs something similar to
+Figure~\ref{rulle110_fig}, but using plain text, giving the user
+the option to start with a randomised first line, or a line with a
+single `on' in the central location. Do not use $2D$ arrays for this -
+a couple of $1D$ arrays is sufficient.  \end{exercise}
+
+\begin{exercise}
+Rewrite the program above to allow other rules to be displayed - for instance $124, 30$ and $90$.
+\wwwurl{http://en.wikipedia.org/wiki/Rule_110}
+\end{exercise}

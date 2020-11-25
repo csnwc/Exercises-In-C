@@ -1,0 +1,47 @@
+\nsection{Merging Strings}
+
+\begin{exercise}
+Write the function \verb^strmerge()^ which concatenetes \verb^s1^ and \verb^s2^ into \verb^s3^,
+discarding any overlapping characters which are common to the end (tail) of \verb^s1^ and the 
+beginning (head) of \verb^s2^.
+Ensure that the following
+works correctly:
+\begin{codesnippet}
+#include <stdlib.h>
+#include <string.h>
+#include <assert.h>
+
+typedef enum bool {false, true} bool;
+
+void strmerge(const char* s1, const char* s2, char*s3);
+
+#define LARGESTRING 1000
+
+int main(void)
+{
+   char s[LARGESTRING];
+
+   strmerge("Hello World!", "World! & Everyone.", s);
+   assert(strcmp(s, "Hello World! & Everyone.")==0);
+
+   strmerge("The cat sat", "sat on the mat.", s);
+   assert(strcmp(s, "The cat sat on the mat.")==0);
+
+   strmerge("The cat sat on the mat", "The cat sat on the mat.", s);
+   assert(strcmp(s, "The cat sat on the mat.")==0);
+
+   strmerge("One ", "Two", s);
+   assert(strcmp(s, "One Two")==0);
+
+   strmerge("", "The cat sat on the mat.", s);
+   assert(strcmp(s, "The cat sat on the mat.")==0);
+
+   strmerge("The cat sat on the mat.", "", s);
+   assert(strcmp(s, "The cat sat on the mat.")==0);
+                                                                                                                                                    strmerge("123412341234", "1234", s);
+   assert(strcmp(s, "123412341234")==0);
+                                                                                                                                                    return 0;
+}
+\end{codesnippet}
+Hint : Functions such as \verb^strncmp()^ and \verb^strcat^ might be useful.
+\end{exercise}

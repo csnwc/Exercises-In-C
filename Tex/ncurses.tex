@@ -1,0 +1,26 @@
+\nsection{ncurses}
+C has no inherent functionality to allow printing in colour etc.
+Therefore, a programming library know a \verb^ncurses^ was created in 1993
+to allow terminals to interpret certain control-codes as colours and other effects. 
+
+The library itself is somewhat complex, allowing keyboard and mouse events to
+be captured and a whole range of simple graphics functionality.
+On the web page is my `wrapper' for the library, along with a program demonstrating its use.
+This will only work in unix-style terminals. 
+Note that after you begin ncurses mode (using \verb^Neill_NCURS_Init()^) that
+you can't print to stdout or stderr, until you switch it off ~(using \verb^Neill_NCURS_Done()^).
+
+To compile the code you'll have to use both my code \verb^neillncurses.c^
+and also link in the ncurses library. A typical compile might look like
+\begin{terminaloutput}
+gcc yourcode.c neillncurses.c -Wall -Wfloat-equal -Wextra -O2
+    -pedantic -std=c90 -lncurses -lm
+\end{terminaloutput}
+
+If you're running a virtual box you may also need to install the \verb^ncurses^ developer
+files, including \verb^ncurses.h^, using:
+\begin{terminaloutput}
+sudo apt install libncurses-dev
+\end{terminaloutput}
+
+Some terminals do not support ncurses, so make sure you are using an `xterm' or equaivalent.

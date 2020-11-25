@@ -1,0 +1,58 @@
+\nsection{Binary Tree Visualisation}
+
+The course notes showed a simple way to print out integer binary trees in
+this form~:
+\begin{terminaloutput}
+20(10(5(*)(*))(17(*)(*)))(30(21(*)(*))(*))
+\end{terminaloutput}
+
+You could also imagine doing the reverse operation, that is reading in a tree in the form above and 
+displaying it in a `friendlier' style~:
+\begin{terminaloutput}
+
+20----30
+|     |
+10-17 21
+|
+5
+
+\end{terminaloutput}
+The tree has left branches vertically down the page and right branches
+horizontally right.
+Another example is~:
+\begin{terminaloutput}
+17(2(*)(3(*)(4(*)(*))))(6(8(*)(*))(*))
+\end{terminaloutput}
+which is displayed as:
+\begin{terminaloutput}
+17----6
+|     |
+2-3-4 8
+
+\end{terminaloutput}
+
+The above examples show the most `compact' form of displaying the
+trees, but you can use simplifying assumptions if you wish: 
+\begin{itemize}
+\item The integers stored in the tree are always $\geq 0$.
+\item The integers stored in the tree are 5 characters (or less) in length.
+\item It is just as valid to print the tree in either of these ways~:
+\begin{terminaloutput}
+1-6       00001-00006          00001-------------00006
+| |         |     |              |                 |
+2 7       00002 00008          00002             00007
+|           |                    |                 
+3-4-5     00003-00004-00005    00003-00004-00005                 
+\end{terminaloutput}
+\end{itemize}
+
+\begin{exercise}
+Write a program that reads in a tree using \verb^argv[1]^
+and the tree displayed to \verb^stdout^ with no other printing if no error
+has occurred.
+\end{exercise}
+
+\begin{exercise}
+Write a program that reads in a tree using \verb^argv[1]^
+and displays the tree using SDL.
+\end{exercise}

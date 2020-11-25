@@ -1,0 +1,22 @@
+\nsection{Int to String}
+
+\begin{exercise}
+Write a function that converts an integer
+to a string, so that the following code snippet
+works correctly:
+
+\begin{codesnippet}
+int i;
+char s[256];
+scanf("%d", &i);
+int2string(i,s);
+printf("%s\n", s);
+\end{codesnippet}
+
+The integer may be signed (i.e.\ be positive or negative)
+and you may assume it is in base-10.
+
+Avoid using any of the built-in string-handling functions
+to do this (e.g. \verb^itoa()^!) including those in \verb^string.h^.
+\end{exercise}
+

@@ -1,0 +1,101 @@
+\nsection{The Game of Life}
+
+\input{tikzsets}
+
+The Game of Life was developed by British mathematician
+John Horton Conway. In Life, a board represents the world
+and each cell a single location. A cell may be either empty
+or inhabited. The game has three simple rules, which relate to the
+cell's eight nearest neigbours~:
+\begin{enumerate}
+\item {\bf Survival} An inhabited cell remains inhabited if
+exactly $2$ or $3$ of its neighbouring cells are inhabited.
+\item {\bf Death} An inhabited cell becomes uninhabited if 
+fewer than $2$, or more than $3$ of its neighbours are inhabited.
+\item {\bf Birth} An uninhabited cell becomes inhabited if exactly
+$3$ of its neighbours are inhabited.
+\end{enumerate}
+
+The next board is derived solely from the current one. The current board
+remains unchanged while computing the next board.  In the simple case
+shown here, the boards alternate infinitely between these two states.
+
+\begin{center}
+\begin{tikzpicture}
+\matrix [noughtsone board]
+{
+ & & & &  \\
+ & &1& &  \\
+ & &1& &  \\
+ & &1& &  \\
+ & & & &  \\
+};
+\end{tikzpicture}
+\begin{tikzpicture}
+\matrix [noughtsone board]
+{
+ & & & &  \\
+ & & & &  \\
+ &1&1&1&  \\
+ & & & &  \\
+ & & & &  \\
+};
+\end{tikzpicture}
+\end{center}
+
+\subsection*{The 1.06 format}
+
+A general purpose way of encoding the input board is
+called the Life 1.06 format~:
+\wwwurl{http://conwaylife.com/wiki/Life_1.06}
+This format has comments indicated by a hash in the first column,
+and the first line is always:
+\begin{terminaloutput}
+#Life 1.06
+\end{terminaloutput}
+Every line specifies an $x$ and $y$ coordinate of a live cell;
+such files can be quite long.
+The coordinates specified are relative to the middle of the board,
+so $0 1$ means the middle row, one cell to the right of the centre.
+
+There are hundreds of interesting patterns stored like this
+on the above site.
+
+\begin{exercise}
+\label{ex:life106}
+Write a program which is run using the \verb^argc^ and
+\verb^argv^ parameters to \verb^main^. The usage is
+as follows~:
+\begin{terminaloutput}
+% life file1.lif 10
+\end{terminaloutput}
+where \verb^file1.lif^ is a file specifying the inital
+state of the board, and \verb^10^ specifys that ten
+iterations are required.
+
+Display the output to screen every iteration using plain text,
+you may assume that the board is $150$ cells wide and $90$ cells tall.
+\end{exercise}
+
+\subsection*{Alternative Rules for The Game of Life}
+
+The rules for life could also be phrased in a different manner, that
+is, give birth if there are two neighbours around an empty cell (B2)
+and allow an `alive' cell to survive only if surrounded by 2 or 3 cells (S23).
+Other rules which are {\it life-like} exist,
+for instance {\it 34 Life} (B34/S34), {\it Life Without Death} (B3/S012345678)
+and {HighLife} (B36/S23).
+\wwwurl{http://en.wikipedia.org/wiki/Life-like_cellular_automaton}
+
+\begin{exercise}
+Write a program that allows the user to input life-like rules e.g.~:
+\begin{terminaloutput}
+life B34/S34 lifeboard.lif
+\end{terminaloutput}
+or
+\begin{terminaloutput}
+life B2/S lifeboard.lif
+\end{terminaloutput}
+and display generations of boards, beginning with the inital board in
+the input file.
+\end{exercise}

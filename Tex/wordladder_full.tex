@@ -1,0 +1,189 @@
+\input{tikzsets}
+
+For the ``full'' version of Wordladder, you make no assumptions
+about the number of words that are needed to make the ladder, although
+we do assume that all the words in the ladder are the same size.
+
+\begin{exercise}
+To achieve this, you could make a
+list of all the words, and for all words an \verb^edit distance^ of $1$ away from
+the initial word, mark these and store their `parent'. Now, go through
+this list, and for all words marked, find words which are distance $1$
+from these, and hence distance $2$ from the initial word. Mark these and
+retain their parent. Be careful you don't use words
+already marked. If the word ladder is possible, you'll eventually find the
+solution, and via the record of the parents, have the correct route.
+This is shown for the word ladder CAT to DOG in Figure~\ref{wordladder:fig_catdog}
+using a very small subset of the possible three letter words.
+\end{exercise}
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}
+\matrix (catdog) [word ladder]
+{
+\node (but) {but}; \\
+\node (cat) {cat}; \\
+\node (cob) {cob}; \\
+\node (cod) {cod}; \\
+\node (cog) {cog}; \\
+\node (con) {con}; \\
+\node (con) {con}; \\
+\node (cot) {cot}; \\
+\node (cow) {cow}; \\
+\node (cub) {cub}; \\
+\node (cud) {cud}; \\
+\node (cue) {cue}; \\
+\node (cup) {cup}; \\
+\node (cur) {cur}; \\
+\node (cut) {cut}; \\
+\node (dog) {dog}; \\
+\node (dot) {dot}; \\
+\node (got) {got}; \\
+\node (gut) {gut}; \\
+\node (hut) {hut}; \\
+\node (jot) {jot}; \\
+\node (lot) {lot}; \\
+\node (not) {not}; \\
+\node (nut) {nut}; \\
+\node (pot) {pot}; \\
+\node (put) {put}; \\
+\node (rot) {rot}; \\
+\node (rut) {rut}; \\
+\node (tot) {tot}; \\
+};
+\draw [->,ocre] (cot.west) to [in=0,out=0,bend left=90] (cat.west); 
+\draw [->,ocre] (cut.east) to [in=0,out=0,bend right=90] (cat.east); 
+\end{tikzpicture}
+\begin{tikzpicture}
+\matrix (catdog) [word ladder]
+{
+\node (but) {but}; \\
+\node (cat) {cat}; \\
+\node (cob) {cob}; \\
+\node (cod) {cod}; \\
+\node (cog) {cog}; \\
+\node (con) {con}; \\
+\node (con) {con}; \\
+\node (cot) {cot}; \\
+\node (cow) {cow}; \\
+\node (cub) {cub}; \\
+\node (cud) {cud}; \\
+\node (cue) {cue}; \\
+\node (cup) {cup}; \\
+\node (cur) {cur}; \\
+\node (cut) {cut}; \\
+\node (dog) {dog}; \\
+\node (dot) {dot}; \\
+\node (got) {got}; \\
+\node (gut) {gut}; \\
+\node (hut) {hut}; \\
+\node (jot) {jot}; \\
+\node (lot) {lot}; \\
+\node (not) {not}; \\
+\node (nut) {nut}; \\
+\node (pot) {pot}; \\
+\node (put) {put}; \\
+\node (rot) {rot}; \\
+\node (rut) {rut}; \\
+\node (tot) {tot}; \\
+};
+\draw [->,lightgray,opacity=0.5] (cot.west) to [in=0,out=0,bend left=90] (cat.west); 
+\draw [->,lightgray,opacity=0.5] (cut.east) to [in=0,out=0,bend right=90] (cat.east); 
+
+\draw [->,ocre] (but.east) to [in=0,out=0,bend left=90] (cut.east); 
+\draw [->,ocre] (nut.east) to [in=0,out=0,bend right=90] (cut.east); 
+\draw [->,ocre] (gut.east) to [in=0,out=0,bend right=90] (cut.east); 
+\draw [->,ocre] (hut.east) to [in=0,out=0,bend right=90] (cut.east); 
+\draw [->,ocre] (put.east) to [in=0,out=0,bend right=90] (cut.east); 
+\draw [->,ocre] (cub.east) to [in=0,out=0,bend left=90] (cut.east); 
+\draw [->,ocre] (rut.east) to [in=0,out=0,bend right=90] (cut.east); 
+\draw [->,ocre] (cud.east) to [in=0,out=0,bend left=90] (cut.east); 
+\draw [->,ocre] (cue.east) to [in=0,out=0,bend left=90] (cut.east); 
+\draw [->,ocre] (cup.east) to [in=0,out=0,bend left=90] (cut.east); 
+\draw [->,ocre] (cur.east) to [in=0,out=0,bend left=90] (cut.east); 
+
+\draw [->,ocre] (cog.west) to [in=0,out=0,bend right=90] (cot.west);
+\draw [->,ocre] (cod.west) to [in=0,out=0,bend right=90] (cot.west);
+\draw [->,ocre] (cob.west) to [in=0,out=0,bend right=90] (cot.west);
+\draw [->,ocre] (con.west) to [in=0,out=0,bend right=90] (cot.west);
+
+\draw [->,ocre] (cow.west) to [in=0,out=0,bend left=90] (cot.west);
+\draw [->,ocre] (dot.west) to [in=0,out=0,bend left=90] (cot.west);
+\draw [->,ocre] (got.west) to [in=0,out=0,bend left=90] (cot.west);
+\draw [->,ocre] (jot.west) to [in=0,out=0,bend left=90] (cot.west);
+\draw [->,ocre] (lot.west) to [in=0,out=0,bend left=90] (cot.west);
+\draw [->,ocre] (not.west) to [in=0,out=0,bend left=90] (cot.west);
+\draw [->,ocre] (pot.west) to [in=0,out=0,bend left=90] (cot.west);
+\draw [->,ocre] (rot.west) to [in=0,out=0,bend left=90] (cot.west);
+\draw [->,ocre] (tot.west) to [in=0,out=0,bend left=90] (cot.west);
+\end{tikzpicture}
+\begin{tikzpicture}
+\matrix (catdog) [word ladder]
+{
+\node (but) {but}; \\
+\node (cat) {cat}; \\
+\node (cob) {cob}; \\
+\node (cod) {cod}; \\
+\node (cog) {cog}; \\
+\node (con) {con}; \\
+\node (con) {con}; \\
+\node (cot) {cot}; \\
+\node (cow) {cow}; \\
+\node (cub) {cub}; \\
+\node (cud) {cud}; \\
+\node (cue) {cue}; \\
+\node (cup) {cup}; \\
+\node (cur) {cur}; \\
+\node (cut) {cut}; \\
+\node (dog) {dog}; \\
+\node (dot) {dot}; \\
+\node (got) {got}; \\
+\node (gut) {gut}; \\
+\node (hut) {hut}; \\
+\node (jot) {jot}; \\
+\node (lot) {lot}; \\
+\node (not) {not}; \\
+\node (nut) {nut}; \\
+\node (pot) {pot}; \\
+\node (put) {put}; \\
+\node (rot) {rot}; \\
+\node (rut) {rut}; \\
+\node (tot) {tot}; \\
+};
+\draw [->,lightgray,opacity=0.5] (cot.west) to [in=0,out=0,bend left=90] (cat.west); 
+\draw [->,lightgray,opacity=0.5] (cut.east) to [in=0,out=0,bend right=90] (cat.east); 
+
+\draw [->,lightgray,opacity=0.5] (but.east) to [in=0,out=0,bend left=90] (cut.east); 
+\draw [->,lightgray,opacity=0.5] (nut.east) to [in=0,out=0,bend right=90] (cut.east); 
+\draw [->,lightgray,opacity=0.5] (gut.east) to [in=0,out=0,bend right=90] (cut.east); 
+\draw [->,lightgray,opacity=0.5] (hut.east) to [in=0,out=0,bend right=90] (cut.east); 
+\draw [->,lightgray,opacity=0.5] (put.east) to [in=0,out=0,bend right=90] (cut.east); 
+\draw [->,lightgray,opacity=0.5] (cub.east) to [in=0,out=0,bend left=90] (cut.east); 
+\draw [->,lightgray,opacity=0.5] (rut.east) to [in=0,out=0,bend right=90] (cut.east); 
+\draw [->,lightgray,opacity=0.5] (cud.east) to [in=0,out=0,bend left=90] (cut.east); 
+\draw [->,lightgray,opacity=0.5] (cue.east) to [in=0,out=0,bend left=90] (cut.east); 
+\draw [->,lightgray,opacity=0.5] (cup.east) to [in=0,out=0,bend left=90] (cut.east); 
+\draw [->,lightgray,opacity=0.5] (cur.east) to [in=0,out=0,bend left=90] (cut.east); 
+
+\draw [->,lightgray,opacity=0.5] (cog.west) to [in=0,out=0,bend right=90] (cot.west);
+\draw [->,lightgray,opacity=0.5] (cod.west) to [in=0,out=0,bend right=90] (cot.west);
+\draw [->,lightgray,opacity=0.5] (cob.west) to [in=0,out=0,bend right=90] (cot.west);
+\draw [->,lightgray,opacity=0.5] (con.west) to [in=0,out=0,bend right=90] (cot.west);
+
+\draw [->,lightgray,opacity=0.5] (cow.west) to [in=0,out=0,bend left=90] (cot.west);
+\draw [->,lightgray,opacity=0.5] (dot.west) to [in=0,out=0,bend left=90] (cot.west);
+\draw [->,lightgray,opacity=0.5] (got.west) to [in=0,out=0,bend left=90] (cot.west);
+\draw [->,lightgray,opacity=0.5] (jot.west) to [in=0,out=0,bend left=90] (cot.west);
+\draw [->,lightgray,opacity=0.5] (lot.west) to [in=0,out=0,bend left=90] (cot.west);
+\draw [->,lightgray,opacity=0.5] (not.west) to [in=0,out=0,bend left=90] (cot.west);
+\draw [->,lightgray,opacity=0.5] (pot.west) to [in=0,out=0,bend left=90] (cot.west);
+\draw [->,lightgray,opacity=0.5] (rot.west) to [in=0,out=0,bend left=90] (cot.west);
+\draw [->,lightgray,opacity=0.5] (tot.west) to [in=0,out=0,bend left=90] (cot.west);
+
+\draw [->,ocre,thick] (dog.west) to [in=0,out=0,bend right=60] (dot.west);
+\end{tikzpicture}
+\end{center}
+\caption{Word Ladder from CAT to DOG. (Left) Words which are distance one from CAT are COT and CUT. (Middle) Words which are distance one from CUT and COT, which includes amongst others, DOT. (Right) DOG is distance one from DOT. We now have our route, via the pointers, back to CAT.}
+\label{wordladder:fig_catdog}
+\end{figure}
