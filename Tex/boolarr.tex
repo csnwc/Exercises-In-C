@@ -14,5 +14,5 @@ using the C bitwise logical operators `xor' (\verb#^#), `or' (\verb^|^) and `and
 \begin{exercise}
 Given the files \verb^testboolarr.c^ and \verb^boolarr.h^, complete the Boolean Array ADT using
 a reallocating array of unsigned chars. Each cell of the underlying array stores $8$ bits
-of the data. 
+of the data. Ignoring the overhead of the main structure, which might store the capacity of the underlying array, and the number of valid bits in use, the array should be $~$\verb^nbits^$/8$ bytes in length.
 \end{exercise}
