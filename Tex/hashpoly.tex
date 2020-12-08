@@ -1,0 +1,64 @@
+\nsection{Polymorphic Hashing}
+
+Polymorphism is the concept of writing functions (or ADTs), without
+needing to specify which particular type is being used/stored. To
+understand the quicksort algorithm, for instance, doesn't really require
+you to know whether you're using integers, doubles or some other type. C
+is not very good at dealing with polymorphism - you'd need something
+like Java or C++ for that. However, it does allow the use of
+\verb^void*^ pointers for us to approximate it.
+
+\begin{exercise}
+\label{ex:hahspoly}
+Here we write an implementation of a polymorphic associative array using
+hashing, see \verb^assoc.h^. Both the key \& data to be used by the hash
+function are of
+unknown types, so we will simply store void pointers to
+both of these, and the user of the associative array (and {\bf not} the
+ADT itself) will be responsible for creating and maintaining such memory,
+and also ensuring it doesn't change when in use by the associative array.
+In the \verb^testassoc.c^ file we show two uses for such a type :
+a simple string example (to find the longest word in English that is
+also a valid (but different) word when spelled backwards), and a simple
+integer example where we keep a record of how many unique random numbers
+in a range are chosen.
+
+Since we do not know {\bf what} the type of the key is, we
+need to be careful when comparing or copying keys. Therefore, in the
+\verb^assoc_init(int keysize)^ function, the user has to pass the size of the
+key used (e.g. \verb^sizeof(int)^) or in the case or strings, the special value $0$.
+Now we can use \verb^memcmp()^ and \verb^memcpy()^, or in the case of strings, \verb^strcmp()^
+and \verb^strcpy()^ for dealing with the keys. In the case of data, the ADT only ever needs
+to return a pointer to the data (not process it) via
+\verb^assoc_lookup()^, so its size is not important.
+
+Your hash table used to implement the ADT should be resizeable, and you may use either
+open-addressing or double-hashing to deal with collisions. Make no assumptions about
+the maximum size of the array, and make the initial size of the array $16$.
+You can use any hash function you wish, but if it's off the internet (etc.) cite
+the source in a comment..
+
+Submit a single \verb^.zip^ file containing your code.
+Your standard submission will contain two files:\\
+\verb^Realloc/specific.h^ and \verb^Realloc/realloc.c^.
+I will use my \verb^assoc.mk^ Makefile to compile your code,
+so check that it works correctly.
+\end{exercise}
+
+Hint : when you do a resize you cannot simply
+copy the old table, but must rehash your data, one entry at a time,
+into the new table.  This is because your hash function is based on the
+table size, and if the table size has changed you will be hashing keys
+into different locations.
+
+\nsection{Cuckoo Hashing}
+
+\begin{exercise}
+Rewrite your associative array described in Exercise~\ref{ex:hahspoly}
+using cuckoo hashing instead.
+This involves two tables, and a key is guaranteed to be found (if it
+has been inserted) in one of its two locations. Different hash functions
+must be used for each of the two tables.
+If you do the extension, submit:\\
+\verb^Cuckoo/specific.h^ and \verb^Cuckoo/cukcoo.c^.
+\end{exercise}
