@@ -32,8 +32,8 @@ and \verb^strcpy()^ for dealing with the keys. In the case of data, the ADT only
 to return a pointer to the data (not process it) via
 \verb^assoc_lookup()^, so its size is not important.
 
-Your hash table used to implement the ADT should be resizeable, and you may use either
-open-addressing or double-hashing to deal with collisions. Make no assumptions about
+Your hash table used to implement the ADT should be resizeable, and you may use
+open-addressing/double-hashing or separate chaining to deal with collisions. Make no assumptions about
 the maximum size of the array, and make the initial size of the array small e.g. $16$ or $17$
 (a prime is useful if you're double hashing)..
 You can use any hash function you wish, but if it's off the internet (etc.) cite
