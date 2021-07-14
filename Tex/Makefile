@@ -6,4 +6,4 @@ exercisesInC.pdf :
 	mv exercisesInC.pdf ..
 
 clean:
-	rm -fr *.log *.ptc *.toc *.run.xml *.bcf *.out *.aux *.idx
+	rm -fr *.log *.ptc *.toc *.run.xml *.bcf *.out *.aux *.idx exercisesInC.pdf ../exercisesInC.pdf
