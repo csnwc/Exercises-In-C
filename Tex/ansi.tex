@@ -16,6 +16,6 @@ To build and execute this code, use the \verb^Makefile^ provided by typing:
 $ make demo_neillsimplescreen
 gcc demo_neillsimplescreen.c neillsimplescreen.c
 -o demo_neillsimplescreen -Wall -Wextra -pedantic 
--std=c90 -g3 -fsanitize=undefined -fsanitize=address -lm
+-std=c99 -Wvla -g3 -fsanitize=undefined -fsanitize=address -lm
 $ ./demo_neillsimplescreen 
 \end{terminaloutput}

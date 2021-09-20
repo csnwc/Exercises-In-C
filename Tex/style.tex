@@ -6,12 +6,12 @@ of the compiler and other tools:
 \item[FLAGS] Having no warnings (or errors!) when compiling and executing with the flags:\\
 For array bounds checking, \verb^NULL^ pointers being dereferenced etc:
 \begin{terminaloutput}
--Wall -Wextra -Wfloat-equal -pedantic -std=c90
+-Wall -Wextra -Wfloat-equal -Wvla -pedantic -std=c99
 -fsanitize=undefined -fsanitize=address -g3
 \end{terminaloutput}
 For memory leaks:
 \begin{terminaloutput}
--Wall -Wextra -Wfloat-equal -pedantic -std=c90
+-Wall -Wextra -Wfloat-equal -Wvla -pedantic -std=c99
 -g3
 \end{terminaloutput}
 then run:
@@ -20,7 +20,7 @@ valgrind --leak-check=full ./myexec
 \end{terminaloutput}
 For `final' production-ready code:
 \begin{terminaloutput}
--Wall -Wextra -Wfloat-equal -pedantic -std=c90
+-Wall -Wextra -Wfloat-equal -Wvla -pedantic -std=c99
 -O3
 \end{terminaloutput}
 

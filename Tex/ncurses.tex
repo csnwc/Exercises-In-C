@@ -14,7 +14,7 @@ To compile the code you'll have to use both my code \verb^neillncurses.c^
 and also link in the ncurses library. A typical compile might look like
 \begin{terminaloutput}
 gcc yourcode.c neillncurses.c -Wall -Wfloat-equal -Wextra -O2
-    -pedantic -std=c90 -lncurses -lm
+    -Wvla -pedantic -std=c99 -lncurses -lm
 \end{terminaloutput}
 
 If you're running a virtual box you may also need to install the \verb^ncurses^ developer
