@@ -212,15 +212,18 @@ Array overruns are often cured by being consistent with \verb^#define^s.
 \item[BRIEF] Comments are brief, and non-trivial. Worthless commenting often
 looks something like:
 \begin{codesnippet}
-/* Set the variable i to zero */
+// Set the variable i to zero
 int i = 0;
 \end{codesnippet}
 The programmer extracts no additional information from it. However, for more
 difficult edge cases, a comment might be useful.
 \begin{codesnippet}
-/* Have we reached the end of the list ? */
+// Have we reached the end of the list ?
 if(t1->h == NULL){ 
 \end{codesnippet}
+
+\noindent To prevent lines from becoming too long, it is good practice to put comments above
+the line it refers to, not at the end of the same line.
 
 \item[TYPE] You should use \verb^typedef^s, \verb^enum^s and \verb^struct^s to
 increase readability. 
