@@ -1,0 +1,91 @@
+\nsection{Crosswords}
+Many newspapers in the UK have a puzzles section. One of the most well
+established such puzzle is the {\em crossword}.
+\wwwurl{https://en.wikipedia.org/wiki/Crossword}
+A crossword is a $2D$ grid of
+full and empty cells. Clues are given so that the empty squares can be filled-in
+with answers to {\em across} or {\em down} clues.
+
+\begin{Puzzle}{5}{5}%
+|[1]F|R |O   |[2]G|*   |.
+|O   |* |*   |O   |*   |.
+|N   |* |[3]A|D   |[4]D|.
+|[5]T|U |G   |*   |A   |.
+|*   |* |[6]E|L   |M   |.
+\end{Puzzle}
+\begin{PuzzleClues}{\textbf{Across}}
+\Clue{1}{FROG}{Tailless amphibian}
+\Clue{3}{ADD}{Join two items together}
+\Clue{5}{TUG}{Pull something suddenly}
+\Clue{6}{ELM}{Large deciduous tree}
+\end{PuzzleClues}
+\begin{PuzzleClues}{\textbf{Down}}
+\Clue{1}{FONT}{Shape having one face and size}
+\Clue{2}{GOD}{Higher being}
+\Clue{3}{AGE}{Period of History}
+\Clue{4}{DAM}{Water barrier}
+\end{PuzzleClues}
+
+\vspace*{1.5ex}
+\noindent Here though, we aren't going to be dealing with solving crosswords, only in understanding
+something about their structure.
+
+\noindent Firstly, let us consider how crosswords are numbered.
+In the above example the first square is shared by both $1$ across and $1$ down.
+Working from the top-left rightwards and {\bf then downwards}, squares that are
+at the start of a new word are numbered. The second square in the above example has no number
+because it is already part of $1$ across, and there is no room for a down clue. 
+On the fourth square, there is room for a down clue, but not for an across since it is already being used by $1$ down.
+
+\noindent Actually, the algorithm for deciding on whether a square should be numbered or not is fairly simple:
+\begin{enumerate}
+\item All squares outside (off the grid) of the board are considered full.
+\item The pattern:
+\begin{Puzzle}{3}{1}%
+|*|A |A |.
+\end{Puzzle}
+shows that we can start a new across clue from the middle square.
+\item Similarly, the pattern:
+\begin{Puzzle}{1}{3}%
+|* |.
+|A |.
+|A |.
+\end{Puzzle}
+shows that we can start a new down clue from the middle square.
+\item Sometimes a square can be the start of both an across and down clue.
+In this case, they must share the same number.
+\end{enumerate}
+
+\noindent Secondly, another important concept in crossword clues is that of the number of {\em checked} squares.
+This is the number of squares which are shared by both an across clue and a down clue. In the above crossword, nine squares
+are shared of the $17$ empty ones which rounds to $53\%$. This is shown below:
+
+\PuzzleDefineColorCell{c}{ocre}
+\begin{Puzzle}{5}{5}%
+|[1][c]F|R |O  |[2][c]G|* |.
+|O |* |* |O |* |.
+|N |* |[3][c]A|[][c]D |[4][c]D|.
+|[5][c]T|U |[][c]G |* |A |.
+|* |* |[6][c]E|L |[][c]M |.
+\end{Puzzle}
+
+\begin{exercise}
+Complete the file {\bf crossword.c} which, along with my files {\em crossword.h} and {\em cwddriver.c},
+allows a crossword to be created such that the clue numberings and percentage of checked squares
+can be found. 
+
+\noindent My file {\em crossword.h} contains the function definitions which you'll have to implement
+in your {\bf crossword.c} file.
+My file {\em cwddriver.c} contains the \verb^main()^ function to act as a driver to run the code.
+Your file will contain many other functions as well as those specified, so you'll wish to test them
+as normal using the \verb^test()^ function.
+
+\noindent If all of these files are in the same directory, you can compile them using:
+\begin{verbatim}
+clang crossword.c cwddriver.c -o crossword -Wall -Wextra
+-Wpedantic -std=c99 -Wvla -Wfloat-equal -O3 -Werror -lm
+\end{verbatim}
+
+\noindent Do not alter or resubmit {\em crossword.h} or {\em cwddriver.c} - my original versions will be used to compile the 
+{\em crossword.c} file that you adapt.
+\end{exercise}
