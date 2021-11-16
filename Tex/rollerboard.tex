@@ -214,7 +214,8 @@ be which element of the array was the parent.
 \noindent The program reads the name of the board definition file from
 the command line.  If it finds a successful solution, it prints out the
 number of boards that would be printed in the solution and {\bf nothing
-else}, or else exactly the phrase `No Solution?'' if none can be found~:
+else}, or else exactly the phrase `No Solution?'' if none can be found
+(as might be the case if you simply run out of memory)~:
 
 \begin{terminaloutput}
 $ ./rollerboard 4x4diag.rbd
@@ -224,7 +225,7 @@ $ ./rollerboard 5x5lhs.rbd
 \end{terminaloutput}
 
 
-If the `verbose' flag is used, your program will additionally print out the solution in the correct order~:
+If the `verbose' flag is used, your program will print out the solution in the correct order~:
 \begin{terminaloutput}
 $ ./rollerboard -v 4x4lr.rbd
 0:
