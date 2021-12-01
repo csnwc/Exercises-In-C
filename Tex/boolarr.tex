@@ -1,6 +1,16 @@
-\nsection{Boolean Arrays}
+\nsection{Packed Boolean Arrays}
 
-Here we create an ADT for Boolean Arrays, allowing logical operations to be performed on an entire array.
+In C99, every individual variable must have a different address. For
+this reason, a \verb^bool^ must take up a least one byte since this is
+the smallest individual element uniquely addressable by most hardware.
+
+In some cases it would be good to have a datatype that truly uses one bit
+of storage for each Boolean. One such example is known as the  {\it packed}
+Boolean array, where an array of $64$ elements takes $8$ bytes.
+
+Here we create an ADT for packed Boolean arrays, allowing logical
+operations to be performed on an entire array, and individual bits to
+be set and unset.
 
 \noindent
 This will involve manipulation of the bits of the data
