@@ -1,0 +1,79 @@
+\nsection{Exact and Approximate (Bloom) Dictionaries}
+
+A dictionary ADT is given in \verb^dict.h^. This allows words to be
+inserted, and also to check whether a word is already in the Dictionary
+or not.  Each word in the Dictionary is unique (you don't store the same
+word multiple times).
+
+Simple Spell Checkers can be made by feeding a `white-list' of words to the Dictionary
+and then testing another list against these to find words that are misspelt.  
+
+\begin{exercise}
+
+Implement the Dictionary using hashing and {\it Separate Chaining}
+for collision resolution. Write the files \verb^Exact/specific.h^ and
+\verb^Exact/exact.c^ to compile against my \verb^dict.h^ file and my two
+test/driver files \verb^testdict.c^ and \verb^spelling.c^.  There is
+no need to ever resize the hashtable, since you know its maximum size
+upon initialisation.
+
+This creates an {\it exact} Dictionary since once you've added a word,
+you're guaranteed to be able to find it again.
+
+\end{exercise}
+
+\noindent
+A Bloom Filter
+consists of an array of ($m$) Boolean flags.
+\wwwurl{https://en.wikipedia.org/wiki/Bloom_filter}
+Each word is not stored in
+the Dictionary, but instead $k$ different hashes are computed from it,
+and each of these used to set a Boolean flag in an array. When searching,
+compute these hashes, and if {\bf any} of the corresponding flags are
+zero, you know the word cannot be in the Dictionary. If all the corresponding
+flags are set, then the word is {\bf probably} in the Dictionary. You
+can't be certain though, because two different strings might hash to the
+same hash values, and the table might become congested. Such approaches
+are therefore known as {\it approximate}.
+
+\begin{exercise}
+
+Use a Bloom Filter to implement the Dictionary. Write the source files
+\verb^Approx/specific.h^ and \verb^Approx/approx.c^ to compile against
+my \verb^dict.h^ file. For simplicity, use a traditional Boolean array
+for the Bloom Filter (and {\bf not} a packed array such as seen in
+Exercise~\ref{ex:packedboolarr}).
+
+By choosing $m$ to be twenty times the number of words, and $k=11$, the chances
+of a false match are reduced to (nearly) zero, and the tests \verb^testdict.c^ and
+\verb^spelling.c^ should perform in the same way as their `exact' counterparts.
+
+Inventing $k$ different hash functions would be complicated, 
+so instead we create one master hash (using Bernstein for
+example), and then evolve this iteratively to create the others. You could do
+this using something like~:
+\begin{codesnippet}
+unsigned long* _hashes(const char* s)
+{
+   // You'll need to free this later
+   unsigned long* hashes = ncalloc(KHASHES, sizeof(unsigned long));
+   // Use Bernstein from Lecture Notes (or other suitable hash)
+   unsigned long bh = _hash(s);
+   int ln = strlen(s);
+   /* If two different strings have the same bh, then
+      we need a separate way to distiguish them when using
+      bh to generate a sequence */
+   srand(bh*(ln*s[0] + s[ln-1]));
+   unsigned long h2 = bh;
+   for (int i=0; i<KHASHES; i++) {
+      h2 = 33 * h2 ^ rand();
+      hashes[i] = h2;
+   }
+   // Still need to apply modulus to these to fit table size
+   return hashes;
+}
+\end{codesnippet}
+
+
+\end{exercise}
+

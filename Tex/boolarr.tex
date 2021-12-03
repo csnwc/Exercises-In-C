@@ -18,10 +18,12 @@ using the C bitwise logical operators `xor' (\verb#^#), `or' (\verb^|^) and `and
 \wwwurl{https://en.wikipedia.org/wiki/Bitwise\_operation}
 
 \begin{exercise}
-Given the files \verb^testboolarr.c^ and \verb^boolarr.h^, complete the Boolean Array ADT using
-a reallocating array of unsigned chars. You will need to write both \verb^realloc.c^, which will define the 
-functions in boolarr.h, and \verb^specific.h^, which will contain your header information. 
-Ignoring the overhead of the main structure, 
-which might store the capacity of the underlying array, and the number of valid bits in use, 
-the array should be around $~$\verb^nbits^$/8$ bytes in length.
+\label{ex:packedboolarr}
+Given the files \verb^testboolarr.c^ and \verb^boolarr.h^, complete the
+Boolean Array ADT using a reallocating array of unsigned chars. You will
+need to write both \verb^realloc.c^, which will define the functions
+in boolarr.h, and \verb^specific.h^, which will contain your header
+information.  Ignoring the overhead of the main structure, which might
+store the capacity of the underlying array, and the number of valid bits
+in use, the array should be around $~$\verb^nbits^$/8$ bytes in length.
 \end{exercise}
