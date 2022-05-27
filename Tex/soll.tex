@@ -1,0 +1,48 @@
+\nsection{Self-Organising Linked Lists}
+
+A self-organising linked list (SOLL) improves search efficiency (over
+an unsorted list) by rearranging the elements in the list each time they
+are accessed: 
+
+\wwwurl{https://en.wikipedia.org/wiki/Self-organizing_list}
+
+If no self-organising is done, a SOLL behaves similarly to a collection.
+New elements are inserted at the end of the list, and searching is done
+from the start to the end using pointer-chasing.  For efficiencies sake,
+we keep pointers to both the start and the end of the list. Insertion,
+therefore, has a $O(1)$ cost.
+
+However, if self-organisation is done via the {\it move-to-front} (MFT)
+policy, each time an element is accessed, it is moved to the start of the
+list. This means that the next time we search for the same element, it
+will be found more quickly, since it is near the start of the list. Once
+the element is found, this re-ordering also has a complextity of $O(1)$.
+
+The MFT policy can sometimes be too aggresive; uncommon elements that
+are searched for will move to the front, potentially displacing elements that
+are being searched for more frequently. An alternative is the
+{\it transpose} policy. When an element is accessed, it is moved one
+place in the list closer to the start. This once again can be done in
+constant time, providing we keep a copy of a pointer to the previous
+element during the search, or alternatively, use a doubly-linked list
+e.g. each element has both a next and a previous pointer.
+
+
+\begin{exercise}
+
+Implement a SOLL using linked lists to implement these different policies
+and store strings.
+
+Write the files \verb^Linked/specific.h^ and \verb^Linked/linked.c^. Using
+the \verb^soll.mak^ makefile, you can compile this against the
+\verb^soll.h^ file and one of the test/driver files \verb^testsoll.c^,
+\verb^spelling.c^ or \verb^uniq.c^.
+
+The ADT should implement the standard functions: \verb^soll_init^,
+\verb^soll_add^, \verb^soll_remove^, \verb^soll_isin^,
+\verb^soll_tostring^, \verb^soll_size^ and \verb^soll_free^.  In addition,
+write \verb^soll_freq()^ which reports the frequency of access for a
+particular element. Therefore, each element of the list has the
+overhead of keeping track of the number of times it has been accessed.
+
+\end{exercise}
