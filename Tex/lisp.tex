@@ -1,0 +1,30 @@
+\nsection{Lisp and the CONS structure}
+
+The name of the cons function is not unreasonable: it is an
+abbreviation of the word “construct”. The origins of the names
+for car and cdr, on the other hand, are esoteric: car is an acronym
+from the phrase “Contents of the Address part of the Register”;
+and cdr (pronounced “could-er”) is an acronym from the phrase
+“Contents of the Decrement part of the Register”. These phrases
+refer to specific pieces of hardware on the very early computer
+on which the original Lisp was developed. Besides being obsolete,
+the phrases have been completely irrelevant for more than 25 years to
+anyone thinking about Lisp. Nonetheless, although a few brave scholars
+have begun to use more reasonable names for these functions, the old
+terms are still in use. In particular, since the terms are used in
+the Emacs Lisp source code, we will use them in this introduction.
+https://www.gnu.org/software/emacs/manual/html_node/eintr/Strange-Names.html
+
+
+
+https://www.tutorialspoint.com/lisp/lisp_lists.htm
+
+Atom: Number
+Component : An atom or a list of atoms.
+Lists : Sequence of components (i.e. each of which is an atom or another list)
+
+car : It takes a list as argument, and returns the first component - this could be atomic, or a list.
+
+cdr : It takes a list as argument, and returns a list without the first component 
+
+cons : It takes two arguments, an element and a list and returns a list with the element inserted at the first place.

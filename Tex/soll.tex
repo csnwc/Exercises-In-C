@@ -6,7 +6,7 @@ are accessed:
 
 \wwwurl{https://en.wikipedia.org/wiki/Self-organizing_list}
 
-If no self-organising is done, a SOLL behaves similarly to a collection.
+If no self-organisation is done, a SOLL behaves similarly to a collection.
 New elements are inserted at the end of the list, and searching is done
 from the start to the end using pointer-chasing.  For efficiencies sake,
 we keep pointers to both the start and the end of the list. Insertion,
@@ -33,10 +33,14 @@ e.g. each element has both a next and a previous pointer.
 Implement a SOLL using linked lists to implement these different policies
 and store strings.
 
+
+
+\begin{itemize}
+\item {\bf $70\%$}
 Write the files \verb^Linked/specific.h^ and \verb^Linked/linked.c^. Using
 the \verb^soll.mak^ makefile, you can compile this against the
 \verb^soll.h^ file and one of the test/driver files \verb^testsoll.c^,
-\verb^spelling.c^ or \verb^uniq.c^.
+\verb^build.c^ or \verb^uniq.c^.
 
 The ADT should implement the standard functions: \verb^soll_init^,
 \verb^soll_add^, \verb^soll_remove^, \verb^soll_isin^,
@@ -44,5 +48,22 @@ The ADT should implement the standard functions: \verb^soll_init^,
 write \verb^soll_freq()^ which reports the frequency of access for a
 particular element. Therefore, each element of the list has the
 overhead of keeping track of the number of times it has been accessed.
+
+
+\item {\bf $20\%$}
+Show a testing strategy on the above by submitting \verb^testing.txt^
+where you give details of
+unit testing, white/black-box testing done on your code. Describe any
+test-harnesses used. Convince me that every line of your C code
+has been tested.
+
+\item {\bf $10\%$}
+Show an extension to the project in a direction of
+your choice via \verb^extension.txt^.
+It should demonstrate your {\bf understanding} of some aspect
+of programming or S/W engineering. Make sure it's clear what has been
+done, why, and how to compile it.
+\end{itemize}
+
 
 \end{exercise}
