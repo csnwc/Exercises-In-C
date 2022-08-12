@@ -351,9 +351,22 @@ innerbottommargin=5pt]{cBox}
 \leftmargin=5pt % Indentation on the left
 \rightmargin=25pt}\item\ignorespaces % Indentation on the right
 \makebox[-2.5pt]{\begin{tikzpicture}[overlay]
-\node[draw=ocre!60,line width=1pt,circle,fill=ocre!25,font=\sffamily\bfseries,inner sep=2pt,outer sep=0pt] at (-25pt,0pt){\textcolor{ocre}{www}};\end{tikzpicture}} % Orange R in a circle
+\node[draw=ocre!60,line width=1pt,circle,fill=ocre!25,font=\sffamily\bfseries,inner sep=2pt,outer sep=0pt] at (-25pt,0pt){\textcolor{ocre}{www}};\end{tikzpicture}} % Orange WWW in a circle
 \advance\baselineskip -1pt}{\end{list}\vskip5pt} % Tighter line spacing and white space after remark
 \newcommand{\wwwurl}[1]{\begin{www}\url{#1}\end{www}}
+
+%%% Warning Sign
+\newenvironment{hardone}{\par\vspace{10pt}\small % Vertical white space above the remark and smaller font size
+\begin{list}{}{
+\leftmargin=5pt % Indentation on the left
+\rightmargin=25pt}\item\ignorespaces % Indentation on the right
+\makebox[-2.5pt]{\begin{tikzpicture}[overlay]
+\filldraw[draw=red,fill=ocre] (-45pt,-10pt) -- (-5pt,-10pt) -- (-25pt,20pt);
+\node at (-25pt,0pt){\textcolor{black}{\Huge\bfseries\sffamily !}};
+\node[align=left, text width=0.90\textwidth, minimum height=3ex, ocre] at (190pt,0) {Experience shows that the next exercise is trickier than most - you have been warned!};
+\end{tikzpicture}}% 
+\advance\baselineskip -1pt}{\end{list}\vskip5pt} % Tighter line spacing and white space after remark
+\newcommand{\toohard}{\vspace*{3ex}\begin{hardone}\strut\end{hardone}\vspace*{3ex}}
 
 % ---------------------------------------
 % HACK ENVIRONMENT
