@@ -1,0 +1,14 @@
+\nsection{Randomness}
+The function \verb^rand()^ returns values in the interval [0, RAND\_MAX].
+If we declare the variable \verb^median^ and initialise it to have the
+value \verb^RAND_MAX/2^, then \verb^rand()^ will return a value
+that is sometimes larger than \verb^median^ and sometimes smaller.
+
+\begin{exercise}
+Write a program that calls \verb^rand()^, say $500$ times,
+inside a \verb^for^ loop, increments the variable \verb^minus_cnt^
+every time \verb^rand()^ returns a value less than \verb^median^.
+Each time through the \verb^for^ loop, print out the value of the difference
+of \verb^plus_cnt^ and \verb^minus_cnt^.
+You might think that this difference should oscillate near zero. Does it ?
+\end{exercise}`

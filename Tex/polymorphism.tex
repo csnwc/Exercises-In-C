@@ -1,0 +1,17 @@
+\nsection{Towards Polymorphism}
+
+Polymorphism is the concept of writing functions (or ADTs), without
+needing to specify which particular type is being used/stored. To
+understand the quicksort algorithm, for instance, doesn't really require
+you to know whether you're using integers, doubles or some other type. C
+is not very good at dealing with polymorphism - you'd need something
+like Python, Java or C++ for that. However, it does allow the use of
+\verb^void*^ pointers for us to approximate it.
+
+\begin{exercise}
+Extend the array ADT discussed in
+Exercise~\ref{ex:indarray}, so that any type can be used - files
+\verb^varr.h^ and \verb^testvarr.c^ are available in the usual place -
+use the Makefile used there, simply swapping \verb^arr^ for \verb^varr^
+at the top.
+\end{exercise}

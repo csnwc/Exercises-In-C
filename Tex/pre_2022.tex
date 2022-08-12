@@ -1,0 +1,1486 @@
+%----------------------%
+
+\input{structure}
+
+\usepackage[title]{appendix}
+
+\begin{document}
+
+\begingroup
+\thispagestyle{empty} % Suppress headers and footers on the title page
+\begin{tikzpicture}[remember picture,overlay]
+\draw (current page.center) node [fill=ocre!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering COMSM1201 : Exercises in C\\[15pt] % Book title
+{\Large Neill Campbell}\\[20pt] % Subtitle
+{\huge Department of Computer Science, University of Bristol}}}; % Author name
+\end{tikzpicture}
+\vfill
+\endgroup
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+\newpage
+~\vfill
+\thispagestyle{empty}
+
+\noindent Copyright \copyright\ 2021 Neill Campbell\\ % Copyright notice
+
+\noindent Formatted in \LaTeX, based on the Legrand Orange Book from \textsc{book-website.com}\\
+
+\noindent This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+\noindent \textit{\date} % Printing/edition date
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\usechapterimagefalse % If you don't want to include a chapter image, use this to toggle images off - it can be enabled later with \usechapterimagetrue
+
+\chapterimage{chapter_head_1.pdf} % Table of contents heading image
+
+\pagestyle{empty} % Disable headers and footers for the following pages
+
+\tableofcontents % Print the table of contents itself
+
+\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right side of the book
+
+\pagestyle{fancy} % Enable headers and footers again
+
+
+
+
+\chapterimage{../Pictures/hello-world.png}
+\chapter{Hello World (Week 0 \& 1)}
+
+Many of the exercises in this Chapter are taken from the book "C by Dissection".
+
+%%%%%%%%%%%%%%%%%%%%% B %%%%%%%%%%%%%%%%%%%%%
+
+\readchapter{B}{Hello World!}
+
+\nsection{Twice the Sum}
+Here is part of a program that begins by asking the user to input three
+integers:
+\begin{codesnippet}
+#include <stdio.h>
+
+int main(void)
+{
+   int a, b, c;
+
+   printf("Input three integers: ");
+\end{codesnippet}
+$\ldots$\\
+
+\begin{exercise}
+Complete the program so that when the user executes it and types in 2, 3,
+and 7, this is what appears on the screen:
+\begin{terminaloutput}
+Input three integers: 2 3 7
+Twice the sum of integers plus 7 is 31 !
+\end{terminaloutput}
+\end{exercise}
+
+\nsection{Letter C}
+
+Execute this program so you understand the output:
+
+\begin{codesnippet}
+#include <stdio.h>
+
+#define HEIGHT 17
+
+int main(void)
+{
+
+   int i = 0;
+
+   printf("\n\nIIIIIII\n");
+   while(i < HEIGHT){
+      printf("  III\n");
+      i = i + 1;
+   }
+   printf("IIIIIII\n\n\n");
+   return 0;
+
+}
+\end{codesnippet}
+
+\begin{exercise}
+Write a similar program
+that prints a large letter C on the screen (it doesn't need to be curved!).
+\end{exercise}
+
+%%%%%%%%%%%%%%%%%%%%% C %%%%%%%%%%%%%%%%%%%%%
+
+\nsection{Lecture Notes Chapter C}
+\begin{exercise}
+Once you've studied Chapter~$C$ of the lecture notes ({\em Grammar}), compile and run
+the examples given in the handout.
+\end{exercise}
+
+\nsection{++a++}
+Study the following code and write down what you think it prints.
+\begin{codesnippet}
+int a, b = 0, c = 0;
+a = ++b + ++c;
+printf("%d %d %d\n", a, b, c);
+a = b++ + c++;
+printf("%d %d %d\n", a, b, c);
+a = ++b + c++;
+printf("%d %d %d\n", a, b, c);
+a = b-- + --c;
+printf("%d %d %d\n", a, b, c);
+\end{codesnippet}
+\begin{exercise}
+Then write a test program to check your answers.
+\end{exercise}
+
+\nsection{Randomness}
+The function \verb^rand()^ returns values in the interval [0, RAND\_MAX].
+If we declare the variable \verb^median^ and initialise it to have the
+value \verb^RAND_MAX/2^, then \verb^rand()^ will return a value
+that is sometimes larger than \verb^median^ and sometimes smaller.
+
+\begin{exercise}
+Write a program that calls \verb^rand()^, say $500$ times,
+inside a \verb^for^ loop, increments the variable \verb^minus_cnt^
+every time \verb^rand()^ returns a value less than \verb^median^.
+Each time through the \verb^for^ loop, print out the value of the difference
+of \verb^plus_cnt^ and \verb^minus_cnt^.
+You might think that this difference should oscillate near zero. Does it ?
+\end{exercise}
+
+%%%%%%%%%%%%%%%%%%%%% D %%%%%%%%%%%%%%%%%%%%%
+
+\nsection{Lecture Notes Chapter D}
+\begin{exercise}
+Once you've studied Chapter~$D$ of the lecture notes ({\em Flow Control}), compile and run
+the examples given in the handout.
+\end{exercise}
+
+\nsection{find\_max}
+\begin{exercise}
+Write a program that finds the largest number entered by the user.
+Executing the program will produce something like:
+\begin{codesnippet}
+How many numbers do you wish to enter ? 5
+Enter 5 real numbers: 1.01 -3 2.2 7.0700 5
+Maximum value: 7.07
+\end{codesnippet}
+\end{exercise}
+
+\nsection{Loving Oddness}
+Suppose that you detest even integers but love odd ones.
+
+\begin{exercise}
+Modify the \verb^find_max^ program so that all variables
+are of type \verb^int^ and that only odd integers are processed.
+Explain all this to the user via appropriate \verb^printf()^ statements.
+\end{exercise}
+
+%%%%%%%%%%%%%%%%%%%%% E %%%%%%%%%%%%%%%%%%%%%
+
+\nsection{Lecture Notes Chapter E}
+\begin{exercise}
+Once you've studied Chapter~$E$ of the lecture notes ({\em Functions}), compile and run
+the examples given in the handout.
+\end{exercise}
+
+\nsection{Hailstone}
+The next number in a hailstone sequence is $n/2$ if the current
+number $n$ is even, or $3n+1$ if the current number is odd. If the
+initial number is $77$, then the following sequence is produced:
+\begin{terminaloutput}
+77
+232
+116
+58
+29
+88
+44
+22
+11
+34
+\end{terminaloutput}
+
+\begin{exercise}
+Write a program that, given a number typed by the user,
+prints out the sequence of {\em hailstone} numbers.
+The sequence terminates when it gets to $1$.
+\end{exercise}
+
+\nsection{Primes}
+A prime number can only be exactly divided by itself
+or $1$. The number $17$ is prime, but $16$ is not because
+the numbers $2$, $4$ and $8$ can divide it exactly.
+(Hint~$16\%4 == 0$).
+\begin{exercise}
+Write a program that prints out the first $n$ primes, where
+$n$ is input by the user. The first $8$ primes are:
+\begin{terminaloutput}
+2
+3
+5
+7
+11
+13
+7
+19
+\end{terminaloutput}
+What is the $3000^{\rm th}$ prime ?
+\end{exercise}
+
+\nsection{Triangles}
+
+A triangle can be equilateral (all three sides have the same length),
+isosceles (has two equal length sides), scalene
+(all the sides have a different length), or 
+right angled where if the three sides are $a$, $b$ and $c$,
+and $c$ is the longest, then :
+\begin{math}
+c = \sqrt{a^2 + b^2}
+\end{math}
+
+\begin{exercise}
+Write a program so that you can process a number of triples of side lengths
+in a single run of your program using a suitable
+unlikely input value for the first integer in order to terminate
+the program. e.g. -999.
+
+Think hard about the test data for your program to ensure that
+all possible cases are covered and all invalid data results in
+a sensible error message. Such cases can include sides of negative length,
+and impossible triangles (e.g. one side is longer than the sum of the other two).
+\end{exercise}
+
+\input{lcg}
+
+%%%%%%%%%%%%%%%%%%%%% F %%%%%%%%%%%%%%%%%%%%%
+
+\nsection{Lecture Notes Chapter F}
+\begin{exercise}
+Once you've studied Chapter~$F$ of the lecture notes ({\em Data Storage}), 
+compile and run the examples given in the handout.
+\end{exercise}
+
+\nsection{Unit Circle}
+In mathematics, for all real $x$, it is true that:
+\[
+sin^2(x) + cos^2(x) = 1
+\]
+i.e. $sin(x)*sin(x) + cos(x)*cos(x) = 1$.\\
+
+\begin{exercise}
+Write a program to demonstrate this for values of $x$ input by the user.
+\end{exercise}
+
+\nsection{Time Flies}
+\begin{exercise}
+Write a program which allows the user to enter two times in
+24-hour clock format, and computes the length of time between the
+two, e.g.:
+\begin{terminaloutput}
+Enter two times : 23:00 04:15
+Difference is : 5:15
+\end{terminaloutput}
+or,
+\begin{terminaloutput}
+Enter two times : 23:40 22:50
+Difference is : 23:10
+\end{terminaloutput}
+\end{exercise}
+
+\input{higherlower}
+
+
+%%%%%%%%%%% Will be Chapter G %%%%%%%%%%%%%%%%%%%%%%
+
+\nsection{Lecture Notes Chapter G}
+\begin{exercise}
+Once you've studied Chapter~$G$ of the lecture notes, 
+compile and run the examples given in the handout.
+\end{exercise}
+
+\nsection{Roulette}
+This is an chance for you to practice self-document techniques such as
+sensible identifier naming, commenting, \verb^typedefs^ and enumeration. 
+\begin{exercise}
+Write a roulette program. The roulette machine will select
+a number between \verb^0^ and \verb^35^ at random. The player
+can place an odd/even bet, or a bet on a particular number.
+A winning odd/even bet is paid off at 2 to 1, except
+that all odd/even bets lose if the roulette selects \verb^0^.
+If the player places a bet on a particular number, and the
+roulette selects it, the player is paid off a 35 to 1.
+\end{exercise}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% WEEK 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapterimage{../Pictures/pet.png}
+\chapter{{\em 1D} Arrays (Week 2)}
+
+Note that these next few exercises are  in {\bf NO} particular order - try the ones you find easy before attempting more complex ones. Remember to \verb^test()^ all your functions, where possible.
+
+
+\input{atm}
+\input{hailstone}
+\input{montepi}
+\input{leibniz}
+\input{dirichlet}
+\input{triangular}
+\input{irrational}
+
+%%%%%%%%%%% Will be Chapter H %%%%%%%%%%%%%%%%%%%%%%
+\nsection{Lecture Notes Chapter H}
+\begin{exercise}
+Once you've studied Chapter~$H$ of the lecture notes, 
+compile and run the examples given in the handout.
+\end{exercise}
+\input{microwave}
+\input{ipod}
+\input{rule110}
+
+%%%%%%%%%%%%% Will be Chapter I %%%%%%%%%%%%%%%
+
+\nsection{Lecture Notes Chapter I}
+\begin{exercise}
+Once you've studied Chapter~$I$ of the lecture notes, compile and run
+the examples given in the handout.
+\end{exercise}
+
+\nsection{Vowelness}
+Vowels are the letters $a$, $e$, $i$, $o$ and $u$.
+\begin{exercise}
+Write a program that reads characters from the keyboard and writes to the
+screen. Write all vowels as uppercase letters, and all non-vowels as
+lowercase letters. Do this by using writing a function \verb^isvowel()^
+that tests whether or not a character is a vowel.
+\end{exercise}
+
+
+\input{planettrium}
+\input{bob}
+\input{secretcodes}
+
+\input{yahtzee}
+
+\chapterimage{../Pictures/strings.pdf}
+\chapter{More Arrays \& Strings}
+
+For some of these exercises you'll need to understand command line input to
+\verb^main()^ from the shell, often simply referred to as \verb^argc/argv^ in C.
+Please see:
+\wwwurl{http://www.thegeekstuff.com/2013/01/c-argc-argv/}
+for more information about this.
+
+\input{palindrome}
+\input{itoa}
+\input{strmerge}
+\input{roman}
+\input{soundex}
+
+\chapterimage{../Pictures/grids.pdf}
+\chapter{2D Arrays}
+
+\input{crossword}
+\input{lifeall}
+\input{lifewars}
+
+\input{wireworld}
+
+\noindent Ensure your code is C99 compliant, and fully follows the house-style guidelines.
+Show that your code has been developed using short, well-tested functions via the use of \verb^assert()^ testing.
+
+\input{forestfire}
+
+\noindent Ensure your code is C99 compliant, and fully follows the house-style guidelines.
+Show that your code has been developed using short, well-tested functions via the use of \verb^assert()^ testing.
+
+\input{dla}
+
+\input{langton}
+
+%\input{planar}
+
+\input{ansi}
+
+\begin{exercise}
+Adapt the Forest Fire code in Exercise~\ref{ex:forestf} so that the output
+is displayed using the simple functions demonstrated above, with trees being green, fire being red and
+background being empty.  The main loop will
+update the forest, clear the screen, display it, wait for a very short time (e.g. $0.10s$) and repeats.
+\end{exercise}
+
+\input{ncurses}
+
+\begin{exercise}
+Adapt the wireworld code in Exercise~\ref{ex:wirew} so that the output
+is displayed using this library, with tails being red, heads being blue,
+copper being yellow and background being black.  The main loop will
+update the board, display it, and repeat until a quit event occurs
+(e.g. a mouse click or the ESC key is pressed).  \end{exercise}
+
+\begin{exercise}
+Adapt the life code in Exercise~\ref{ex:life106} so that the output is
+displayed using this library, with sensible choices made for cell colours.
+The main loop will update the board, display it, and repeat until a quit
+event occurs (e.g. a mouse click or the ESC key is pressed).
+\end{exercise}
+
+\chapterimage{../Pictures/pet.png}
+\chapter{Strings, Recursion and SDL}
+
+\input{teabreak}
+
+\input{unlock}
+
+\input{introsdl}
+
+\nsection{Word Ladders}
+
+\input{wordladder_gen}
+\input{wordladder_cons}
+\input{wordladder_full}
+
+\input{devils}
+
+\input{maze_rec}
+
+\setcounter{chapter}{6}
+\chapterimage{../Pictures/Insertionsort-edited.png}
+\chapter{Lists, Insertion Sort \& more Recursion}
+
+\input{insertionsort}
+
+\input{primefactors}
+
+\input {sierpinski_carpet}
+
+\input {sierpinski_triangle}
+
+\chapterimage{../Pictures/bookcase.jpg}
+\chapter{Searching Boards}
+
+\input{conway}
+
+\input{eighttile}
+
+\input{bookcase}
+
+\input{rollerboard}
+
+
+\chapterimage{../Pictures/btree.png}
+\chapter{Huffman, Trees \& Bitwise}
+
+\input{depthtree}
+
+\nsection{Two Trees}
+Adapt the code shown in Exercise~\ref{ex:randtree}, so that two random trees are generated.
+\begin{exercise}
+Write a Boolean function that checks whether two trees are identical or not.
+\end{exercise}
+
+\input{huffman}
+
+\input{bintreevis}
+
+\input{advent}
+
+%\input{mo}
+
+\chapterimage{../Pictures/hash.jpg}
+\chapter{ADTs and Algorithms I}
+
+\nsection{Indexed Arrays}
+
+In the usual places are the files \verb^arr.h^, \verb^arr.c^, \verb^testarr.c^
+and a makefile. These files enable you to build, and test, the
+ADT for a 1D Indexed Array. This simple replacement for C arrays is
+`safe' in the sense that if you write the array out-of-bounds, it
+will be automatically resized correctly (using \verb^realloc()^). The
+interface to this ADT is in \verb^arr.h^ and its implementation is in
+\verb^arr.c^. Typing \verb^make testarr^, compiles these files together with the test
+file \verb^testarr.c^. Executing \verb^./testarr^ should result in all
+tests passing correctly.
+
+\begin{terminaloutput}
+% make -f 1d_adt.mk run
+Basic Array Tests ... Start
+Basic Array Tests ... Stop
+\end{terminaloutput}
+
+\begin{exercise}
+\label{ex:indarray}
+Build \verb^testarr^, and check that you understand the use of the functions,
+including initialization, reading, writing and freeing. Use the makefile provided to
+run the code, and do some memory-leak checking etc.
+\end{exercise}
+
+\input{boolarr}
+
+\nsection{Sets}
+
+Sets are an important concept in Computer Science. They enable the
+storage of elements (members), guaranteeing that no element appears more than
+once. Operations on sets include initializing them, copying them,
+inserting an element, returning their size (cardinality), finding if
+they contain a particular element, removing an element if it exists, and
+removing one element from a random position (since sets have no particular
+ordering, this could be the first element). Other set operations include
+union (combining two sets to include all elements), and intersection
+(the set containing elements common to both sets).
+
+\wwwurl{https://www.mathsisfun.com/sets/sets-introduction.html}
+\wwwurl{https://en.wikipedia.org/wiki/Set_(mathematics)}
+
+The definition of a Set ADT is given in \verb^set.h^, and a file to test it is given
+in \verb^testset.c^.
+
+\begin{exercise}
+Write \verb^set.c^, so that:
+{\small
+\begin{terminaloutput}
+% make -f set_adt.mk run
+./testset
+Basic Set Tests ... Start
+Basic Set Tests ... Stop
+\end{terminaloutput}
+}
+\noindent works correctly. Your Set ADT will build on top of the Indexed Array ADT introduced in
+Exercise~\ref{ex:indarray}.
+Only write \verb^set.c^. Alter no other files, including \verb^arr.c^, \verb^arr.h^,
+\verb^set.h^ or the Makefile.
+\end{exercise}
+
+\nsection{Towards Polymorphism}
+
+Polymorphism is the concept of writing functions (or ADTs), without
+needing to specify which particular type is being used/stored. To
+understand the quicksort algorithm, for instance, doesn't really require
+you to know whether you're using integers, doubles or some other type. C
+is not very good at dealing with polymorphism - you'd need something
+like Python, Java or C++ for that. However, it does allow the use of
+\verb^void*^ pointers for us to approximate it.
+
+\begin{exercise}
+Extend the array ADT discussed in
+Exercise~\ref{ex:indarray}, so that any type can be used - files
+\verb^varr.h^ and \verb^testvarr.c^ are available in the usual place -
+use the Makefile used there, simply swapping \verb^arr^ for \verb^varr^
+at the top.
+\end{exercise}
+
+\nsection{Double Hashing}
+Here we use double hashing, a technique for resolving collisions in a
+hash table.
+
+\begin{exercise}
+\label{ex:dblhash}
+Use double hashing to create a spelling checker, which reads in a dictionary file
+from \verb^argv[1]^, and stores the words.
+
+Make sure the program:
+\begin{itemize}
+\item Use double hashing to achieve this.
+\item Makes no assumptions about the maximum size of the dictionary files. Choose
+an initial (prime) array size, created via malloc(). If this gets more than $60\%$ full,
+creates a new array, roughly twice the size (but still prime). Rehash all the words into this
+new array from the old one. This may need to be done many times as more and more words
+are added.
+\item Uses a hash, and double hash, function of your choosing.
+\item Once the hash table is built, reads another list of words from \verb^argv[2]^
+and reports on the {\em average} number of  look-ups required. A {\em perfect} hash
+will require exactly $1.0$ look-up. Assuming the program works correctly,
+this number is the only output required from the program.
+\end{itemize}
+\end{exercise}
+
+\nsection{Separate Chaining}
+Separate chaining deals with collisions by forming (hopefully small) linked lists
+out from a base array.
+\begin{exercise}
+Adapt Exercise~\ref{ex:dblhash} so that:
+\begin{itemize}
+\item A linked-list style approach is used.
+\item No assumptions about the maximum size of the dictionary file is made.
+\item The same hash function as before is used.
+\item Once the hash table is built, reads another list of words from \verb^argv[2]^
+and reports on the {\em average} number of  look-ups required. A {\em perfect} hash
+will require exactly $1.0$ look-up, on average. Assuming the program works correctly,
+this number is the only output required from the program.
+\end{itemize}
+\end{exercise}
+
+\input{soll}
+
+\chapterimage{../Pictures/nursery-rhymes.jpg}
+\chapter{ADTs and Algorithms II}
+
+\input{sudoku}
+
+\input{hashpoly}
+
+\input{dicts}
+
+\nsection{MultiValue Maps}
+
+Many data types concern a single value (e.g. a hash table), so that
+a string (say) acts as both the key (by which we search for the data)
+and also as the object we need to store (the value). An example of this a spelling checker,
+where one word is stored (and searched for) at a time.  However, sometimes
+there is a need to store a value based on a particular key - for instance
+an associative array in Python allows you to perform operations such as :
+\begin{codesnippet} 
+population["Bristol"] = 536000
+\end{codesnippet} 
+where a value (the number 536000) is stored using the key (the string "Bristol").
+One decision you need to make when designing such a data type is whether
+multiple values are allowed for the same key; in the above example this
+would make no sense - Bristol can only have one population size. But if
+you wanted to store people as the key, with their salary as the value,
+you might need to use a MultiValue Map (MVM) since people can have more than
+one job.
+
+Here we write the abstract type for a MultiValueMap that stores key-value pairs,
+where both the key and the value are strings.
+
+\begin{exercise}
+\label{ex:mvm}
+The definition of an MVM ADT is given in \verb^mvm.h^, and a file to test it is given
+in \verb^testmvm.c^.  Write \verb^mvm.c^, so that:
+{\small
+\begin{terminaloutput}
+% make -f mvm_adt.mk 
+./testmvm
+Basic MVM Tests ... Start
+Basic MVM Tests ... Stop
+\end{terminaloutput}
+}
+\noindent works correctly. Use a simple linked list for this, inserting
+new items at the head of the list.
+Make no changes to any of my files.
+
+Submit : \verb^mvm.c^.
+\end{exercise}
+
+\nsection{Rhymes}
+
+In the usual place is a dictionary which, for every word, lists the
+phonemes (a code for a distinct unit of sound) used to pronounce that word
+in American English. In this file the word itself, and its phonemes,
+are separated by a `\#').  For instance:
+\begin{codesnippet}
+BOY#B OY1
+\end{codesnippet}
+shows that the word \verb^BOY^ has two phonemes : \verb^B^ and \verb^OY1^.
+
+A simple attempt at finding rhymes for boy would match every word that has \verb^OY1^
+as its final phoneme. This gives you:
+\begin{terminaloutput}
+POLLOI MCVOY LAFOY ALROY ILLINOIS CROIX DECOY REDEPLOY CLOY
+LAVOY MOYE LOYE STOY PLOY KNOY EMPLOY ELROY JOY COY LACROIX
+DEVROY ENJOY LOY COYE FOYE MOY DOI BROY TOY LABOY ROI HOY
+ROYE NEU CROY SOY YOY MCCOY CHOY GOY ROY BOLSHOI MALLOY JOYE
+DESTROY DELACROIX(1) DEBOY MCROY CHOI UNDEREMPLOY FLOY MCKOY
+TOYE AHOY BOY OYE SGROI FOIE(1) TROY DEPLOY SAVOY UNEMPLOY
+SCHEU WOY BOYE HOYE FOY OI HOI KROY EMPLOY(1) FLOURNOY OIE
+MCCLOY ANNOY OY DEJOY
+\end{terminaloutput}
+
+Using two phonemes to do the matching is too many,
+since the only matches are for words that have exactly the same pronunciation: 
+\begin{terminaloutput}
+LABOY DEBOY BOY BOYE
+\end{terminaloutput}
+which are not really rhymes, but homophones. Therefore, using
+the {\bf correct} number of phonemes will be key to finding
+`good' rhyming words.
+
+Here we will use the MutliValue Map written in Exercise~\ref{ex:mvm} to
+create two maps.  An MVM \verb^map1^ stores the word (as the key) and its final
+$n$ phonemes as a single string (the value).  Now \verb^map2^ stores the
+word (value), keyed by its final $n$ phonemes as a single string.
+Looking up the phonemes associated with a word can be done using
+the word as a key
+\footnote{Strictly speaking, we don't need the
+$map1$ to be capable of storing multiple values, since every word
+in the dictionary is unique. We'll use it here though for simplicity.}
+(via \verb^map1^), and looking up a word given its phonemes can be
+achieved using \verb^map2^.
+
+\begin{exercise}
+\label{ex:rhymes}
+Read in the dictionary, and for each line
+in turn, store the data in the two maps.  Now for a requested word to be
+`rhymed', search for its phonemes using \verb^map1^ and then search for
+matching words using \verb^map2^. The number of phonemes specified for
+this rhyming is given via the command line, as are the words to be rhymed:
+\begin{terminaloutput}
+$ ./homophones -n 3 RHYME
+RHYME (R AY1 M): PRIME RHYME ANTICRIME(1) CRIME ANTICRIME
+GRIME RIME
+\end{terminaloutput}
+The \verb^-n^ flag specifies the number of phonemes to use (you may
+assume the number associated with it always is always separated from
+the flag by a space).  If no \verb^-n^ flag is given then the value $3$
+is assumed.  It only makes sense to use a value of $n \leq$ the number of
+phonemes in the two words being checked. If you use a value greater than this,
+the results are undefined.
+
+The list of words to be matched may be found on the command line:
+\begin{terminaloutput}
+$ ./homophones -n 4 CHRISTMAS PROGRAM PASSING
+CHRISTMAS (S M AH0 S): ISTHMUS CHRISTMAS CHRISTMAS'
+PROGRAM (G R AE2 M): CENTIGRAM ENGRAM HISTOGRAM WOLFGRAM
+MONOGRAM LOGOGRAM HOLOGRAM MICROGRAM SONOGRAM ANGIOGRAM
+TELEGRAM PROGRAMME ELECTROCARDIOGRAM ELECTROPHORETOGRAM
+REPROGRAM MILLIGRAM ANAGRAM PEGRAM POLYGRAM DIAGRAM
+EPIGRAM PROGRAM MAILGRAM MILGRAM INGHRAM CABLEGRAM
+MAMMOGRAM KILOGRAM
+PASSING (AE1 S IH0 NG): GASSING MASENG SURPASSING KASSING
+HASSING PASSING AMASSING MASSING CLASSING HARASSING
+\end{terminaloutput}
+Use the Makefile supplied for this task. Make the output as similar to that shown above as possible.
+
+Submit : \verb^homophones.c^.
+\end{exercise}
+
+\nsection{Faster MVMs}
+The ADT for MVMs used in Exercise~\ref{ex:mvm} is a simple linked list -
+insertion is fast, but searching is slow.
+
+\begin{exercise}
+Write a new version of this MVM ADT called \verb^fmvm.c^ that
+implements exactly the same functionality but has a faster search time.
+The file \verb^fmvm.h^ will change very little from \verb^mvm.h^, with maybe
+only the structures changing, but not the function prototypes.  A similar
+testing file to that used previously, now called \verb^testfmvm.c^
+should also be written.  Note that any ordering of data when using
+the \verb^mvm_print^ and \verb^mvm_multisearch^ functions is acceptable,
+so these can't be tested in exactly the same manner.
+
+By simply changing the \verb^#include^ from \verb^<mvm.h>^ to \verb^<fmvm.h>^
+in your \verb^homephones.c^ file from Exercise~\ref{ex:rhymes}, and compiling it against
+\verb^fmvm.c^, I can test that program works identically.
+
+Make it clear what you have done to speed up your searching (and how)
+using comments at the top of \verb^fmvm.h^
+
+Submit : \verb^fmvm.c^, \verb^fmvm.h^ and \verb^testfmvm.c^
+\end{exercise}
+
+
+\newcommand{\bb}{white}
+\newcommand{\ff}{black}
+
+\newcommand{\sixel}[6]{%
+\begin{tikzpicture}[scale=0.333, every node/.style={scale=0.333}]
+\matrix[sixelstyle]
+{
+|[fill=#1]| \& |[fill=#2]| \\
+|[fill=#3]| \& |[fill=#4]| \\
+|[fill=#5]| \& |[fill=#6]| \\
+};
+\end{tikzpicture}%
+}
+
+\newcommand{\sepsix}[6]{%
+\begin{tikzpicture}[scale=0.333, every node/.style={scale=0.333}]
+\matrix[sepsixstyle]
+{
+|[fill=#1]| \& |[fill=#2]| \\
+|[fill=#3]| \& |[fill=#4]| \\
+|[fill=#5]| \& |[fill=#6]| \\
+};
+\end{tikzpicture}%
+}
+
+%\chapterimage{../Pictures/teletext_wk12.pdf}
+\chapterimage{../Pictures/ttl2.jpg}
+\chapter{Parsing Data}
+
+\input{mode7}
+
+\begin{exercise}
+Implement a teletext rendering system. The $1000$ character input
+file should be read in using \verb^argv[1]^.
+
+There are many ambiguities
+as to how various sequences of codes should be rendered. To help with
+this, several example files have been posted on the unit web page. 
+If there is still doubt, make a best-guess and state your assumptions
+in the code.
+
+Submit the testing you have undertaken, including examples and a description
+of your strategies. This should convince us that you have tested every line
+of code, and that it works correctly. If there are still issues/bugs state
+them clearly. Also, point out any bugs that you have successfully found using
+these approaches. Submit a file named \verb^testing.txt^, along with any other
+files you feel necessary in the appropriate directory.
+
+No particular strategy is mandated. You may wish to explore a couple and briefly
+discuss strengths and weaknesses. 
+
+Undertake an extension of your choosing. Examples of these include:
+\begin{itemize}
+\item A system that allows you to quickly author teletext pages (perhaps
+using a recursive-descent parser?)
+\item Automatic image to teletext conversion.
+\item Automatic (simple) html to teletext conversion (and/or vice-versa).
+\end{itemize}
+Remember, that the assessment is based on the quality of your coding, so choose
+something to demonstrate an aspect of programming or software engineering
+that you haven't had a chance to use in the main assignment. Submit a file named
+\verb^extension.txt^ outlining, in brief, your contribution. 
+
+\subsection*{Hints}
+
+\begin{itemize}
+\item Don't add graphics too early - the
+code is easier to test and debug with textual output to begin with.
+\item I advise you to use SDL for your graphics output. The library provided previously contained
+two functions to deal with printing characters~: \verb^Neill_SDL_ReadFont()^ and
+\verb^Neill_SDL_DrawString()^. The font file \verb^m7fixed.fnt^ provides the basic
+characters required here, but not the sixels. By understanding how the font data
+is rendered, the double height version of the characters should be relatively simple.
+\item Don't try to do all aspects of this at once - begin with coloured characters only. Add more
+advanced functionality later.
+\item Plan how you are going to store your data early in the design process.
+Does each character need its own data structure? Does each line? Can this be abstracted?
+\end{itemize}
+
+Please create a directory structure, so that I can easily find the
+different subsections.  Your testing strategy will be explained in
+\verb^testing.txt^, and your extension as \verb^extension.txt^. For
+the source and extension sections, make sure there's a
+\verb^Makefile^, so that I can easily build the code.
+
+\begin{verbatim}
+            ------Top Directory------
+            |            |          |           
+            |            |          |           
+            |            |          |            
+            |            |          |             
+          source      testing    extension   
+            |            |          |
+           ...          ...   extension.txt
+           ...          ...       ...
+         Makefile     Makefile    ...  
+                    testing.txt
+\end{verbatim}
+
+Bundle all of these up as one {\bf single} \verb^.zip^ submission -
+not one for each subsection.
+\end{exercise}
+
+\nsection{Guido van Robot}
+
+\begin{center}
+\includegraphics[scale=0.75]{./gnuLinuxGvR.jpg}
+\end{center}
+
+From \wwwurl{http://gvr.sourceforge.net/}
+{\small
+\begin{quote}
+Guido van Robot can face in one of four directions, north, east, south, and west. He turns only 90 degrees at a time, so he can't face northeast, for instance. In Guido's world, streets run east-west, and are numbered starting at 1. There are no zero or negative street numbers. Avenues run north-south, and are also numbered starting at 1, with no zero or negative avenue numbers. At the intersection of a street and avenue is a corner. Guido moves from one corner to to the next in a single movement. Because he can only face in one of four directions, when he moves he changes his location by one avenue, or by one street, but not both!
+\end{quote}
+}
+
+\subsection*{Simple .wld File}
+
+\begin{verbatim}
+Robot 5 4 N 1
+Wall 3 2 N 6
+Wall 2 3 E 4
+Wall 3 6 N 6
+Wall 8 3 E 2
+Wall 8 6 E
+\end{verbatim}
+\begin{center}
+\includegraphics[scale=0.5]{../Pictures/GvRsimple1.jpg}
+\end{center}
+
+\subsection*{\bf Simple .gvr File}
+\begin{verbatim}
+move
+move
+move
+move
+turnoff
+\end{verbatim}
+\begin{center}
+\includegraphics[scale=0.5]{./GvRsimple2.jpg}
+\end{center}
+
+
+\subsection*{Do Loops}
+\begin{verbatim}
+do 2 :
+   putbeeper
+   move
+turnoff
+\end{verbatim}
+
+\subsection*{Conditional Loop}
+\begin{verbatim}
+while front_is_clear :
+   putbeeper
+   move
+turnoff
+\end{verbatim}
+
+\subsection*{Branching}
+\begin{verbatim}
+do 13 :
+   if front_is_clear :
+      putbeeper
+      move
+   else :
+      turnleft
+turnoff
+\end{verbatim}
+
+\subsection*{The Formal Grammar}
+{\small
+\begin{verbatim}
+<PROGRAM>   ::= <BLOCK>
+<BLOCK>     ::= "turnoff" |
+                "move" <BLOCK> |
+                "turnleft" <BLOCK> |
+                "pickbeeper" <BLOCK> |
+                "putbeeper" <BLOCK> |
+                <DO> <BLOCK> |
+                <WHILE> <BLOCK> |
+                <IF> <BLOCK>
+<DO>        ::= "do" <num> ":"
+                   <BLOCK>
+<WHILE>     ::= "while" <TEST> ":"
+                   <BLOCK>
+<IF>        ::= "if" <TEST> ":"
+                   <BLOCK> |
+              "if" <TEST> ":"
+                   <BLOCK>
+              "else" ":"
+                   <BLOCK>
+<TEST>      ::= <WALL> | <BEEP> | <COMPASS>
+\end{verbatim}
+}
+
+{\small
+\begin{verbatim}
+<WALL>      ::= "front_is_clear" |
+                "front_is_blocked" |
+                "left_is_clear" |
+                "left_is_blocked" |
+                "right_is_clear" |
+                "right_is_blocked"
+<BEEP>      ::= "next_to_a_beeper" |
+                "not_next_to_a_beeper" |
+                "any_beepers_in_beeper_bag" |
+                "no_beepers_in_beeper_bag"
+<COMPASS>   ::= "facing_north" |
+                "not_facing_north" |
+                "facing_south" |
+                "not_facing_south" |
+                "facing_east" |
+                "not_facing_east" |
+                "facing_west" |
+                "not_facing_west"
+\end{verbatim}
+}
+
+This ignores some Guido instructions, e.g. \verb^elseif^
+and \verb^define^. It also doesn't well explain how to spot
+the end of a \verb^DO^ etc. which is marked by a reduction in
+indentation.
+The definition of \verb^.wld^ files is so simple a recursive
+descent parser (and hence grammar) is not required.
+
+\begin{exercise}
+\begin{itemize}
+
+\item (25\%) To implement a recursive descent parser - this says
+whether or not the given \verb^.gvr^ and \verb^.wld^ follow the formal grammar or not.
+The input files are specified via \verb^argv[1]^ (\verb^.gvr^) and \verb^argv[2]^ (\verb^.wld^) .
+
+\item (25\%) To implement an interpreter, so that the instructions are
+executed. Printing the world and robot to screen
+using simple characters is fine, but many will wish to use SDL.
+
+\item (25\%) To show a testing strategy on the above -
+you should give details of
+white-box and black-box testing done on your code. Describe any
+test-harnesses used. Give examples of the output of many different
+programs. Convince me that every line of your C code
+has been tested.
+
+\item (25\%) To show an extension to the project in a direction of
+your choice. It should demonstrate your understanding of some aspect
+of programming or S/W engineering. If you extend the formal grammar
+make sure that you show the new, full grammar.
+
+Submit the program(s) and a Makefile so that I can:
+
+\item Compile the parser by typing `make parse'.
+\item Compile the interpreter by typing `make interp'.
+\item Compile the extension by typing `make extension'.
+\item Submit a test strategy report called test.txt. This will include
+sample outputs, any code written especially for testing etc.
+\item Submit an extension report called `extend.txt'. This is quite
+brief and explains the extension attempted.
+
+\item You need to be able to load a world file and a \verb^.gvr^
+and say if they are valid of not.
+\item Don't try to write the entire program in one go. Try a cut
+down version of the grammar first, e.g.:
+{\small
+\begin{verbatim}
+<PROGRAM>   ::= <BLOCK>
+<BLOCK>     ::= "turnoff" |
+                "move" <BLOCK> |
+                "turnleft" <BLOCK> |
+                "pickbeeper" <BLOCK> |
+                "putbeeper" <BLOCK>
+<DO>        ::= "do" <num> ":"
+                   <BLOCK>
+\end{verbatim}
+}
+\item Some issues, such as what happens if you hit a wall
+are not clear from the formal grammar. In this case, use your
+common sense, or do what the real program does.
+\end{itemize}
+\end{exercise}
+
+\input{turtle}
+
+\begin{exercise}
+Implement a recursive descent parser - this will report
+whether or not a given turtle program follows the formal grammar or not.
+The input file is specified via \verb^argv[1]^ - there is {\bf no} output if
+the input file is {\bf valid}. Elsewise, a non-zero \verb^exit^ is made.
+
+{\bf Extend} the parser, so it becomes an interpreter. The instructions are
+now `executed'. Do not write a new program for this, simply extend your
+existing parser. Output is via SDL. You may find the function call
+\verb^SDL_RenderDrawLine^ useful.
+
+Show a testing strategy on the above -
+you should give details of
+unit testing, white/black-box testing done on your code. Describe any
+test-harnesses used. In addition, give examples of the output of many different
+turtle programs. Convince me that every line of your C code
+has been tested.
+
+Show an extension to the project in a direction of
+your choice. It should demonstrate your {\bf understanding} of some aspect
+of programming or S/W engineering. If you extend the formal grammar
+make sure that you show the new, full grammar.
+
+\subsection*{Hints}
+\begin{itemize}
+\item All four sections above are equally weighted.
+\item Don't try to write the entire program in one go. Try a cut
+down version of the grammar first, e.g.:
+{\small
+\begin{verbatim}
+<MAIN>        ::= "{" <INSTRCTLST>
+<INSTRCTLST>  ::= <INSTRUCTION><INSTRCTLST> |
+                  "}"
+<INSTRUCTION> ::= <FD> | <LT> | <RT>
+<FD>          ::= "FD" <VARNUM>
+<LT>          ::= "LT" <VARNUM>
+<RT>          ::= "RT" <VARNUM>
+<VARNUM>      ::= number
+\end{verbatim}
+}
+\item The language is simply a sequence of words (even the semi-colons),
+so use \verb^fscanf()^.
+\item Some issues, such as what happens if you use an undefined variable,
+or if you use a variable before it is set, are not explained by the formal
+grammar. Use your own common-sense, and explain what you have done.
+\item Once your parser works, extend it to become an interpreter. DO NOT
+aim to parse the program first and then interpret it separately. Interpreting
+and parsing are inseparably bound together.
+\item Start testing very early - this is a complex beast to test and trying to
+do it near the end won't work.
+\end{itemize}
+
+\subsection*{Submission}
+Your testing strategy will be explained in \verb^testing.txt^, and your extension
+as \verb^extension.txt^. For the parser, interpreter and extension sections, make
+sure there's a \verb^Makefile^, so that I can easily build the code using \verb^make parse^,
+\verb^make interp^ and \verb^make extension^. Submit a single \verb^turtle.zip^ file.
+
+\end{exercise}
+
+\input{nlab}
+
+\input{cawk}
+
+\begin{exercise}
+Write a C program to implement the above formal grammar. Your program
+should read in a cawk program (argv[1]) and expect the data
+file to be read from standard input (or from argv[2] if specified).
+
+The marks are split as follows:
+\begin{itemize}
+\item (25\%) To implement a recursive descent parser - this says
+whether or not a given CAWK program follows the formal grammar or not.
+
+\item (25\%) To implement an interpreter, so that the instructions are
+executed.
+
+\item (25\%) To show a testing strategy on the above -
+you should give details of
+white-box and black-box testing done on your code. Describe any
+test-harnesses used. Give examples of the output of many different
+cawk programs.
+
+\item (25\%) To show an extension to the project in a direction of
+your choice. It should demonstrate your understanding of some aspect
+of programming or S/W engineering. If you extend the formal grammar
+make sure that you show the new, full grammar.
+\end{itemize}
+
+Submit the program(s) and a Makefile so that I can:
+
+\begin{itemize}
+\item Compile the parser by typing `make parse'.
+\item Compile the interpreter by typing `make interp'.
+\item Compile the extension by typing `make extension'.
+\end{itemize}
+
+In addition:
+\begin{itemize}
+\item Submit a test strategy report called test.txt. This will include
+sample outputs, any code written especially for testing etc.
+\item Submit an extension report called `extend.txt'. This is quite
+brief and explains the extension attempted.
+\end{itemize}
+
+\end{exercise}
+
+\input{nal}
+\begin{exercise}
+\begin{itemize}
+
+\strut
+
+\item {\bf (40\%)}
+Implement a parser. The \verb^.nal^ file should be read in using
+\verb^argv[1]^.  If the file is parsed correctly, the only output should
+be:
+\begin{terminaloutput}
+Parsed OK
+\end{terminaloutput}
+
+\item {\bf (30\%)}
+Implement an interpreter, building on top of the parser in the
+manner described in the lectures. Do not write a brand new program -
+interpretation will be done alongside parsing.
+
+\item {\bf (20\%)}
+Submit the testing you have undertaken, including examples and a
+description of your strategies. This should convince us that you have
+tested every line of code, and that it works correctly. If there are
+still issues/bugs state them clearly. Also, point out any bugs that
+you have successfully found using these approaches. Submit a file named
+\verb^testing.txt^, along with any other files you feel necessary. Due
+to the recursive nature of this assignment testing is non-trivial -
+simply submitting many \verb^.nal^ files that `work' is not sufficient.
+No particular strategy is mandated. You may wish to explore a couple
+and briefly discuss strengths and weaknesses.
+
+\item {\bf (10\%)}
+Undertake an extension of your choosing.  Remember, that the assessment is
+based on the quality of your coding, so choose something to demonstrate
+an aspect of programming or software engineering that you haven't
+had a chance to use in the main assignment. Submit a file named
+\verb^extension.txt^ outlining, in brief, your contribution.
+\end{itemize}
+
+\subsection*{Hints}
+\begin{itemize}
+\item Don't try to write the entire program in one go. Try a cut
+down version of the grammar first. Build-up from the \verb^01s^
+example given in lectures.
+\item Some issues, such as what happens if you use an undefined variable,
+or if you use a variable before it is set, are not explained by the formal
+grammar. Use your own common-sense, and explain what you have done.
+\item Once your parser works, extend it to become an interpreter. DO NOT
+aim to parse the program first and then interpret it separately.
+Interpreting and parsing are inseparably bound together.
+\end{itemize}
+ 
+\subsection*{Submission}
+
+Your testing strategy will be explained in \verb^testing.txt^, and
+your extension as \verb^extension.txt^. For the parser, interpreter
+and extension sections , make sure there's one \verb^Makefile^, so that I
+can easily build the code using \verb^make parse^, \verb^make interp^
+and \verb^make extension^. I've given an example \verb^makefile^ in the
+usual place, but this is an example only - yours may be different.
+I wrote only one program \verb^nal.c^ and built the two
+different version by setting a \verb^#define^ {\bf via the makefile with}
+\verb^-DINTERP^. Inside the code itself \verb^#ifdef INTERP^ and \verb^#endif^ are used.
+Also make sure that basic testing is available using \verb^make testparse^ and \verb^make testinterp^.
+
+\noindent Place all the files required for your submission in a single \verb^.zip^ file called \verb^nal.zip^ - this file will not contain other zipped files.
+
+\end{exercise}
+
+
+\appendix
+\begin{appendices}
+
+\chapterimage{../Pictures/style.jpg}
+\chapter{House Style}
+\input{style}
+
+
+\chapterimage{../Pictures/exam.jpg}
+\chapter{Lab Tests}
+
+\input{examconditions}
+\input{howtosubmit}
+\input{codestyle}
+
+\newpage
+\nsection{Anagrams}
+\subsection*{Part 1 (60\%)}
+
+An anagram is a rearrangement of a word, using all the letters.
+Two words are said to be anagrams if they have the same characters,
+but in a different order.
+For instance the words `parsley', `players' and `replays'
+are all anagrams of each other.
+
+Since you need to rearrange the words, two identical words, by definition, are not anagrams.
+
+Using the following template, fill in the function \verb^anagram()^,
+so that the program runs successfully~:
+\begin{verbatim}
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <assert.h>
+
+int anagram(char s1[], char s2[]);
+
+int main(void)
+{
+   assert(anagram("elvis", "lives") == 1);
+   assert(anagram("dreads", "sadder") == 1);
+   assert(anagram("replays", "parsley") == 1);
+   assert(anagram("listen", "silent") == 1);
+   assert(anagram("orchestra", "carthorse") == 1);
+
+   /* Two identical words are not anagrams */
+   assert(anagram("elvis", "elvis") == 0);
+
+   assert(anagram("neill", "neil") == 0);
+   assert(anagram("neil", "neill") == 0);
+   assert(anagram("horse", "short") == 0);
+
+   return 0;
+}
+
+int anagram(char s1[], char s2[])
+{
+
+
+}
+\end{verbatim} 
+
+Obviously, your program will need to run for other, unseen but similar, test cases. 
+
+\subsection*{Part 2 (40\%)}
+
+A deranged anagram has two words with the same characters, but the same
+character does not appear in the same position.
+
+The words `elvis' and `lives' are not a derangement since the `s' is
+in the same position in both words.
+However, `dreads' and `sadder' are, since no letter appears in the
+same position between the two words.
+
+Extend the program above so that the following assertions, inside \verb^main()^
+are correct:
+\begin{verbatim}
+   assert(derange("elvis", "lives") == 0);
+   assert(derange("dreads", "sadder") == 1);
+   assert(derange("replays", "parsley") == 1);
+   assert(derange("listen", "silent") == 0);
+   assert(derange("orchestra", "carthorse") == 1);
+\end{verbatim}
+
+
+
+\nsection{Isograms}
+\subsection*{Part 1 (60\%)}
+
+An isogram is a word that has no repeating letters. For instance the words `graciously', `disgraceful' and
+`productively' are all isograms. However, the word `dazzlingly' is not (it contains the letters `z' and `l'
+twice).
+
+Using the following template, fill in the function \verb^isogram()^, so that the program runs
+successfully~:
+\begin{verbatim}
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <assert.h>
+
+int isogram(char *s);
+
+int main(void)
+{
+   assert(isogram("programming") == 0);
+   assert(isogram("housewarmings") == 0);
+   assert(isogram("abductions") == 1);
+   assert(isogram("housewarming") == 1);
+   assert(isogram("hydromagnetics") == 1);
+   assert(isogram("uncopyrightable") == 1);
+   return 0;
+}
+
+int isogram(char *s)
+{
+
+
+}
+\end{verbatim} 
+
+\subsection*{Part 2 (40\%)}
+Using the \verb^isogram()^ function written above, write a program which finds the {\it longest} isogram in a
+file of words. The name of the file is provided via the use of \verb^argv^.
+On success, the program simply outputs the longest word and its length, nothing else. For
+example~:
+\begin{verbatim}
+$ ./parttwo eowl_shuffle.txt
+waveringly (10)
+\end{verbatim}
+
+The file may contain many isograms of (equal) longest length. In this case,
+outputting any one of them will do. 
+
+\nsection{Mutating Boards}
+\subsection*{Part 1 (60\%)}
+
+Write a {\bf function} that fills up a square board, randomly,
+with an integer $0 \dots 9$. Use a:\\
+\verb^#define N 20^\\
+to define the size of the board.  Write another function to print the board.
+The board may look something like:
+
+{\small
+\begin{verbatim}
+36753562912709360626
+18792023759228973612
+93194784503610632061
+55476569374525474430
+78688431492068926649
+50487172722610615949
+09177115977673656394
+81293908850963856115
+98481030444476317596
+21785741859753883189
+64333860488897764303
+09254059469224775481
+28936802105110850646
+25862847240629908131
+10340391969338056640
+04626756987282996027
+61321599149107587048
+04296104222055290283
+80409196254499360502
+94351743146942264128
+\end{verbatim}
+}
+
+Write a
+function to `mutate' the board. Mutating is done like this:
+\begin{itemize}
+\item Choose two random locations which are {\bf horizontally adjacent} (next to each other left-right).
+\item Swap these two numbers on the board if the left one is greater than the right one, numerically.
+\item Choose two random locations which are {\bf vertically adjacent} (next to each other up-down).
+\item Swap these two numbers on the board if the upper one is greater than the lower one, numerically.
+\item Repeat the above steps (N*N*N) times.
+\end{itemize}
+
+Now print out the board. It should look something like :
+{\small
+\begin{verbatim}
+00000000000001111224
+00000001111111233456
+00000111112222244456
+00001122222333445666
+00112222223333555667
+01112223333334556678
+01112223334445556779
+01122333344445556789
+01223334444455666789
+01223344445556666789
+01223344455666667789
+01224444456666777889
+01234455566677777889
+01234555666677788899
+01234555666778888899
+12234566677788888999
+12345567777888889999
+12445677788888899999
+34446678889999999999
+46678899999999999999
+\end{verbatim}
+}
+
+Ensure that if you change the size of your array, by changing your \verb^#define^
+that the program still operates correctly.
+
+\subsection*{Part 2 (40\%)}
+Adapt the code above, so that the algorithm is:
+\begin{itemize}
+\item Choose two numbers at random locations on the board.
+\item Check that of these two numbers, the one closest to the centre of the array
+is numerically less than the number furthest away from the centre. If not, swap them.
+\item Repeat the above steps (N*N*N*N) times.
+\end{itemize}
+
+Once again randomise the array initially, and ensure that after changing your \verb^#define^
+the program still works correctly.
+
+When $N=21$, the array may look something like:
+{\samepage
+{\small
+\begin{verbatim}
+999998887777788899999
+999987666656666788999
+998876554444555678899
+998665443333444566889
+987654333222233456789
+876543322112223345678
+865443211111112334568
+765432111000011234568
+765422100000001234567
+764321100000001223467
+764321100000001123457
+764322100000001223467
+765422100000001224567
+865432110000011234568
+865432211111122334568
+876543322212223345678
+987654333222233456789
+988665444333344567889
+998876555444455678899
+999887666656666789999
+999998887777788899999
+\end{verbatim}
+}
+}
+
+\end{appendices}
+\end{document}

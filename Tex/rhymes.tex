@@ -1,0 +1,80 @@
+\nsection{Rhymes}
+
+In the usual place is a dictionary which, for every word, lists the
+phonemes (a code for a distinct unit of sound) used to pronounce that word
+in American English. In this file the word itself, and its phonemes,
+are separated by a `\#').  For instance:
+\begin{codesnippet}
+BOY#B OY1
+\end{codesnippet}
+shows that the word \verb^BOY^ has two phonemes : \verb^B^ and \verb^OY1^.
+
+A simple attempt at finding rhymes for boy would match every word that has \verb^OY1^
+as its final phoneme. This gives you:
+\begin{terminaloutput}
+POLLOI MCVOY LAFOY ALROY ILLINOIS CROIX DECOY REDEPLOY CLOY
+LAVOY MOYE LOYE STOY PLOY KNOY EMPLOY ELROY JOY COY LACROIX
+DEVROY ENJOY LOY COYE FOYE MOY DOI BROY TOY LABOY ROI HOY
+ROYE NEU CROY SOY YOY MCCOY CHOY GOY ROY BOLSHOI MALLOY JOYE
+DESTROY DELACROIX(1) DEBOY MCROY CHOI UNDEREMPLOY FLOY MCKOY
+TOYE AHOY BOY OYE SGROI FOIE(1) TROY DEPLOY SAVOY UNEMPLOY
+SCHEU WOY BOYE HOYE FOY OI HOI KROY EMPLOY(1) FLOURNOY OIE
+MCCLOY ANNOY OY DEJOY
+\end{terminaloutput}
+
+Using two phonemes to do the matching is too many,
+since the only matches are for words that have exactly the same pronunciation: 
+\begin{terminaloutput}
+LABOY DEBOY BOY BOYE
+\end{terminaloutput}
+which are not really rhymes, but homophones. Therefore, using
+the {\bf correct} number of phonemes will be key to finding
+`good' rhyming words.
+
+Here we will use the MutliValue Map written in Exercise~\ref{ex:mvm} to
+create two maps.  An MVM \verb^map1^ stores the word (as the key) and its final
+$n$ phonemes as a single string (the value).  Now \verb^map2^ stores the
+word (value), keyed by its final $n$ phonemes as a single string.
+Looking up the phonemes associated with a word can be done using
+the word as a key
+\footnote{Strictly speaking, we don't need the
+$map1$ to be capable of storing multiple values, since every word
+in the dictionary is unique. We'll use it here though for simplicity.}
+(via \verb^map1^), and looking up a word given its phonemes can be
+achieved using \verb^map2^.
+
+\begin{exercise}
+\label{ex:rhymes}
+Read in the dictionary, and for each line
+in turn, store the data in the two maps.  Now for a requested word to be
+`rhymed', search for its phonemes using \verb^map1^ and then search for
+matching words using \verb^map2^. The number of phonemes specified for
+this rhyming is given via the command line, as are the words to be rhymed:
+\begin{terminaloutput}
+$ ./homophones -n 3 RHYME
+RHYME (R AY1 M): PRIME RHYME ANTICRIME(1) CRIME ANTICRIME
+GRIME RIME
+\end{terminaloutput}
+The \verb^-n^ flag specifies the number of phonemes to use (you may
+assume the number associated with it always is always separated from
+the flag by a space).  If no \verb^-n^ flag is given then the value $3$
+is assumed.  It only makes sense to use a value of $n \leq$ the number of
+phonemes in the two words being checked. If you use a value greater than this,
+the results are undefined.
+
+The list of words to be matched may be found on the command line:
+\begin{terminaloutput}
+$ ./homophones -n 4 CHRISTMAS PROGRAM PASSING
+CHRISTMAS (S M AH0 S): ISTHMUS CHRISTMAS CHRISTMAS'
+PROGRAM (G R AE2 M): CENTIGRAM ENGRAM HISTOGRAM WOLFGRAM
+MONOGRAM LOGOGRAM HOLOGRAM MICROGRAM SONOGRAM ANGIOGRAM
+TELEGRAM PROGRAMME ELECTROCARDIOGRAM ELECTROPHORETOGRAM
+REPROGRAM MILLIGRAM ANAGRAM PEGRAM POLYGRAM DIAGRAM
+EPIGRAM PROGRAM MAILGRAM MILGRAM INGHRAM CABLEGRAM
+MAMMOGRAM KILOGRAM
+PASSING (AE1 S IH0 NG): GASSING MASENG SURPASSING KASSING
+HASSING PASSING AMASSING MASSING CLASSING HARASSING
+\end{terminaloutput}
+Use the Makefile supplied for this task. Make the output as similar to that shown above as possible.
+
+\end{exercise}

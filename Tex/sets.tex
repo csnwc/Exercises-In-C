@@ -1,0 +1,33 @@
+\nsection{Sets}
+
+Sets are an important concept in Computer Science. They enable the
+storage of elements (members), guaranteeing that no element appears more than
+once. Operations on sets include initializing them, copying them,
+inserting an element, returning their size (cardinality), finding if
+they contain a particular element, removing an element if it exists, and
+removing one element from a random position (since sets have no particular
+ordering, this could be the first element). Other set operations include
+union (combining two sets to include all elements), and intersection
+(the set containing elements common to both sets).
+
+\wwwurl{https://www.mathsisfun.com/sets/sets-introduction.html}
+\wwwurl{https://en.wikipedia.org/wiki/Set_(mathematics)}
+
+The definition of a Set ADT is given in \verb^set.h^, and a file to test it is given
+in \verb^testset.c^.
+
+\begin{exercise}
+Write \verb^set.c^, so that:
+{\small
+\begin{terminaloutput}
+% make -f set_adt.mk run
+./testset
+Basic Set Tests ... Start
+Basic Set Tests ... Stop
+\end{terminaloutput}
+}
+\noindent works correctly. Your Set ADT will build on top of the Indexed Array ADT introduced in
+Exercise~\ref{ex:indarray}.
+Only write \verb^set.c^. Alter no other files, including \verb^arr.c^, \verb^arr.h^,
+\verb^set.h^ or the Makefile.
+\end{exercise}

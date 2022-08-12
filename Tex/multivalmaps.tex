@@ -1,0 +1,37 @@
+\nsection{MultiValue Maps}
+
+Many data types concern a single value (e.g. a hash table), so that
+a string (say) acts as both the key (by which we search for the data)
+and also as the object we need to store (the value). An example of this a spelling checker,
+where one word is stored (and searched for) at a time.  However, sometimesthere is a need to store a value based on a particular key - for instance
+an associative array in Python allows you to perform operations such as :
+\begin{codesnippet}
+population["Bristol"] = 536000
+\end{codesnippet}
+where a value (the number 536000) is stored using the key (the string "Bristol").
+One decision you need to make when designing such a data type is whether
+multiple values are allowed for the same key; in the above example this
+would make no sense - Bristol can only have one population size. But if
+you wanted to store people as the key, with their salary as the value,
+you might need to use a MultiValue Map (MVM) since people can have more than
+one job.
+
+Here we write the abstract type for a MultiValueMap that stores key-value pairs,
+where both the key and the value are strings.
+
+\begin{exercise}
+\label{ex:mvm}
+The definition of an MVM ADT is given in \verb^mvm.h^, and a file to test it is given
+in \verb^testmvm.c^.  Write \verb^mvm.c^, so that:
+{\small
+\begin{terminaloutput}
+% make -f mvm_adt.mk
+./testmvm
+Basic MVM Tests ... Start
+Basic MVM Tests ... Stop
+\end{terminaloutput}
+}
+\noindent works correctly. Use a simple linked list for this, inserting
+new items at the head of the list.
+Make no changes to any of my files.
+\end{exercise}

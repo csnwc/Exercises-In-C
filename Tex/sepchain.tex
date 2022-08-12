@@ -1,0 +1,15 @@
+\nsection{Separate Chaining}
+Separate chaining deals with collisions by forming (hopefully small) linked lists
+out from a base array.
+\begin{exercise}
+Adapt Exercise~\ref{ex:dblhash} so that:
+\begin{itemize}
+\item A linked-list style approach is used.
+\item No assumptions about the maximum size of the dictionary file is made.
+\item The same hash function as before is used.
+\item Once the hash table is built, reads another list of words from \verb^argv[2]^
+and reports on the {\em average} number of  look-ups required. A {\em perfect} hash
+will require exactly $1.0$ look-up, on average. Assuming the program works correctly,
+this number is the only output required from the program.
+\end{itemize}
+\end{exercise}

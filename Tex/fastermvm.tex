@@ -1,0 +1,23 @@
+\nsection{Faster MVMs}
+The ADT for MVMs used in Exercise~\ref{ex:mvm} is a simple linked list -
+insertion is fast, but searching is slow.
+
+\begin{exercise}
+Write a new version of this MVM ADT called \verb^fmvm.c^ that
+implements exactly the same functionality but has a faster search time.
+The file \verb^fmvm.h^ will change very little from \verb^mvm.h^, with maybe
+only the structures changing, but not the function prototypes.  A similar
+testing file to that used previously, now called \verb^testfmvm.c^
+should also be written.  Note that any ordering of data when using
+the \verb^mvm_print^ and \verb^mvm_multisearch^ functions is acceptable,
+so these can't be tested in exactly the same manner.
+
+By simply changing the \verb^#include^ from \verb^<mvm.h>^ to \verb^<fmvm.h>^
+in your \verb^homephones.c^ file from Exercise~\ref{ex:rhymes}, and compiling it against
+\verb^fmvm.c^, I can test that program works identically.
+
+Make it clear what you have done to speed up your searching (and how)
+using comments at the top of \verb^fmvm.h^
+
+Submit : \verb^fmvm.c^, \verb^fmvm.h^ and \verb^testfmvm.c^
+\end{exercise}

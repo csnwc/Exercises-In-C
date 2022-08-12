@@ -1,0 +1,16 @@
+\nsection{++a++}
+Study the following code and write down what you think it prints.
+\begin{codesnippet}
+int a, b = 0, c = 0;
+a = ++b + ++c;
+printf("%d %d %d\n", a, b, c);
+a = b++ + c++;
+printf("%d %d %d\n", a, b, c);
+a = ++b + c++;
+printf("%d %d %d\n", a, b, c);
+a = b-- + --c;
+printf("%d %d %d\n", a, b, c);
+\end{codesnippet}
+\begin{exercise}
+Then a program to check your answers.
+\end{exercise}

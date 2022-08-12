@@ -1,0 +1,24 @@
+\nsection{Double Hashing}
+Here we use double hashing, a technique for resolving collisions in a
+hash table.
+
+\begin{exercise}
+\label{ex:dblhash}
+Use double hashing to create a spelling checker, which reads in a dictionary file
+from \verb^argv[1]^, and stores the words.
+
+Make sure the program:
+\begin{itemize}
+\item Use double hashing to achieve this.
+\item Makes no assumptions about the maximum size of the dictionary files. Choose
+an initial (prime) array size, created via malloc(). If this gets more than $60\%$ full,
+creates a new array, roughly twice the size (but still prime). Rehash all the words into this
+new array from the old one. This may need to be done many times as more and more words
+are added.
+\item Uses a hash, and double hash, function of your choosing.
+\item Once the hash table is built, reads another list of words from \verb^argv[2]^
+and reports on the {\em average} number of  look-ups required. A {\em perfect} hash
+will require exactly $1.0$ look-up. Assuming the program works correctly,
+this number is the only output required from the program.
+\end{itemize}
+\end{exercise}
