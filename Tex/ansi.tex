@@ -19,3 +19,28 @@ gcc demo_neillsimplescreen.c neillsimplescreen.c
 -std=c99 -Wvla -g3 -fsanitize=undefined -fsanitize=address -lm
 $ ./demo_neillsimplescreen 
 \end{terminaloutput}
+
+\begin{exercise}
+Adapt the Forest Fire code in Exercise~\ref{ex:forestf} so that the
+output is displayed using the simple functions demonstrated above,
+with trees being green, fire being red and background being empty.
+The main loop will update the forest, clear the screen, display it,
+wait for a very short time (e.g. $0.10s$) and repeats.
+\end{exercise}
+
+\begin{exercise}
+Adapt the wireworld code in Exercise~\ref{ex:wirew} so that the output
+is displayed using this library, with tails being red, heads being blue,
+copper being yellow and background being black.  The main loop will
+update the board, display it, and repeat until a quit event occurs
+(e.g. a mouse click or the ESC key is pressed).
+\end{exercise}
+
+
+\begin{exercise}
+Adapt the life code in Exercise~\ref{ex:life106} so that the output is
+displayed using this library, with sensible choices made for cell colours.
+The main loop will update the board, display it, and repeat until a quit
+event occurs (e.g. a mouse click or the ESC key is pressed).
+\end{exercise}
+

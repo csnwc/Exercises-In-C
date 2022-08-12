@@ -28,7 +28,7 @@
 
 \noindent Formatted in \LaTeX, based on the Legrand Orange Book from \textsc{book-website.com}\\
 
-\noindent This work is licensed under a Creative Commons Attribution-NonCommerical-ShareAlike 4.0 International License.
+\noindent This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 
 \noindent \textit{\date} % Printing/edition date
 
@@ -51,731 +51,169 @@
 
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% WEEK 0/1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapterimage{../Pictures/hello-world.png}
-\chapter{Hello World (Week 0 \& 1)}
+\chapter{Hello World}
 
-The exercises in this Chapter are largely taken from the book "C by Dissection".
+Many of the exercises in this Chapter are taken from the book "C by Dissection".
 
-%%%%%%%%%%%%%%%%%%%%% B %%%%%%%%%%%%%%%%%%%%%
+\readchapter{B}{Hello World!}
+\input{twice}
+\input{letterc}
 
-\nsection{Lecture Notes Chapter B}
-\begin{exercise}
-Once you've studied Chapter~$B$ of the lecture notes ({\em Hello World}), compile and run the examples given in the handout.
-\end{exercise}
+\readchapter{C}{Grammar}
+\input{aplusplus}
+\input{randomness}
 
-\nsection{Twice the Sum}
-Here is part of a program that begins by asking the user to input three
-integers:
-\begin{codesnippet}
-#include <stdio.h>
-
-int main(void)
-{
-   int a, b, c;
-
-   printf("Input three integers: ");
-\end{codesnippet}
-$\ldots$\\
-
-\begin{exercise}
-Complete the program so that when the user executes it and types in 2, 3,
-and 7, this is what appears on the screen:
-\begin{terminaloutput}
-Input three integers: 2 3 7
-Twice the sum of integers plus 7 is 31 !
-\end{terminaloutput}
-\end{exercise}
-
-\nsection{Letter C}
-
-Execute this program so you understand the output:
-
-\begin{codesnippet}
-#include <stdio.h>
-
-#define HEIGHT 17
-
-int main(void)
-{
-
-   int i = 0;
-
-   printf("\n\nIIIIIII\n");
-   while(i < HEIGHT){
-      printf("  III\n");
-      i = i + 1;
-   }
-   printf("IIIIIII\n\n\n");
-   return 0;
-
-}
-\end{codesnippet}
-
-\begin{exercise}
-Write a similar program
-that prints a large letter C on the screen (it doesn't need to be curved!).
-\end{exercise}
-
-%%%%%%%%%%%%%%%%%%%%% C %%%%%%%%%%%%%%%%%%%%%
-
-\nsection{Lecture Notes Chapter C}
-\begin{exercise}
-Once you've studied Chapter~$C$ of the lecture notes ({\em Grammar}), compile and run
-the examples given in the handout.
-\end{exercise}
-
-\nsection{++a++}
-Study the following code and write down what you think it prints.
-\begin{codesnippet}
-int a, b = 0, c = 0;
-a = ++b + ++c;
-printf("%d %d %d\n", a, b, c);
-a = b++ + c++;
-printf("%d %d %d\n", a, b, c);
-a = ++b + c++;
-printf("%d %d %d\n", a, b, c);
-a = b-- + --c;
-printf("%d %d %d\n", a, b, c);
-\end{codesnippet}
-\begin{exercise}
-Then write a test program to check your answers.
-\end{exercise}
-
-\nsection{Randomness}
-The function \verb^rand()^ returns values in the interval [0, RAND\_MAX].
-If we declare the variable \verb^median^ and initialise it to have the
-value \verb^RAND_MAX/2^, then \verb^rand()^ will return a value
-that is sometimes larger than \verb^median^ and sometimes smaller.
-
-\begin{exercise}
-Write a program that calls \verb^rand()^, say $500$ times,
-inside a \verb^for^ loop, increments the variable \verb^minus_cnt^
-every time \verb^rand()^ returns a value less than \verb^median^.
-Each time through the \verb^for^ loop, print out the value of the difference
-of \verb^plus_cnt^ and \verb^minus_cnt^.
-You might think that this difference should oscillate near zero. Does it ?
-\end{exercise}
-
-%%%%%%%%%%%%%%%%%%%%% D %%%%%%%%%%%%%%%%%%%%%
-
-\nsection{Lecture Notes Chapter D}
-\begin{exercise}
-Once you've studied Chapter~$D$ of the lecture notes ({\em Flow Control}), compile and run
-the examples given in the handout.
-\end{exercise}
-
-\nsection{find\_max}
-\begin{exercise}
-Write a program that finds the largest number entered by the user.
-Executing the program will produce something like:
-\begin{codesnippet}
-How many numbers do you wish to enter ? 5
-Enter 5 real numbers: 1.01 -3 2.2 7.0700 5
-Maximum value: 7.07
-\end{codesnippet}
-\end{exercise}
-
-\nsection{Loving Oddness}
-Suppose that you detest even integers but love odd ones.
-
-\begin{exercise}
-Modify the \verb^find_max^ program so that all variables
-are of type \verb^int^ and that only odd integers are processed.
-Explain all this to the user via appropriate \verb^printf()^ statements.
-\end{exercise}
-
-%%%%%%%%%%%%%%%%%%%%% E %%%%%%%%%%%%%%%%%%%%%
-
-\nsection{Lecture Notes Chapter E}
-\begin{exercise}
-Once you've studied Chapter~$E$ of the lecture notes ({\em Functions}), compile and run
-the examples given in the handout.
-\end{exercise}
-
-\nsection{Hailstone}
-The next number in a hailstone sequence is $n/2$ if the current
-number $n$ is even, or $3n+1$ if the current number is odd. If the
-initial number is $77$, then the following sequence is produced:
-\begin{terminaloutput}
-77
-232
-116
-58
-29
-88
-44
-22
-11
-34
-\end{terminaloutput}
-
-\begin{exercise}
-Write a program that, given a number typed by the user,
-prints out the sequence of {\em hailstone} numbers.
-The sequence terminates when it gets to $1$.
-\end{exercise}
-
-\nsection{Primes}
-A prime number can only be exactly divided by itself
-or $1$. The number $17$ is prime, but $16$ is not because
-the numbers $2$, $4$ and $8$ can divide it exactly.
-(Hint~$16\%4 == 0$).
-\begin{exercise}
-Write a program that prints out the first $n$ primes, where
-$n$ is input by the user. The first $8$ primes are:
-\begin{terminaloutput}
-2
-3
-5
-7
-11
-13
-7
-19
-\end{terminaloutput}
-What is the $3000^{\rm th}$ prime ?
-\end{exercise}
-
-\nsection{Triangles}
-
-A triangle can be equilateral (all three sides have the same length),
-isosceles (has two equal length sides), scalene
-(all the sides have a different length), or 
-right angled where if the three sides are $a$, $b$ and $c$,
-and $c$ is the longest, then :
-\begin{math}
-c = \sqrt{a^2 + b^2}
-\end{math}
-
-\begin{exercise}
-Write a program so that you can process a number of triples of side lengths
-in a single run of your program using a suitable
-unlikely input value for the first integer in order to terminate
-the program. e.g. -999.
-
-Think hard about the test data for your program to ensure that
-all possible cases are covered and all invalid data results in
-a sensible error message. Such cases can include sides of negative length,
-and impossible triangles (e.g. one side is longer than the sum of the other two).
-\end{exercise}
-
+\readchapter{D}{Flow Control}
+\input{findmax}
+\input{loveodd}
 \input{lcg}
-
-%%%%%%%%%%%%%%%%%%%%% F %%%%%%%%%%%%%%%%%%%%%
-
-\nsection{Lecture Notes Chapter F}
-\begin{exercise}
-Once you've studied Chapter~$F$ of the lecture notes ({\em Data Storage}), 
-compile and run the examples given in the handout.
-\end{exercise}
-
-\nsection{Unit Circle}
-In mathematics, for all real $x$, it is true that:
-\[
-sin^2(x) + cos^2(x) = 1
-\]
-i.e. $sin(x)*sin(x) + cos(x)*cos(x) = 1$.\\
-
-\begin{exercise}
-Write a program to demonstrate this for values of $x$ input by the user.
-\end{exercise}
-
-\nsection{Time Flies}
-\begin{exercise}
-Write a program which allows the user to enter two times in
-24-hour clock format, and computes the length of time between the
-two, e.g.:
-\begin{terminaloutput}
-Enter two times : 23:00 04:15
-Difference is : 5:15
-\end{terminaloutput}
-or,
-\begin{terminaloutput}
-Enter two times : 23:40 22:50
-Difference is : 23:10
-\end{terminaloutput}
-\end{exercise}
-
 \input{higherlower}
-
-
-%%%%%%%%%%% Will be Chapter G %%%%%%%%%%%%%%%%%%%%%%
-
-\nsection{Lecture Notes Chapter G}
-\begin{exercise}
-Once you've studied Chapter~$G$ of the lecture notes, 
-compile and run the examples given in the handout.
-\end{exercise}
-
-\nsection{Roulette}
-This is an chance for you to practice self-document techniques such as
-sensible identifier naming, commenting, \verb^typedefs^ and enumeration. 
-\begin{exercise}
-Write a roulette program. The roulette machine will select
-a number between \verb^0^ and \verb^35^ at random. The player
-can place an odd/even bet, or a bet on a particular number.
-A winning odd/even bet is paid off at 2 to 1, except
-that all odd/even bets lose if the roulette selects \verb^0^.
-If the player places a bet on a particular number, and the
-roulette selects it, the player is paid off a 35 to 1.
-\end{exercise}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% WEEK 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\chapterimage{../Pictures/pet.png}
-\chapter{{\em 1D} Arrays (Week 2)}
-
-Note that these next few exercises are  in {\bf NO} particular order - try the ones you find easy before attempting more complex ones. Remember to \verb^test()^ all your functions, where possible.
-
-
 \input{atm}
-\input{hailstone}
+\input{trianglenums}
+
+\readchapter{E}{Functions}
+\input{hailstone_basic}
+\input{hailstone_seq}
+\input{primes_basic}
+\input{whichtriangle}
+\input{timeflies}
+\input{dirichlet}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% WEEK 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapterimage{../Pictures/pet.png}
+\chapter{{\em 1D} Arrays}
+
+\nopartorder
+
+\readchapter{F}{Mathematics \& Characters}
+\input{unitcircle}
 \input{montepi}
 \input{leibniz}
-\input{dirichlet}
-\input{triangular}
 \input{irrational}
-
-%%%%%%%%%%% Will be Chapter H %%%%%%%%%%%%%%%%%%%%%%
-\nsection{Lecture Notes Chapter H}
-\begin{exercise}
-Once you've studied Chapter~$H$ of the lecture notes, 
-compile and run the examples given in the handout.
-\end{exercise}
-\input{microwave}
-\input{ipod}
-\input{rule110}
-
-%%%%%%%%%%%%% Will be Chapter I %%%%%%%%%%%%%%%
-
-\nsection{Lecture Notes Chapter I}
-\begin{exercise}
-Once you've studied Chapter~$I$ of the lecture notes, compile and run
-the examples given in the handout.
-\end{exercise}
-
-\nsection{Vowelness}
-Vowels are the letters $a$, $e$, $i$, $o$ and $u$.
-\begin{exercise}
-Write a program that reads characters from the keyboard and writes to the
-screen. Write all vowels as uppercase letters, and all non-vowels as
-lowercase letters. Do this by using writing a function \verb^isvowel()^
-that tests whether or not a character is a vowel.
-\end{exercise}
-
-
+\input{vowelness}
 \input{planettrium}
 \input{bob}
 \input{secretcodes}
 
-\input{yahtzee}
+\readchapter{G}{Prettifying}
+\input{roulette}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% WEEK 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapterimage{../Pictures/strings.pdf}
-\chapter{More Arrays \& Strings}
+\chapter{$1D$ Arrays \& Strings}
 
-For some of these exercises you'll need to understand command line input to
-\verb^main()^ from the shell, often simply referred to as \verb^argc/argv^ in C.
-Please see:
-\wwwurl{http://www.thegeekstuff.com/2013/01/c-argc-argv/}
-for more information about this.
+\nopartorder
+\readchapter{H}{$1D$ Arrays}
+\input{microwave}
+\input{ipod}
+\input{yahtzee}
+\input{rule110}
+\input{devils}
+\input{countingsort}
+\input{fibword}
 
+\readchapter{I}{Strings}
 \input{palindrome}
 \input{itoa}
-\input{strmerge}
 \input{roman}
 \input{soundex}
+\input{strmerge}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% WEEK 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapterimage{../Pictures/grids.pdf}
-\chapter{2D Arrays}
+\chapter{$2D$ Arrays}
 
 \input{crossword}
 \input{lifeall}
 \input{lifewars}
-
 \input{wireworld}
-
-\noindent Ensure your code is C99 compliant, and fully follows the house-style guidelines.
-Show that your code has been developed using short, well-tested functions via the use of \verb^assert()^ testing.
-
 \input{forestfire}
-
-\noindent Ensure your code is C99 compliant, and fully follows the house-style guidelines.
-Show that your code has been developed using short, well-tested functions via the use of \verb^assert()^ testing.
-
 \input{dla}
-
 \input{langton}
-
-%\input{planar}
-
 \input{ansi}
+%\input{ncurses}
 
-\begin{exercise}
-Adapt the Forest Fire code in Exercise~\ref{ex:forestf} so that the output
-is displayed using the simple funtions demonstrated above, with trees being green, fire being red and
-background being empty.  The main loop will
-update the forest, clear the screen, display it, wait for a very short time (e.g. $0.10s$) and repeats.
-\end{exercise}
-
-\input{ncurses}
-
-\begin{exercise}
-Adapt the wireworld code in Exercise~\ref{ex:wirew} so that the output
-is displayed using this library, with tails being red, heads being blue,
-copper being yellow and background being black.  The main loop will
-update the board, display it, and repeat until a quit event occurs
-(e.g. a mouse click or the ESC key is pressed).  \end{exercise}
-
-\begin{exercise}
-Adapt the life code in Exercise~\ref{ex:life106} so that the output is
-displayed using this library, with sensible choices made for cell colours.
-The main loop will update the board, display it, and repeat until a quit
-event occurs (e.g. a mouse click or the ESC key is pressed).
-\end{exercise}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% WEEK 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapterimage{../Pictures/pet.png}
-\chapter{Strings, Recursion and SDL}
+\chapter{Files, argc and Graphics}
 
-\input{teabreak}
-
-\input{unlock}
-
+\input{anagrams}
 \input{introsdl}
+\input{insertionsort}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% WEEK 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% WEEK 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{chapter}{6}
+\chapterimage{../Pictures/Insertionsort-edited.png}
+\chapter{Recursion}
 
 \nsection{Word Ladders}
-
 \input{wordladder_gen}
 \input{wordladder_cons}
 \input{wordladder_full}
-
-\input{devils}
-
 \input{maze_rec}
-
-\setcounter{chapter}{6}
-\chapterimage{../Pictures/Insertionsort-edited.png}
-\chapter{Lists, Insertion Sort \& more Recursion}
-
-\input{insertionsort}
-
 \input{primefactors}
-
+\input{unlock}
 \input {sierpinski_carpet}
-
 \input {sierpinski_triangle}
+%\input{mo}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% WEEK 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapterimage{../Pictures/bookcase.jpg}
 \chapter{Searching Boards}
 
 \input{conway}
-
 \input{eighttile}
-
 \input{bookcase}
-
 \input{rollerboard}
+\input{carpark}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% WEEK 9 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapterimage{../Pictures/btree.png}
-\chapter{Huffman, Trees \& Bitwise}
+\chapter{ADTs I}
 
-\input{depthtree}
-
-\nsection{Two Trees}
-Adapt the code shown in Exercise~\ref{ex:randtree}, so that two random trees are generated.
-\begin{exercise}
-Write a Boolean function that checks whether two trees are identical or not.
-\end{exercise}
-
-\input{huffman}
-
-\input{bintreevis}
-
+\input{indexarr}
+\input{boolarr}
+\input{sets}
+\input{polymorphism}
+\input{soll}
+\input{sudoku}
+\input{multivalmaps}
+\input{rhymes}
 \input{advent}
 
-%\input{mo}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% WEEK 10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapterimage{../Pictures/hash.jpg}
-\chapter{ADTs and Algorithms I}
+\chapter{Trees \& Hashing}
 
-\nsection{Indexed Arrays}
 
-In the usual places are the files \verb^arr.h^, \verb^arr.c^, \verb^testarr.c^
-and a makefile. These files enable you to build, and test, the
-ADT for a 1D Indexed Array. This simple replacement for C arrays is
-`safe' in the sense that if you write the array out-of-bounds, it
-will be automatically resized correctly (using \verb^realloc()^). The
-interface to this ADT is in \verb^arr.h^ and its implementation is in
-\verb^arr.c^. Typing \verb^make testarr^, compiles these files together with the test
-file \verb^testarr.c^. Executing \verb^./testarr^ should result in all
-tests passing correctly.
+\input{depthtree}
+\input{twotrees}
+\input{huffman}
+\input{bintreevis}
+\input{lowestca}
+\input{fastermvm}
+\input{doublehash}
+\input{sepchain}
 
-\begin{terminaloutput}
-% make -f 1d_adt.mk run
-Basic Array Tests ... Start
-Basic Array Tests ... Stop
-\end{terminaloutput}
-
-\begin{exercise}
-\label{ex:indarray}
-Build \verb^testarr^, and check that you understand the use of the functions,
-including initialization, reading, writing and freeing. Use the makefile provided to
-run the code, and do some memory-leak checking etc.
-\end{exercise}
-
-\input{boolarr}
-
-\nsection{Sets}
-
-Sets are an important concept in Computer Science. They enable the
-storage of elements (members), guaranteeing that no element appears more than
-once. Operations on sets include initializing them, copying them,
-inserting an element, returning their size (cardinality), finding if
-they contain a particular element, removing an element if it exists, and
-removing one element from a random position (since sets have no particular
-ordering, this could be the first element). Other set operations include
-union (combining two sets to include all elements), and intersection
-(the set containing elements common to both sets).
-
-\wwwurl{https://www.mathsisfun.com/sets/sets-introduction.html}
-\wwwurl{https://en.wikipedia.org/wiki/Set_(mathematics)}
-
-The definition of a Set ADT is given in \verb^set.h^, and a file to test it is given
-in \verb^testset.c^.
-
-\begin{exercise}
-Write \verb^set.c^, so that:
-{\small
-\begin{terminaloutput}
-% make -f set_adt.mk run
-./testset
-Basic Set Tests ... Start
-Basic Set Tests ... Stop
-\end{terminaloutput}
-}
-\noindent works correctly. Your Set ADT will build on top of the Indexed Array ADT introduced in
-Exercise~\ref{ex:indarray}.
-Only write \verb^set.c^. Alter no other files, including \verb^arr.c^, \verb^arr.h^,
-\verb^set.h^ or the Makefile.
-\end{exercise}
-
-\nsection{Towards Polymorphism}
-
-Polymorphism is the concept of writing functions (or ADTs), without
-needing to specify which particular type is being used/stored. To
-understand the quicksort algorithm, for instance, doesn't really require
-you to know whether you're using integers, doubles or some other type. C
-is not very good at dealing with polymorphism - you'd need something
-like Python, Java or C++ for that. However, it does allow the use of
-\verb^void*^ pointers for us to approximate it.
-
-\begin{exercise}
-Extend the array ADT discussed in
-Exercise~\ref{ex:indarray}, so that any type can be used - files
-\verb^varr.h^ and \verb^testvarr.c^ are available in the usual place -
-use the Makefile used there, simply swapping \verb^arr^ for \verb^varr^
-at the top.
-\end{exercise}
-
-\nsection{Double Hashing}
-Here we use double hashing, a technique for resolving collisions in a
-hash table.
-
-\begin{exercise}
-\label{ex:dblhash}
-Use double hashing to create a spelling checker, which reads in a dictionary file
-from \verb^argv[1]^, and stores the words.
-
-Make sure the program:
-\begin{itemize}
-\item Use double hashing to achieve this.
-\item Makes no assumptions about the maximum size of the dictionary files. Choose
-an initial (prime) array size, created via malloc(). If this gets more than $60\%$ full,
-creates a new array, roughly twice the size (but still prime). Rehash all the words into this
-new array from the old one. This may need to be done many times as more and more words
-are added.
-\item Uses a hash, and double hash, function of your choosing.
-\item Once the hash table is built, reads another list of words from \verb^argv[2]^
-and reports on the {\em average} number of  look-ups required. A {\em perfect} hash
-will require exactly $1.0$ look-up. Assuming the program works correctly,
-this number is the only output required from the program.
-\end{itemize}
-\end{exercise}
-
-\nsection{Separate Chaining}
-Separate chaining deals with collisions by forming (hopefully small) linked lists
-out from a base array.
-\begin{exercise}
-Adapt Exercise~\ref{ex:dblhash} so that:
-\begin{itemize}
-\item A linked-list style approach is used.
-\item No assumptions about the maximum size of the dictionary file is made.
-\item The same hash function as before is used.
-\item Once the hash table is built, reads another list of words from \verb^argv[2]^
-and reports on the {\em average} number of  look-ups required. A {\em perfect} hash
-will require exactly $1.0$ look-up, on average. Assuming the program works correctly,
-this number is the only output required from the program.
-\end{itemize}
-\end{exercise}
-
-\input{soll}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% WEEK 11 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapterimage{../Pictures/nursery-rhymes.jpg}
-\chapter{ADTs and Algorithms II}
-
-\input{sudoku}
+\chapter{ADTs II}
 
 \input{hashpoly}
-
+\input{cuckoo}
 \input{dicts}
+\input{carcdr}
 
-\nsection{MultiValue Maps}
-
-Many data types concern a single value (e.g. a hash table), so that
-a string (say) acts as both the key (by which we search for the data)
-and also as the object we need to store (the value). An example of this a spelling checker,
-where one word is stored (and searched for) at a time.  However, sometimes
-there is a need to store a value based on a particular key - for instance
-an associative array in Python allows you to perform operations such as :
-\begin{codesnippet} 
-population["Bristol"] = 536000
-\end{codesnippet} 
-where a value (the number 536000) is stored using the key (the string "Bristol").
-One decision you need to make when designing such a data type is whether
-multiple values are allowed for the same key; in the above example this
-would make no sense - Bristol can only have one population size. But if
-you wanted to store people as the key, with their salary as the value,
-you might need to use a MultiValue Map (MVM) since people can have more than
-one job.
-
-Here we write the abstract type for a MultiValueMap that stores key-value pairs,
-where both the key and the value are strings.
-
-\begin{exercise}
-\label{ex:mvm}
-The definition of an MVM ADT is given in \verb^mvm.h^, and a file to test it is given
-in \verb^testmvm.c^.  Write \verb^mvm.c^, so that:
-{\small
-\begin{terminaloutput}
-% make -f mvm_adt.mk 
-./testmvm
-Basic MVM Tests ... Start
-Basic MVM Tests ... Stop
-\end{terminaloutput}
-}
-\noindent works correctly. Use a simple linked list for this, inserting
-new items at the head of the list.
-Make no changes to any of my files.
-
-Submit : \verb^mvm.c^.
-\end{exercise}
-
-\nsection{Rhymes}
-
-In the usual place is a dictionary which, for every word, lists the
-phonemes (a code for a distinct unit of sound) used to pronounce that word
-in American English. In this file the word itself, and its phonemes,
-are separated by a `\#').  For instance:
-\begin{codesnippet}
-BOY#B OY1
-\end{codesnippet}
-shows that the word \verb^BOY^ has two phonemes : \verb^B^ and \verb^OY1^.
-
-A simple attempt at finding rhymes for boy would match every word that has \verb^OY1^
-as its final phoneme. This gives you:
-\begin{terminaloutput}
-POLLOI MCVOY LAFOY ALROY ILLINOIS CROIX DECOY REDEPLOY CLOY
-LAVOY MOYE LOYE STOY PLOY KNOY EMPLOY ELROY JOY COY LACROIX
-DEVROY ENJOY LOY COYE FOYE MOY DOI BROY TOY LABOY ROI HOY
-ROYE NEU CROY SOY YOY MCCOY CHOY GOY ROY BOLSHOI MALLOY JOYE
-DESTROY DELACROIX(1) DEBOY MCROY CHOI UNDEREMPLOY FLOY MCKOY
-TOYE AHOY BOY OYE SGROI FOIE(1) TROY DEPLOY SAVOY UNEMPLOY
-SCHEU WOY BOYE HOYE FOY OI HOI KROY EMPLOY(1) FLOURNOY OIE
-MCCLOY ANNOY OY DEJOY
-\end{terminaloutput}
-
-Using two phonemes to do the matching is too many,
-since the only matches are for words that have exactly the same pronunciation: 
-\begin{terminaloutput}
-LABOY DEBOY BOY BOYE
-\end{terminaloutput}
-which are not really rhymes, but homophones. Therefore, using
-the {\bf correct} number of phonemes will be key to finding
-`good' rhyming words.
-
-Here we will use the MutliValue Map written in Exercise~\ref{ex:mvm} to
-create two maps.  An MVM \verb^map1^ stores the word (as the key) and its final
-$n$ phonemes as a single string (the value).  Now \verb^map2^ stores the
-word (value), keyed by its final $n$ phonemes as a single string.
-Looking up the phonemes associated with a word can be done using
-the word as a key
-\footnote{Strictly speaking, we don't need the
-$map1$ to be capable of storing multiple values, since every word
-in the dictionary is unique. We'll use it here though for simplicity.}
-(via \verb^map1^), and looking up a word given its phonemes can be
-achieved using \verb^map2^.
-
-\begin{exercise}
-\label{ex:rhymes}
-Read in the dictionary, and for each line
-in turn, store the data in the two maps.  Now for a requested word to be
-`rhymed', search for its phonemes using \verb^map1^ and then search for
-matching words using \verb^map2^. The number of phonemes specified for
-this rhyming is given via the command line, as are the words to be rhymed:
-\begin{terminaloutput}
-$ ./homophones -n 3 RHYME
-RHYME (R AY1 M): PRIME RHYME ANTICRIME(1) CRIME ANTICRIME
-GRIME RIME
-\end{terminaloutput}
-The \verb^-n^ flag specifies the number of phonemes to use (you may
-assume the number associated with it always is always separated from
-the flag by a space).  If no \verb^-n^ flag is given then the value $3$
-is assumed.  It only makes sense to use a value of $n \leq$ the number of
-phonemes in the two words being checked. If you use a value greater than this,
-the results are undefined.
-
-The list of words to be matched may be found on the command line:
-\begin{terminaloutput}
-$ ./homophones -n 4 CHRISTMAS PROGRAM PASSING
-CHRISTMAS (S M AH0 S): ISTHMUS CHRISTMAS CHRISTMAS'
-PROGRAM (G R AE2 M): CENTIGRAM ENGRAM HISTOGRAM WOLFGRAM
-MONOGRAM LOGOGRAM HOLOGRAM MICROGRAM SONOGRAM ANGIOGRAM
-TELEGRAM PROGRAMME ELECTROCARDIOGRAM ELECTROPHORETOGRAM
-REPROGRAM MILLIGRAM ANAGRAM PEGRAM POLYGRAM DIAGRAM
-EPIGRAM PROGRAM MAILGRAM MILGRAM INGHRAM CABLEGRAM
-MAMMOGRAM KILOGRAM
-PASSING (AE1 S IH0 NG): GASSING MASENG SURPASSING KASSING
-HASSING PASSING AMASSING MASSING CLASSING HARASSING
-\end{terminaloutput}
-Use the Makefile supplied for this task. Make the output as similar to that shown above as possible.
-
-Submit : \verb^homophones.c^.
-\end{exercise}
-
-\nsection{Faster MVMs}
-The ADT for MVMs used in Exercise~\ref{ex:mvm} is a simple linked list -
-insertion is fast, but searching is slow.
-
-\begin{exercise}
-Write a new version of this MVM ADT called \verb^fmvm.c^ that
-implements exactly the same functionality but has a faster search time.
-The file \verb^fmvm.h^ will change very little from \verb^mvm.h^, with maybe
-only the structures changing, but not the function prototypes.  A similar
-testing file to that used previously, now called \verb^testfmvm.c^
-should also be written.  Note that any ordering of data when using
-the \verb^mvm_print^ and \verb^mvm_multisearch^ functions is acceptable,
-so these can't be tested in exactly the same manner.
-
-By simply changing the \verb^#include^ from \verb^<mvm.h>^ to \verb^<fmvm.h>^
-in your \verb^homephones.c^ file from Exercise~\ref{ex:rhymes}, and compiling it against
-\verb^fmvm.c^, I can test that program works identically.
-
-Make it clear what you have done to speed up your searching (and how)
-using comments at the top of \verb^fmvm.h^
-
-Submit : \verb^fmvm.c^, \verb^fmvm.h^ and \verb^testfmvm.c^
-\end{exercise}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% WEEK 12 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapterimage{../Pictures/ttl2.jpg}
+\chapter{Parsing Data}
 
 \newcommand{\bb}{white}
 \newcommand{\ff}{black}
@@ -802,9 +240,6 @@ Submit : \verb^fmvm.c^, \verb^fmvm.h^ and \verb^testfmvm.c^
 \end{tikzpicture}%
 }
 
-%\chapterimage{../Pictures/teletext_wk12.pdf}
-\chapterimage{../Pictures/ttl2.jpg}
-\chapter{Parsing Data}
 
 \input{mode7}
 

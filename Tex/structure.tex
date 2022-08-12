@@ -353,7 +353,6 @@ innerbottommargin=5pt]{cBox}
 \makebox[-2.5pt]{\begin{tikzpicture}[overlay]
 \node[draw=ocre!60,line width=1pt,circle,fill=ocre!25,font=\sffamily\bfseries,inner sep=2pt,outer sep=0pt] at (-25pt,0pt){\textcolor{ocre}{www}};\end{tikzpicture}} % Orange R in a circle
 \advance\baselineskip -1pt}{\end{list}\vskip5pt} % Tighter line spacing and white space after remark
-
 \newcommand{\wwwurl}[1]{\begin{www}\url{#1}\end{www}}
 
 % ---------------------------------------
@@ -431,6 +430,39 @@ innerbottommargin=5pt]{cBox}
 
 \usepackage{currfile}
 \newcommand{\nsection}[1]{\section{#1}\label{\currfilebase:sec}}
+
+%% The "Under Construction" Warning
+\newenvironment{notyet}{\par\vspace{10pt}\large % Vertical white space above the remark and smaller font size
+\begin{list}{}{
+\leftmargin=5pt % Indentation on the left
+\rightmargin=25pt}\item\ignorespaces % Indentation on the right
+\makebox[-2.5pt]{
+\begin{tikzpicture}[overlay,scale=0.5,limb/.style={line cap=round,line width=1.5mm,line join=bevel}]
+\draw[line width=2mm,rounded corners,fill=orange] (-2,0) -- (0,-2) -- (2,0) -- (0,2) -- cycle;
+\fill (1.5mm,7mm) circle (1.5mm);
+\fill(0,-7.5mm) -- ++(10mm,0mm) -- ++(120:2mm)--++(100:1mm)--++(150:2mm) arc (70:170:2.5mm and 1mm);
+\draw[limb] (-7.5mm,-6.5mm)--++(70:4mm)--++(85:4mm) coordinate(a)--++(-45:5mm)--(-2.5mm,-6.5mm);
+\fill[rotate around={45:(a)}] ([shift={(-0.5mm,0.55mm)}]a) --++(0mm,-3mm)--++
+        (7mm,-0.5mm)coordinate(b)--++(0mm,4mm)coordinate(c)--cycle;
+\draw[limb] ([shift={(-0.6mm,-0.4mm)}]b) --++(-120:5mm) ([shift={(-0.5mm,-0.5mm)}]c) --++
+        (-3mm,0mm)--++(-100:3mm)coordinate (d);
+\draw[ultra thick] (d) -- ++(-45:1.25cm);
+\node[draw,rectangle,align=left, text width=0.75\textwidth, minimum height=3ex, ocre] at (150mm,0) {\hspace*{0mm}UNDER CONSTRUCTION - Please don't attempt this yet.\\We'll have this new exciting exercise ready for you soon!};
+\end{tikzpicture}}% 
+\advance\baselineskip -1pt}{\end{list}\vskip5pt} % Tighter line spacing and white space after remark
+
+\newcommand{\undercons}{\vspace*{3ex}\begin{notyet}\strut\end{notyet}\vspace*{3ex}}%
+
+\newcommand{\readchapter}[2]{
+\nsection{Lecture Notes Chapter #1}
+\begin{exercise}
+After you've studied Chapter~#1 of the lecture notes ({\em #2}), compile and run the examples given in the handout.
+\end{exercise} }%
+
+\newcommand{\nopartorder}{
+Note that these exercises are in {\bf NO} particular order - try the
+ones you find more straightforwards before attempting complex ones.
+Remember to assert {\texttt test()} all of your functions.}%
 
 %----------------------------------------------------------------------------------------
 %	HYPERLINKS IN THE DOCUMENTS

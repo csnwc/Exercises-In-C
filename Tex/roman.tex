@@ -55,30 +55,10 @@ M   & 1000 &     &     \\ \hline
 \end{center}
 
 \begin{exercise}
-Write a program that reads a roman numeral (in the range
-\verb^1 - 3999^) and outputs the corresponding valid arabic integer. Amongst
-others, check that \verb^MCMXCIX^ returns \verb^1999^,
+Write a program that contains a function which is passed a string and returns an integer.
+The string is a roman numeral in the range
+\verb^1 - 3999^. Amongst
+others, \verb^assert()^ test that \verb^MCMXCIX^ returns \verb^1999^,
 \verb^MCMLXVII^ returns \verb^1967^ and that \verb^MCDXCI^ returns
 \verb^1491^.
-
-You should use the following template~:
-
-\begin{codesnippet}
-#include <stdio.h>
-
-int romanToArabic( char *roman );
-
-int main(int argc, char **argv)
-{
-   if( argc==2 ){
-       printf("The roman numeral %s is equal to %d\n", \
-       argv[1], romanToArabic(argv[1]));
-   }else{
-       printf("ERROR: Incorrect usage, try e.g. %s XXI\n", argv[0]);
-   }
-   return 0;
-}
-\end{codesnippet}
-
-You need to add the function \verb^romanToArabic()^.
 \end{exercise}
