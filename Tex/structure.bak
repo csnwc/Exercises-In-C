@@ -257,8 +257,7 @@
 \theoremstyle{ocrenumbox}
 \newtheorem{theoremeT}[dummy]{Theorem}
 \newtheorem{problem}{Problem}[chapter]
-%% NWC : Chapter - > Section
-\newtheorem{exerciseT}{Exercise}[section]
+\newtheorem{exerciseT}{Exercise}[chapter]
 \theoremstyle{blacknumex}
 \newtheorem{exampleT}{Example}[chapter]
 \theoremstyle{blacknumbox}

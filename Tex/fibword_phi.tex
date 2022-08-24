@@ -1,0 +1,43 @@
+\nsection{Fibonacci Words Using $\phi$}
+\label{sec:fibword_phi}
+
+\newexercise{2022}
+
+\wwwurl{https://en.wikipedia.org/wiki/Fibonacci\_word}
+
+A {\em Fibonacci Word} is simply a particular (infinite) sequence of digits:
+\begin{verbatim}
+010010100100101001010010010100100101001010010010100101001001010010010...
+\end{verbatim}
+and shouldn't be confused with the related, but totally different {\em Fibonacci Sequence} (which we'll see later in the lecture series).
+
+You start by defining $S_0$ to be the sequence "0", and $S_1$ to be 
+"01". Each subsequent part of the sequence is made by simply concatenating
+the previous two, so $S_2 = 010$ and $S_3 = 01001$ and so on.
+
+Perhaps somewhat surprisingly, the $n^{th}$-digit can be
+predicted without computing the rest of the sequence, using the equation:
+\begin{equation}
+\label{eq:fibphi}
+2 + \lfloor n \phi \rfloor - \lfloor (n+1) \phi \rfloor
+\end{equation}
+here $\lfloor x \rfloor$ is the \verb^floor()^ function that
+rounds a number down to its lowest integer part (e.g. $1.815$ becomes
+$1.0$), and where $\phi$ is the golden ratio $=1.61803398875...$.
+Note also that the sequence is assumed to begin at the $n=1$, and not 
+at zero which a programmer might assume!
+
+Since $\phi$ can only be stored approximately on a computer,
+for larger numbers of $n$, this equation doesn't hold. Exactly
+where this happens depends upon how closely you have approximated~$\phi$.
+
+\begin{exercise}
+\label{ex:fibword_phi}
+Write the function:
+\begin{codesnippet}
+bool fibword_phi(int n)
+\end{codesnippet}
+which returns to $n^{th}$-digit of the sequence (which begins at $n=1$)
+using an approximation of $\phi$, the function \verb^floor()^ found in 
+the mathematics library and Equation~\ref{eq:fibphi}.
+\end{exercise}

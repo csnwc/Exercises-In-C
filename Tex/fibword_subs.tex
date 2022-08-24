@@ -1,0 +1,54 @@
+\nsection{Fibonacci Words using Substitution Rules}
+\label{sec:fibword_subs}
+
+\newexercise{2022}
+
+This follows on from Exercise~\ref{ex:fibword_phi}, where we saw a
+good approximation of the Fibonacci Word using~$\phi$.
+
+To be certain of the sequence at very large values of $n$, you'd need to
+construct the sequence iteratively. One interesting way of doing this
+is to use a Substitution Rule. Start with a counter indexing a
+single digit zero at the beginning of a \verb^bool^ array. Now at each step,
+if the digit is $0$, append a $1$ and a $0$ onto the end of the array.
+If the digit is a $1$ append a $0$ onto the end of the array.
+Either way, move along to the next digit and repeat.
+\begin{verbatim}
+Array initially :
+0 (index zero contains a zero therefore append 1 0)
+010 (index 1 contains a one therefore append 0)
+0100 (index 2 contains a zero therefore append 1 0)
+010010 (index 3 ...)
+\end{verbatim}
+
+
+\begin{exercise}
+\label{ex:fibword_subs}
+Write the function:
+\begin{codesnippet}
+bool fibword_subs(int n)
+\end{codesnippet}
+which returns to $n^{th}$-digit of the sequence (which begins at $n=1$)
+using an array of \verb^bool^s, and repeatedly applying the
+substitution rules described above, until you have a sequence
+large enough to extract the $n^{th}$-digit. 
+\end{exercise}
+
+\begin{exercise}
+Write a program which experiments with the approximation of $\phi$
+from Exercise~\ref{ex:fibword_phi}, to see at what value of $n$ this begins to
+return incorrect values. These `correct' values can be obtained from the
+function written in Exercise~\ref{ex:figword2}.
+
+In my implementation, when I
+\begin{codesnippet}
+#define PHI 1.61
+\end{codesnippet}
+the values are wrong from the $12^{th}$ digit.
+For:
+\begin{codesnippet}
+#define PHI 1.61803
+\end{codesnippet}
+the values are wrong from the $609^{th}$ digit.
+
+\end{exercise}

@@ -1,0 +1,20 @@
+\nsection{Fibonacci Words using Strings}
+
+\newexercise{2022}
+
+See Section~\ref{sec:fibword_phi}.
+
+\begin{exercise}
+Write the function:
+\begin{codesnippet}
+bool fibword_str(int n)
+\end{codesnippet}
+which returns to $n^{th}$-digit of the sequence (which begins at $n=1$)
+using strings. Previous strings
+$S_{k-1}$ and $S_{k-2}$
+are repeatedly concatenated to create the new $S_k$, until you have a sequence
+large enough to extract the $n^{th}$-digit. 
+You will need to use \verb^malloc()^ (or \verb^realloc()^) to create the space
+for the strings. Also, be careful to correctly \verb^free()^
+all the space at the end of the function.
+\end{exercise}
