@@ -36,14 +36,14 @@ Somewhat contraversial, this ensures that `extra' lines tagged onto loops are
 dealt with correctly. For instance:
 \begin{codesnippet}
 while(i < 10)
-   printf("%d\n", i);
+   printf("%i\n", i);
    i++;
 \end{codesnippet}
 looks like it should print out \verb^i^ $10$ times, but instead runs infinitely.
 The programmer probably meant:
 \begin{codesnippet}
 while(i < 10){
-   printf("%d\n", i);
+   printf("%i\n", i);
    i++;
 }
 \end{codesnippet}
@@ -91,11 +91,11 @@ int inbounds2(int i, int mx){
 
 \item[RETV] Any functions that returns a value, should have it used:
 \begin{codesnippet}
-scanf("%d", &i);
+scanf("%i", &i);
 \end{codesnippet}
 is incorrect. It returns a value that is ignored. Instead do:
 \begin{codesnippet}
-	if(scanf("%d", &i) != 1{
+	if(scanf("%i", &i) != 1{
 	   /* PANIC */
 \end{codesnippet}
 
