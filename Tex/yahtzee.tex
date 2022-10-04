@@ -105,7 +105,7 @@ void test(void)
       }
       makehist(d5,h9);
       for(j=0; j<MAXTHROW; j++){
-         assert((h9[j] >= 0) && (h9[j] < NUMDICE));
+         assert((h9[j] >= 0) && (h9[j] <= NUMDICE));
       }
 
    }

@@ -1,0 +1,100 @@
+\nsection{Submitting}
+
+This year, you have the option of submitting one of your Chapter~2
+exercises to be peer reviewed.  This process is optional - there is
+no mark associated with this. However, we think it's good practice to
+learn how to submit your code through Blackboard, gain an insight into
+the English Universities marking system, and to think more deeply about
+how the marking criteria are applied.
+
+To submit your work, go to the Unit Blackboard page, then \emph{Assessment
+Submission and Feedback}, then \emph{Peer Assessment}. You can submit
+as many times as you like - old files will be automatically archived.
+
+Make sure your file has the correct name - this will be shown on the
+\emph{Unit Information} / \emph{Weekly Schedule} part of the Blackboard
+page.
+
+\nsection{Marking Criteria}
+
+When files are ready to be marked, we'll put them in the {\emph{Files}}
+folder of the \emph{General} channel of the unit `Teams' group. We'll
+tell you which usernames you are assessing.
+
+When you give feedback, you should use the following guidelines~:
+
+\begin{itemize}
+\item If the file has been submitted late then I'll rename it to have {\emph{\_late}} in the name. In this case, take 10 off the final mark (a University rule).
+\item Our system will automagically prefix your username to the filename. Apart from this, if the file was misnamed in any way, even just using a \verb^.C^ rather than a \verb^.c^ extension, take 5 off the final mark.
+\end{itemize}
+
+\noindent Below, where a category has a fixed mark (e.g. choose 0 or 10), decide which of these two marks to award.
+Where a category has a range of marks (e.g. 0 – 20), apply the following guidelines:
+\begin{description}
+\item[50\%] Just OK - room for improvement.
+\item[60\%] Good, solid, work - what you might expect.
+\item[70\%] Above and beyond what we would expect at this stage iof the unit (just!)
+\item[80\%] We could publish this, ground-breaking - it'll change how we teach this unit in the future~!
+\end{description}
+
+\noindent So, if a category can be marked in the range 0 – 20, a very good piece of work might score 13 marks, for instance.
+
+Using the House Style rules, shown in Appendix~\ref{appendix:style}, give a mark and comment on each of the following items:
+\begin{description}
+\item[FLAGS] - Does the code compile using clang and the house-style flags :\\ 
+-Wall  -Wextra  -Wfloat-equal -Wvla  -pedantic  -std=c99  -O2\\
+with zero warnings?
+\hfill{\bf{0 or 10}}
+
+\item[GOTO + TABS + INDENT]
+\hfill{\bf{0 – 10}}
+
+\item[BRACE]
+\hfill{\bf{0 – 5}}
+
+\item[NAMES]
+\hfill{\bf{0 – 5}}
+
+\item[LLEN]
+\hfill{\bf{0 – 5}}
+
+\item[MAIN]
+\hfill{\bf{0 – 5}}
+
+\item[CAPS]
+\hfill{\bf{0 – 5}}
+
+\item[FLEN]
+Including main()
+\hfill{\bf{0 – 5}}
+
+\item[MAGIC]
+\hfill{\bf{0 – 5}}
+
+\item[BRIEF]
+\hfill{\bf{0 – 5}}
+
+\item[TYPE]
+\hfill{\bf{0 – 5}}
+
+\item[$*$] Are all functions thoroughly tested using a function called test() or similar?
+\hfill{\bf{0 – 20}}
+
+\item[$*$] Does the program work correctly?
+\hfill{\bf{0 or  5}}
+
+\end{description}
+
+\noindent Write some brief feedback about the program(s) you've been
+assigned and email it to those people using their usernames.  An example
+is given below:
+
+\begin{quote}
+This program compiled for me without warnings and was
+correctly named.  The code was consistently indented, but you used tabs
+not spaces as required.  Function names could have been improved upon -
+e.g. \verb^doit()^ is not very helpful. One function (\verb^extra()^)
+seems quite long. You used a `magic number' : 65. The testing was quite
+thorough and the program worked well.  Overal I'd give this 59\% - nicely
+done, but pay closer attention to the style guidelines!
+\end{quote}
