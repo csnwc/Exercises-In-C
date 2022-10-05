@@ -29,7 +29,7 @@ make sure a few of the essential warnings that commonly indicate
 the presence of bugs and leaks are checked. These guidelines are meant to
 be independent of the particular compiler used though. Sometimes it is helpful to use many compilers too, e.g. \verb^gcc^ and \verb^clang^.
 
-If you have unused variables (for example) in your code, it doesn't matter whether your compiler happened to tell you about it or not - it's still wrong !
+If you have unused variables (for example) in your code, it doesn't matter whether your compiler happened to tell you about it or not - it's still wrong~!
 
 \item[BRACE] Always brace all functions, \verb^for^s, \verb^while^s, \verb^if/else^ etc.
 Somewhat contraversial, this ensures that `extra' lines tagged onto loops are
@@ -48,7 +48,7 @@ while(i < 10){
 }
 \end{codesnippet}
 
-\item[GOTO] You do not use any of the keywords \verb^continue^, \verb^goto^ or \verb^break^. The one exception is inside \verb^switch^, where \verb^break^ is allowed because it is essential !
+\item[GOTO] You do not use any of the keywords \verb^continue^, \verb^goto^ or \verb^break^. The one exception is inside \verb^switch^, where \verb^break^ is allowed because it is essential~!
 These keywords usually lead to tangled and complex `spaghetti' coding style.
 I often recommend that you rewrite the offending code uing functions, which {\bf can} have multiple \verb^return^s
 in them.
@@ -87,7 +87,7 @@ int inbounds2(int i, int mx){
 }
 \end{codesnippet}
 
-\item[GLOB] No global variables. Global variables are declared `above' \verb^main()^, are in scope of all functions, and can be altered {\bf anywhere} in the code. This makes it rather unclear {\bf which} functions should be reading or writing them. You can make a case for saying that occasionally they could be useful (or better) than the alternatives, but for now, they are banned !
+\item[GLOB] No global variables. Global variables are declared `above' \verb^main()^, are in scope of all functions, and can be altered {\bf anywhere} in the code. This makes it rather unclear {\bf which} functions should be reading or writing them. You can make a case for saying that occasionally they could be useful (or better) than the alternatives, but for now, they are banned~!
 
 \item[RETV] Any functions that returns a value, should have it used:
 \begin{codesnippet}
