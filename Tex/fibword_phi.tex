@@ -16,12 +16,17 @@ You start by defining $S_0$ to be the sequence "0", and $S_1$ to be
 the previous two, so $S_2 = 010$ and $S_3 = 01001$ and so on.
 
 Perhaps somewhat surprisingly, the $n^{th}$-digit can be
-predicted without computing the rest of the sequence, using the equation:
+predicted without computing the rest of the sequence, using the equation~:
 \begin{equation}
-\label{eq:fibphi}
+\label{eq:fibphi_math}
 2 + \lfloor n \phi \rfloor - \lfloor (n+1) \phi \rfloor
 \end{equation}
-here $\lfloor x \rfloor$ is the \verb^floor()^ function that
+or, maybe more understandably~:
+\begin{equation}
+\label{eq:fibphi}
+2 + \operatorname{floor}(n \phi) - \operatorname{floor}((n+1) \phi)
+\end{equation}
+Here \verb^floor()^ is the function that
 rounds a number down to its lowest integer part (e.g. $1.815$ becomes
 $1.0$), and where $\phi$ is the golden ratio $=1.61803398875...$.
 Note also that the sequence is assumed to begin at the $n=1$, and not 
@@ -34,8 +39,8 @@ Write the function:
 bool fibword_phi(int n)
 \end{codesnippet}
 which returns to $n^{th}$-digit of the sequence (which begins at $n=1$)
-using an approximation of $\phi$, the function \verb^floor()^ found in 
-the mathematics library and Equation~\ref{eq:fibphi}.
+using: an approximation of $\phi$, the function \verb^floor()^ found in 
+the mathematics library, and Equation~\ref{eq:fibphi}.
 \end{exercise}
 
 [Since $\phi$ can only be stored approximately on a computer,
