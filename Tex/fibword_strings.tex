@@ -14,7 +14,6 @@ using strings. Previous strings
 $S_{k-1}$ and $S_{k-2}$
 are repeatedly concatenated to create the new $S_k$, until you have a sequence
 large enough to extract the $n^{th}$-digit. 
-You will need to use \verb^malloc()^ (or \verb^realloc()^) to create the space
-for the strings. Also, be careful to correctly \verb^free()^
-all the space at the end of the function.
+
+To achieve this, use fixed-size strings that are set to always be large enough.
 \end{exercise}
