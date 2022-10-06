@@ -1,20 +1,25 @@
 \nsection{Irrational numbers}
 
-Neill's favourite number (don't ask why!) is $e$ which has the value $2.71828182845904523536$. This is an example of an irrational number - one that can only ever be {\it approximated} by the ratio of two integers - a bad approximation of $e$ is $87$ divided by $32$, that is $\frac{87}{32}$.
+Neill's favourite number (don't ask why!) is $e$ which has the value
+$2.71828182845904523536\ldots$ This is an example of an irrational
+number - one that can only ever be {\it approximated} by the ratio
+of two integers - a poor approximation of $e$ is $87$ divided by $32$,
+that is $\frac{87}{32}$.
 
 \begin{exercise}
 Write a program that loops through all possible denominators (that is
 the integer on the bottom, $b$ in the fraction $\frac{a}{b}$) and finds
-which $a$ and $b$ pair give the best approximation to $e$. The output
-of your program might look like~:
+which $a$ and $b$ pair give the best approximation to $e$.
+The output of your program might look something like~:
 
 \begin{verbatim}
 271801/99990 = 2.71828182818281849364
 \end{verbatim}
 
-You need only investigate denominators $< 100,000$. \verb^#^define
-the number being searched for. Check your code works
-for other famous constants such as $\pi = 3.14159265358979323846$ :
+\noindent You need only investigate denominators $< 100,000$.
+\verb^#^define the number being searched for.
+Check your code works
+for other famous constants such as $\pi = 3.14159265358979323846\ldots$~:
 
 \begin{verbatim}
 312689/99532 = 3.14159265361893647039
