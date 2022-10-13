@@ -29,6 +29,17 @@
   noughtsone board/.default=0.5cm
 }
 
+\tikzset{bingrid board/.style={
+  matrix of nodes
+  , execute at empty cell={\node[draw=black,text=black,fill=white]{.};}
+  , nodes in empty cells=false
+  , nodes={draw=black,fill=white,text=black,minimum width=#1,minimum height=#1,outer sep=0pt,align=center,inner sep=0pt}
+  , row sep={#1,between origins}
+  , column sep={#1,between origins}
+},
+  bingrid board/.default=0.75cm
+}
+
 \tikzset{twocolour board/.style={
   matrix of nodes
   , execute at empty cell={\node[text=white,fill=white]{+};}

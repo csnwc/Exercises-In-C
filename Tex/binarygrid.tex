@@ -1,0 +1,104 @@
+\nsection{Binary Grid Puzzle}
+Many newspapers in the UK have a puzzles section.
+One of that has become popular recently is the {\em Binary Grid}
+\wwwurl{https://www.binarypuzzle.com/}
+
+A Binary Grid is a $2D$ square grid of cells, each of which is either empty, or contains the value $0$ or~$1$.
+A set of rules governs what is legal in a {\bf valid} board~:
+\begin{itemize}
+\item Each cell should contain either a zero or a one.
+\item No more than two of the same number can appear consecutively in a row or a column.
+\item There must be an equal number of $0s$ and $1s$ in each row and column - this means that the height/width of the
+puzzle must be even.
+\end{itemize}
+
+\noindent Given these rules\footnote{In
+the full version of this puzzle, no row or column can be the same - we ignore this constraint here.}
+we can deduce some principles to help us find a solution~:\\
+\begin{description}
+\item[Pairs] : If two of the same number ($0s$ or $1s$) are in adjacent cells (either horizontally or vertically) then the two surrounding
+cells on either side must be the other number, otherwise there would be three of the same number in sequence.
+\item[OXO] : If there are two of the same number with a gap of one empty cell between them (horizontally or vertically),
+then the opposite number must be in the empty cell (otherwise we'd have three of the same number in sequence).
+\item[Counting] : If all of a particular number have been found in a row (or column) - that is $3$ if the grid is a $6x6$, then the remaining $3$ unknown cells must all contain the other number.
+\end{description}
+
+\noindent An example puzzle might look so~:\\
+\begin{center}
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=ocre!30}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=gray!20]{.};} ] (A) {
+ & & & & &0\\
+0& & &1&1& \\
+ & & &1& & \\
+ & & & & &0\\
+ & & & & & \\
+ & & & & & \\
+};
+\end{tikzpicture}
+\end{center}
+
+\noindent By applying the {\bf Pairs} principle $4$ times we get~:\\
+\begin{center}
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=ocre!30}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=gray!20]{.};} ] (A) {
+ & & &0& &0\\
+0& &0&1&1&0\\
+ & & &1& & \\
+ & & &0& &0\\
+ & & & & & \\
+ & & & & & \\
+};
+\end{tikzpicture}
+\end{center}
+
+\noindent The {\bf OXO} principle gives~:\\
+\begin{center}
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=ocre!30}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=gray!20]{.};} ] (A) {
+ & & &0& &0\\
+0&1&0&1&1&0\\
+ & & &1& & \\
+ & & &0& &0\\
+ & & & & & \\
+ & & & & & \\
+};
+\end{tikzpicture}
+\end{center}
+
+\noindent Application of the Counting principle can now fill the rightmost column~:\\
+\begin{center}
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=ocre!30}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=gray!20]{.};} ] (A) {
+ & & &0& &0\\
+0&1&0&1&1&0\\
+ & & &1& &1\\
+ & & &0& &0\\
+ & & & & &1\\
+ & & & & &1\\
+};
+\end{tikzpicture}
+\end{center}
+
+\noindent Some (but not all) puzzles can be solved by repeatedly applying these three rules.
+This is what we explore in this assignment.
+
+\begin{exercise}
+
+Complete the file {\bf bingrid.c} which, along with my files {\em
+bingrid.h} and {\em bingrid\_driver.c}, allows Binary Grids to be solved.
+
+\noindent My file {\em bingrid.h} contains the function definitions
+which you'll have to implement in your {\bf bingrid.c} file.  My file
+{\em bingrid\_driver.c} contains the \verb^main()^ function to act as
+a driver to run the code.  Your file will contain many other functions
+as well as those specified, so you'll wish to test them as normal using
+the \verb^test()^ function.
+
+\noindent If all of these files are in the same directory, you can
+compile them using the \verb^Makefile^ given.
+
+\noindent Do not alter or resubmit {\em bingrid.h} or {\em
+bingrid\_driver.c} - my original versions will be used to compile the
+{\em bingrid.c} file that you adapt.
+
+\end{exercise}
