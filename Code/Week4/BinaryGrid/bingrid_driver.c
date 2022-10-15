@@ -12,7 +12,8 @@ int main(void)
 
    // String Invalid
    assert(str2board(&b, "")==false);
-   // Not a square board
+
+   // Not an even size x even size board
    assert(str2board(&b, "...1.0...")==false);
 
    // An empty board still gives a 'sensible' string
