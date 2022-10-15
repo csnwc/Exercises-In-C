@@ -25,15 +25,13 @@ The five dice of the hand are stored in an array, and to facilitate deciding whi
 {\small
 \begin{codesnippet}
 #include <stdio.h>
+#include <stdbool.h>
 #include <stdlib.h>
 #include <assert.h>
 
 #define MAXTHROW 6
 #define NUMDICE 5
 #define TESTS 10000000
-
-enum bool {false, true};
-typedef enum bool bool;
 
 /* Fill the array d with random numbers 1..6 */
 void randomthrow(int d[NUMDICE]);
