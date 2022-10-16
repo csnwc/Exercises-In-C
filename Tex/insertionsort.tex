@@ -20,14 +20,22 @@ How long does it take to build the list~?
 \end{exercise}
 
 \begin{exercise}
+\label{ex:linearsearch}
 Now extend Exercise~\ref{ex:arrayinsertsort}
 so that when the user is prompted for a word,
 they are told whether this word is present in the list or not.
-Use a binary search to achieve this.
-How much faster is this than a linear search~?
+Use a {\em Linear Search} for this: start at the beginning of the
+list and work your way through it one word at a time.
 \end{exercise}
 
 \begin{exercise}
+\label{ex:binarysearch}
+Extend Exercise~\ref{ex:linearsearch} using a
+{\em Binary Search} for this.
+\end{exercise}
+
+\begin{exercise}
+\label{ex:linkedinsertsort}
 Write a program which, based on a
 linked list data structure, reads the words in
 one at a time, inserting them into the {\bf correct} part of the list
@@ -35,4 +43,3 @@ so that the words are alphabetically sorted.
 The name of the file should be passed as \verb^argv[1]^.
 How long does it take to build the list~?
 \end{exercise}
-
