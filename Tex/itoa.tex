@@ -20,6 +20,8 @@ int main(void)
 {
    char s[BIGSTR];
 
+   int2string(0, s);
+   assert(strcmp(s, "0")==0);
    int2string(10, s);
    assert(strcmp(s, "10")==0);
    int2string(99, s);
