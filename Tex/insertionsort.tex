@@ -5,17 +5,16 @@ from file and carefully place them in the {\bf correct} part of
 our data structure. This has a complexty of $O(n^2)$.
 
 For this purpose, a list of valid words (unsorted) is available
-from the usual place.
+from \verb^github : Data/Words^.
 
 \begin{exercise}
 \label{ex:arrayinsertsort}
 Write a program which, based on a
-list implemented using {\bf arrays}, reads the words in
-one at a time, inserting them into the {\bf correct} part of the list
+fixed-size {\bf array} of strings, reads the words in
+one at a time, inserting them into the {\bf correct} part of the array
 so that the words are alphabetically sorted.
 The name of the file should be passed as \verb^argv[1]^,
-and you can assume the array is of a fixed-size,
-and large enough to hold all words.
+and you can assume the array is large enough to hold all words.
 How long does it take to build the list~?
 \end{exercise}
 
@@ -23,7 +22,7 @@ How long does it take to build the list~?
 \label{ex:linearsearch}
 Now extend Exercise~\ref{ex:arrayinsertsort}
 so that when the user is prompted for a word,
-they are told whether this word is present in the list or not.
+they are told whether this word is present in the array or not.
 Use a {\em Linear Search} for this: start at the beginning of the
 list and work your way through it one word at a time.
 \end{exercise}
@@ -41,5 +40,6 @@ linked list data structure, reads the words in
 one at a time, inserting them into the {\bf correct} part of the list
 so that the words are alphabetically sorted.
 The name of the file should be passed as \verb^argv[1]^.
-How long does it take to build the list~?
+How long does it take to build the list~?\\
+How long does it take to do a linear search~?
 \end{exercise}
