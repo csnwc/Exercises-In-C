@@ -29,3 +29,4 @@ bool str2board(board* b, char* str);
 void board2str(char* str, board* brd);
 // Given a board, apply all rules repatedly - return true if solved, false otherwise
 bool solve_board(board* brd);
+
