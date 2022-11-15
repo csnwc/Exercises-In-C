@@ -22,6 +22,10 @@ testrealloc_v : arr.h Realloc/specific.h Realloc/realloc.c testarr.c $(GENPATH)/
 clean:
 	rm -f testrealloc_s testrealloc_v testrealloc
 
-run: all
+run: testrealloc
+	./testrealloc
+
+runall: all
+	./testrealloc
 	./testrealloc_s
 	valgrind ./testrealloc_v
