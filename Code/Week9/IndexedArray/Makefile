@@ -1,4 +1,4 @@
-CC=gcc
+CC=clang
 GENPATH=../../../../Git/ADTs/General
 COMMON= -Wall -Wextra -Wfloat-equal -Wvla -Wpedantic -std=c99 -Werror
 DEBUG= -g3

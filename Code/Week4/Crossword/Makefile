@@ -1,4 +1,4 @@
-CC=gcc
+CC=clang
 CFLAGS=-Wall -Wextra -Wpedantic -std=c99 -Wvla -Wfloat-equal -O1 -Werror
 LDLIBS= -lm
 
