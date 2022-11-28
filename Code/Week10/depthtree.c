@@ -1,8 +1,3 @@
-\nsection{Depth}
-\label{ex:randtree}
-
-The following program builds a binary tree at random:
-\begin{codesnippet}
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -84,16 +79,3 @@ char *PrintTree(Node *t)
    return str;
 
 }
-\end{codesnippet}
-
-Each node of the tree contains one of the characters 'A' $\ldots$ 'F'.
-At the end, the tree is printed out in the manner described in the
-course lectures.
-
-\begin{exercise}
-Adapt the code so that the maximum depth of the tree is computed using a recursive function.
-The maximum depth of the tree is
-the longest path from the root to a leaf. The depth of a tree
-containing one node is $1$.
-
-\end{exercise}
