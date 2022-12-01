@@ -50,7 +50,7 @@ A more complex list, \verb^(0 (1 2) 3 4 5)^ would be stored as~:
 
 \noindent The atomic elements (the integers) are stored as `leaf' nodes with both {\it car} and {\it cdr}
 pointers set to NULL. The data structure used to store the atom and also {\it car} and {\it cdr} pointers
-is known as a {\it cons} (short for contructor), due the to process by which we build lists.
+is known as a {\it cons} (short for constructor), due the to process by which we build lists.
 
 So, here, we're interested in recreating this data structure, allowing the user to build lists (the
 {\it cons} operation), extract the head and remainder of lists (the {\it car} and {\it cdr} operations)
