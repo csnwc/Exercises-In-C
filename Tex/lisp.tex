@@ -1,30 +1,88 @@
-\nsection{Lisp and the CONS structure}
+\nsection{Cars and Cdrs}
 
-The name of the cons function is not unreasonable: it is an
-abbreviation of the word “construct”. The origins of the names
-for car and cdr, on the other hand, are esoteric: car is an acronym
-from the phrase “Contents of the Address part of the Register”;
-and cdr (pronounced “could-er”) is an acronym from the phrase
-“Contents of the Decrement part of the Register”. These phrases
-refer to specific pieces of hardware on the very early computer
-on which the original Lisp was developed. Besides being obsolete,
-the phrases have been completely irrelevant for more than 25 years to
-anyone thinking about Lisp. Nonetheless, although a few brave scholars
-have begun to use more reasonable names for these functions, the old
-terms are still in use. In particular, since the terms are used in
-the Emacs Lisp source code, we will use them in this introduction.
-https://www.gnu.org/software/emacs/manual/html_node/eintr/Strange-Names.html
+When storing real-world data, lists containing other lists are ubiquitous e.g.~:
+\verb^(0 (1 2) 3 4 5)^.
 
+\noindent In fact many functional (or at least partly functional) languages are
+based around the idea that all data are, conceptually, nested lists. Examples
+of such languages include Haskell and, of interest here, Lisp~:
+\wwwurl{https://en.wikipedia.org/wiki/Lisp\_(programming_language)}
 
+One of the main operations of these languages is the ability to extract
+the front (head) or remainder (tail) of the list {\bf very} efficiently.   
+A traditional linked list is not good for this, since it would require work
+to untangle the head (it has a pointer to the rest of the list) and
+it's unclear how a list-within-a-list would be stored.
 
-https://www.tutorialspoint.com/lisp/lisp_lists.htm
+For Lisp, a better structure was developed, which is slightly more complex than
+a traditional linked list, but which makes the extraction of the head (and remainder)
+simple and fast. To encode the list \verb^(1 2)^, which is a list containing two atoms,
+we use~:
+\begin{terminaloutput}
+[*|*]--->[*|*]--->NIL
+ |        |
+ v        v
+ 1        2
+\end{terminaloutput}
 
-Atom: Number
-Component : An atom or a list of atoms.
-Lists : Sequence of components (i.e. each of which is an atom or another list)
+\noindent Here the main struct (known as the {\it cons})
+has two pointers.  The ones going
+downwards known as the {\it car} pointers and the ones going horizontally
+the {\it cdr}\footnote{ From wiki: Two assembly language macros $...$
+became the primitive operations for decomposing lists: {\it car} (Contents
+of the Address part of Register number) and {\it cdr} (Contents of the
+Decrement part of Register number).  } pointers.
+If we were to have a pointer $p$ to the first {\it cons} of this list, the head of the
+list is pointed to by \verb^p->car^, and the remainder of the list simply by \verb^p->cdr^.
 
-car : It takes a list as argument, and returns the first component - this could be atomic, or a list.
+\newpage 
 
-cdr : It takes a list as argument, and returns a list without the first component 
+A more complex list, \verb^(0 (1 2) 3 4 5)^ would be stored as~:
+\begin{terminaloutput}
+[*|*]--->[*|*]------------------>[*|*]--->[*|*]--->[*|*]--->NIL
+ |        |                       |        |        |
+ v        v                       v        v        v
+ 0       [*|*]--->[*|*]--->NIL    3        4        5
+          |        |
+          v        v
+          1        2
+\end{terminaloutput}
 
-cons : It takes two arguments, an element and a list and returns a list with the element inserted at the first place.
+\noindent The atomic elements (the integers) are stored as `leaf' nodes with both {\it car} and {\it cdr}
+pointers set to NULL. The data structure used to store the atom and also {\it car} and {\it cdr} pointers
+is known as a {\it cons} (short for contructor), due the to process by which we build lists.
+
+So, here, we're interested in recreating this data structure, allowing the user to build lists (the
+{\it cons} operation), extract the head and remainder of lists (the {\it car} and {\it cdr} operations)
+and other associated functions such as copying a list or counting the number of elements in it.
+
+\begin{exercise}
+Use a dynamic/linkedlist style approach to implement a car/cdr ADT. Write the source files
+\verb^Linked/specific.h^ and \verb^Linked/linked.c^, so that they compile against my
+\verb^lisp.h^ and \verb^testlisp.c^ files and run successfully using my \verb^Makefile^.
+The basic operations are~:
+\begin{verbatim}
+lisp* lisp_atom(const atomtype a);
+lisp* lisp_cons(const lisp* l1,  const lisp* l2);
+lisp* lisp_car(const lisp* l);
+lisp* lisp_cdr(const lisp* l);
+atomtype lisp_getval(const lisp* l);
+lisp* lisp_copy(const lisp* l);
+int lisp_length(const lisp* l);
+void lisp_tostring(const lisp* l, char* str);
+void lisp_free(lisp** l);
+\end{verbatim}
+
+\noindent This is worth $90\%$ of the marks.
+Additional functions you can implement, worth $10\%$, are~:
+\begin{verbatim}
+lisp* lisp_fromstring(const char* str);
+lisp* lisp_list(const int n, ...);
+atomtype lisp_reduce(atomtype(*func)(lisp* l), lisp* l);
+\end{verbatim}
+and are {\bf Exensions} worth $10\%$ of the marks.
+
+\noindent Even if you don't get these extensions (or other functions) to work correctly, make
+sure the code still compiles by writing `dummy' functions as placeholders,
+even if some of the assertions fail.
+\end{exercise}
