@@ -1,0 +1,7 @@
+# Notice that the loop counter is modified inside the loop
+# causing it to count at twice the speed : 2 4 6 8 10
+BEGIN {
+   LOOP $I 10 {
+      SET $I := $I 1 B-ADD ; PRINT $I
+   }
+}

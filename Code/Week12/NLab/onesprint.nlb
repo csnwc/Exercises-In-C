@@ -1,0 +1,5 @@
+BEGIN {
+   ONES 6 5 $A
+   PRINT "ARRAY"
+   PRINT $A
+}

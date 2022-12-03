@@ -1,0 +1,10 @@
+BEGIN {
+   SET $A := 1 ;
+   SET $B := 1 ;
+   LOOP $I 5 {
+      SET $N := $A $B B-ADD ;
+      SET $A := $B ;
+      SET $B := $N ;
+   }
+   PRINT $N
+}

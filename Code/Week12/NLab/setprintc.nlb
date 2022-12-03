@@ -1,0 +1,8 @@
+BEGIN {
+   SET $F := 2 ;
+   PRINT $F
+   SET $E := 5 ;
+   PRINT $E
+   SET $D := $F $E B-TIMES ;
+   PRINT $D
+}

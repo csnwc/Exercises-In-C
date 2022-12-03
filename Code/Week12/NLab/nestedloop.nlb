@@ -1,0 +1,9 @@
+BEGIN {
+   SET $A := 0 ;
+   LOOP $I 5 {
+      LOOP $J 5 {
+         SET $A := $I $J B-TIMES ;
+         PRINT $A
+      }
+   }
+}
