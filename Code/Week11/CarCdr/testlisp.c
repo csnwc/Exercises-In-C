@@ -19,8 +19,8 @@
 */
 
 // Prototype necessary for lisp_reduce() tests only */
-atomtype times(lisp* l);
-atomtype atms(lisp* l);
+void times(lisp* l, atomtype* n);
+void  atms(lisp* l, atomtype* n);
 
 void test(void);
 
@@ -34,12 +34,21 @@ int main(void)
    assert(lisp_length(NIL)==0);
    assert(strcmp(str, "()")==0);
 
+   assert(lisp_isatomic(NULL)==false);
+   lisp* a1 = atom(2);
+   assert(lisp_length(a1)==0);
+   assert(lisp_isatomic(a1)==true);
+   lisp_free(&a1);
+   assert(a1==NULL);
+
    lisp* l1 = cons(atom(2), NIL);
    assert(l1);
    assert(lisp_length(l1)==1);
    lisp_tostring(l1, str);
    assert(strcmp(str, "(2)")==0);
    assert(lisp_getval(car(l1))==2);
+   assert(lisp_isatomic(l1)==false);
+   assert(lisp_isatomic(l1->car)==true);
 
    lisp* l2 = cons(atom(1), l1);
    assert(l2);
@@ -105,6 +114,14 @@ int main(void)
    lisp_free(&l5);
    assert(!l5);
 
+   lisp* l10 = cons(atom(7), cons(atom(3), cons(atom(8), NIL)));
+   // Adds a ill-defined cons struct to the front of the list 
+   // lisp_getval(l10) is undefined - but shouldn't crash your program.
+   lisp* l12 = lisp_cons(NULL, l10); 
+   assert(lisp_length(l12)==lisp_length(l10)+1);
+   lisp_free(&l12);
+   
+
    /*-------------------------*/
    /* lisp_fromstring() tests */ 
    /*-------------------------*/
@@ -131,30 +148,41 @@ int main(void)
    lisp_free(&g2);
    assert(!g2);
 
-   /*----------------------*/
-   /* lisp_reduce() tests  */
-   /*----------------------*/
+   /*--------------------------------------------------*/
+   /* lisp_reduce() tests - calls func for every atom  */
+   /*--------------------------------------------------*/
    lisp* h1 = lisp_fromstring("(1 2 3 4)");
-   assert(lisp_reduce(times, h1)==24);
-   lisp_free(&h1);
-   h1 = lisp_fromstring("(10 20 (30 40 50))");
-   assert(lisp_reduce(atms, h1)==5);
+   lisp* h2 = lisp_fromstring("(1 2 (7) 3)");
+   atomtype acc = 1;
+   lisp_reduce(times, h1, &acc);
+   assert(acc==24);
+   acc = 1;
+   lisp_reduce(times, h2, &acc);
+   assert(acc==42);
+   acc = 0;
+   lisp_reduce(atms, h1, &acc);
+   assert(acc=4);
+   acc = 0;
+   lisp_reduce(atms, h2, &acc);
+   assert(acc=4);
    lisp_free(&h1);
    assert(!h1);
-   
+   lisp_free(&h2);
+   assert(!h2);
    printf("End\n");
    return 0;
 }
 
-atomtype times(lisp* l)
+// Multiplies getval() of all atoms
+void times(lisp* l, atomtype* accum)
 {
-   static atomtype acc = 1;
-   return acc = acc * lisp_getval(l);
+   *accum = *accum * lisp_getval(l);
 }
 
-/* To count number of atoms in list, including sub-lists */
-atomtype atms(lisp* l)
+// To count number of atoms in list, including sub-lists
+void atms(lisp* l, atomtype* accum)
 {
-   static atomtype acc = 0;
-   return acc = acc + lisp_length(l);
+   // Could just add one (since each node must be atomic),
+   // but prevents unused warning for variable 'l'...
+   *accum = *accum + lisp_isatomic(l);
 }
