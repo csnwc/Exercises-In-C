@@ -48,7 +48,7 @@ int main(void)
    assert(strcmp(str, "(2)")==0);
    assert(lisp_getval(car(l1))==2);
    assert(lisp_isatomic(l1)==false);
-   assert(lisp_isatomic(l1->car)==true);
+   assert(lisp_isatomic(lisp_car(l1))==true);
 
    lisp* l2 = cons(atom(1), l1);
    assert(l2);
