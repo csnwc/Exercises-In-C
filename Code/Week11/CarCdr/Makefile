@@ -24,4 +24,4 @@ clean:
 
 run: all
 	./testlinked_s
-	valgrind --quiet ./testlinked_v
+	valgrind ./testlinked_v
