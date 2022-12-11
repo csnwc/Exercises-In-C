@@ -1,0 +1,9 @@
+<PROG>     ::= "(" <INSTRCTS>
+<INSTRCTS> ::= <INSTRCT> <INSTRCTS> | ")"
+<INSTRCT>  ::= "(" <LISTFUNC> ")" | "(" <IOFUNC> ")"
+<LISTFUNC> ::= "CAR" <LIST> | "CDR" <LIST> | "CONS" <LIST> <LIST>
+<IOFUNC>   ::= "SET" <VAR> <LIST> | "PRINT" <VAR>
+<LIST>     ::= <LITERAL> | "NIL" | "(" <LISTFUNC> ")"
+<VAR>      ::= [A-Z]
+<LITERAL> ::= Single-quoted list e.g. '(1)', '(1 2 3 (4 5))', or '2'
+

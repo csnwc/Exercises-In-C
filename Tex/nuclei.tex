@@ -1,0 +1,179 @@
+\nsection{NUCLEI}
+
+The programming language LISP, developed in 1958,
+is one of the oldest languages still in common use.
+The langauage is famous for: being fully parenthesised (that is,
+every instruction is inside its own brackets), having a prefix notation (e.g.
+functions are written (PLUS 1 2) and not (1 PLUS 2)) and its efficent
+linked-list Car/Cdr structure for (de-)composing lists.
+
+Here, we develop a very simple langauge inspired by these concepts called
+NUCLEI (Neill's UnCommon Lisp Expression Interpreter) and a means to
+parse or interpret the instructions.
+
+The interpreter (but not parser) builds on Exercise~\ref{ex:carcdr} -
+you'll need to have your own version of the \verb^linked.c^,
+\verb^lisp.h^ and \verb^specific.h^ files.
+
+\subsection*{Examples}
+
+Parsing~:
+\begin{verbatim}
+(
+  (SET A '1')
+  (PRINT A)
+)
+\end{verbatim}
+
+
+\noindent leads to the output~:
+\begin{terminaloutput}
+Parsed OK
+\end{terminaloutput}
+\noindent or with the interpreter~:
+\begin{terminaloutput}
+1
+\end{terminaloutput}
+
+The \verb^CONS^ instruction is used to construct lists~:
+\begin{verbatim}
+(
+    (PRINT (CONS '1' (CONS '2' NIL)))
+)
+\end{verbatim}
+
+\begin{terminaloutput}
+Parsed OK
+\end{terminaloutput}
+\noindent and when interpreted~:
+\begin{terminaloutput}
+(1 2)
+\end{terminaloutput}
+
+The \verb^CAR^ instruction is used to deconstruct lists~:
+\begin{verbatim}
+(
+    (SET A '(5 (1 2 3))')
+    (PRINT (CAR A))
+)
+\end{verbatim}
+\begin{terminaloutput}
+Parsed OK
+\end{terminaloutput}
+\noindent and when interpreted~:
+\begin{terminaloutput}
+5
+\end{terminaloutput}
+
+
+Loops are possible too, here a loop counts down from $5$ to $1$, using the variable \verb^C^ as a counter and a Boolean test~:
+\begin{verbatim}
+(
+   (SET C '5')
+   (WHILE (LESS '0' C)(
+      (PRINT C)
+      (SET A (PLUS '-1' C))
+      (SET C A))
+   )
+)
+\end{verbatim}
+\begin{terminaloutput}
+Parsed OK
+\end{terminaloutput}
+\noindent and when interpreted~:
+\begin{terminaloutput}
+5
+4
+3
+2
+1
+\end{terminaloutput}
+
+\noindent The \verb^IF^ is similar; based on a Boolean, one of two possible sets of instructions are taken~:
+\begin{verbatim}
+(
+   (IF (EQUAL '1' '1') ((PRINT "YES"))((GARBAGE)))
+)
+\end{verbatim}
+Here the parser fails because it doesn't understand \verb^GARBAGE^~:
+\begin{terminaloutput}
+Was expecting a Function name ?
+\end{terminaloutput}
+However, the interpreter never gets to the $false$ instruction since the Boolean equates to $true$ and so~:
+\begin{terminaloutput}
+YES
+\end{terminaloutput}
+
+
+\subsection*{The Formal Grammar}
+\lstinputlisting[language=bash,basicstyle=\scriptsize\ttfamily,frame=none,numbers=none]{../Code/Week12/NUCLEI/nuclei.grammar}
+
+\begin{exercise}
+\begin{itemize}
+\item {\bf $30\%$}
+Implement a recursive descent parser - this will report
+whether or not a given NUCLEI program follows the formal grammar or not.
+The input file is specified via \verb^argv[1]^ - and if the file is valid the output is~:
+\begin{terminaloutput}
+Parsed OK
+\end{terminaloutput}
+Otherwise, a suitbale error message is given and a non-zero \verb^exit^ is made.
+
+\item {\bf $30\%$}
+Extend the parser, so it becomes an interpreter. The instructions are
+now `executed'. Do not write a new program for this, simply extend your
+existing parser. To help with this, I've provided a Makefile that does
+some conditional compilation - it effectively does a~:
+\begin{codesnippet}
+#define INTERP 
+\end{codesnippet}
+depending upon whether you're compiling the parser or interpreter version of the code.
+In the C file, you can do conditional compilation using the \verb^#ifdef^~:
+\begin{codesnippet}
+#ifdef INTERP
+      return Listfunc(s);
+#else
+      Listfunc(s);
+      return;
+#endif
+\end{codesnippet}
+
+\item {\bf $20\%$}
+Show a testing strategy on the above in \verb^testing.txt^ - you should
+give details of unit testing, white/black-box testing done on your code,
+or any test-harnesses used.  Convince me that every line of your C code
+has been tested, but not just by showing it running on some NUCLEI files.
+
+\item {\bf $20\%$}
+Show an extension to the project in a direction of your choice. It should
+demonstrate your {\bf understanding} of some additional aspect of programming or
+S/W engineering. If you extend the formal grammar make sure that you
+show the new, full grammar.
+
+\end{itemize}
+
+
+\subsection*{Hints}
+\begin{itemize}
+\item Don't try to write the entire program in one go. Try a cut
+down version of the grammar first, maybe something similar to~:
+\lstinputlisting[language=bash,basicstyle=\scriptsize\ttfamily,frame=none,numbers=none]{../Code/Week12/NUCLEI/cutdown.grammar}
+\item Some issues, such as what happens if you use an undefined variable,
+or if you use a variable before it is set, are not explained by the formal
+grammar. Use your own common-sense, and explain what you have done.
+\item Once your parser works, extend it to become an interpreter. DO NOT
+aim to parse the program first and then interpret it separately. Interpreting
+and parsing are inseparably bound together.
+\item Start testing very early - this is a complex beast to test and trying to
+do it near the end won't work.
+\item In NUCLEI, all variables are global i.e. they are not local to loops etc.
+\end{itemize}
+
+\subsection*{Submission}
+Your testing strategy will be explained in \verb^testing.txt^, and your extension
+as \verb^extension.txt^. For the parser, interpreter and extension sections, make
+sure there's a \verb^Makefile^, so that I can easily build the code using \verb^make parse^,
+\verb^make interp^ and \verb^make extension^. Submit a single \verb^nuceli.zip^
+file, which has all the files required without sub-directories.
+
+\end{exercise}

@@ -1,0 +1,10 @@
+(
+  (SET A '1')
+  (PRINT A)
+  (SET B '2')
+  (PRINT B)
+  (SET C B)
+  (PRINT C)
+  (SET D (LESS B C))
+  (PRINT D)
+)

@@ -37,7 +37,7 @@ clean:
 
 run: all
 	./testlinked_s
-	valgrind --quiet ./testlinked_v
+	valgrind ./testlinked_v
 	./build_s ../../Data/Words/s-and-s-words.txt
 	./uniq_s ../../Data/Words/s-and-s-words.txt ../../Data/Words/p-and-p-words.txt
 
