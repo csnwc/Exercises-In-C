@@ -17,7 +17,7 @@
 
 <IOFUNC>   ::= <SET> | <PRINT>
 <SET>      ::= "SET" <VAR> <LIST>
-<PRINT>    ::= "PRINT" <VAR> | "PRINT" <STRING>
+<PRINT>    ::= "PRINT" <LIST> | "PRINT" <STRING>
 
 # (IF (CONDITION) ((IF-TRUE-INSRCTS)) ((IF_FALSE_INSTRCTS)))
 <IF>       ::= "IF" "(" <BOOLFUNC> ")" "(" <INSTRCTS> "(" <INSTRCTS>
