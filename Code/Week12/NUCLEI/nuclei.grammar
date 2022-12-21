@@ -19,10 +19,10 @@
 <SET>      ::= "SET" <VAR> <LIST>
 <PRINT>    ::= "PRINT" <LIST> | "PRINT" <STRING>
 
-# (IF (CONDITION) ((IF-TRUE-INSRCTS)) ((IF_FALSE_INSTRCTS)))
+# (IF (CONDITION) ((IF-TRUE-INSTRCTS)) ((IF_FALSE_INSTRCTS)))
 <IF>       ::= "IF" "(" <BOOLFUNC> ")" "(" <INSTRCTS> "(" <INSTRCTS>
 
-<LOOP>     ::= "WHILE""(" <BOOLFUNC> ")" "(" <INSRCTS>
+<LOOP>     ::= "WHILE""(" <BOOLFUNC> ")" "(" <INSTRCTS>
 
 <LIST>     ::= <VAR> | <LITERAL> | "NIL" | "(" <RETFUNC> ")"
 
