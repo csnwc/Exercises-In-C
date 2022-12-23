@@ -26,7 +26,7 @@
 
 <LIST>     ::= <VAR> | <LITERAL> | "NIL" | "(" <RETFUNC> ")"
 
-# Variables are just A, B, Z etc.
+# Variables are just one letter A, B, Z etc.
 <VAR>      ::= [A-Z]
 
 # For printing only:
