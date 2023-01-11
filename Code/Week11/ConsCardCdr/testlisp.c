@@ -164,7 +164,7 @@ int main(void)
    assert(acc==4);
    acc = 0;
    lisp_reduce(atms, h2, &acc);
-   assert(acc=4);
+   assert(acc==4);
    lisp_free(&h1);
    assert(!h1);
    lisp_free(&h2);
