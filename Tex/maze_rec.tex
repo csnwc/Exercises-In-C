@@ -1,22 +1,9 @@
 \nsection{Maze}
 
-Escaping from a maze can be done in several ways (ink-blotting, righthand-on-wall etc.)
-but here we look at recursion.
-
-\begin{exercise}
-Write a program to read in a maze typed by a user via the filename passed to \verb^argv[1]^.
-You can assume the maze will be no larger than $20 \times 20$,
-walls are designated by a \verb^#^ and the rest are
-spaces. The entrance can be assumed to be the gap in the wall closest to
-(but not necessarilty exactly at) the top lefthand corner.
-The sizes of the maze are given on the first line of the file (width,height).
-Write a program that finds the route through a maze, read from this file,
-and prints out the solution (if one exists) using full stops.
-If the program succeeds it should exit with a status of \verb^0^,
-or if no route exists it should exit with a status of \verb^1^.
-\end{exercise}
+\newexercise{2023}
 
 \newcommand{\W}{|[fill=ocre,text=white]|\#}
+\newcommand{\G}{|[fill=green,text=white]|+}
 \newcommand{\R}{|[fill=white,text=gray]|.}
 
 \begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}]
@@ -34,3 +21,50 @@ or if no route exists it should exit with a status of \verb^1^.
 \W&\W&\W&\W&\W&\W&\W&\W&\W&\W\\
 };
 \end{tikzpicture}
+
+Escaping from a maze can be done in several ways (ink-blotting, righthand-on-wall etc.)
+but here we look at recursion.
+
+\begin{exercise}
+\label{ex:maze_rec}
+Write a program to read in a maze typed by a user via the filename passed to \verb^argv[1]^.
+You can assume the maze will be no larger than $20 \times 20$,
+walls are designated by a \verb^#^ and the rest are
+spaces. The entrance can be assumed to be the gap in the wall closest to
+(but not necessarilty exactly at) the top lefthand corner.
+The sizes of the maze are given on the first line of the file (width,height).
+Write a program that finds the route through a maze, read from this file,
+and prints out the solution (if one exists) using full stops.
+If the program succeeds it should exit with a status of \verb^0^,
+or if no route exists it should exit with a status of \verb^1^.
+\end{exercise}
+
+
+\noindent It becomes obvious that the walls of every maze (having one unique solution)
+must consist of two separate sections~:
+
+\renewcommand{\W}{|[fill=ocre,text=white]|B}
+\renewcommand{\G}{|[fill=orange,text=white]|A}
+\renewcommand{\R}{|[fill=white,text=gray]|.}
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}]
+\matrix [matrix of nodes,draw=white,nodes in empty cells]
+{
+\G&\G&\G&\G&\G&\G&\G&\G&\G&\G\\
+\R&\R&\G&\R&\R&\R&\R&\R&\R&\G\\
+\W&\R&\G&\R&\W&\R&\W&\W&\R&\G\\
+\W&\R&\G&\R&\W&\W&\W&\W&\R&\G\\
+\W&\R&\G&\R&\R&\R&\R&\W&\R&\G\\
+\W&\R&\G&\R&\W&\W&\W&\W&\R&\G\\
+\W&\R&\G&\R&\R&\R&\R&\W&\R&\G\\
+\W&\R&\G&\G&\G&\G&\R&\W&\R&\G\\
+\W&\R&\R&\R&\R&\R&\R&\W&\R&\R\\
+\W&\W&\W&\W&\W&\W&\W&\W&\W&\W\\
+};
+\end{tikzpicture}
+
+\begin{exercise}
+\label{ex:maze_two}
+Write a program to read in a maze in the same manner as in Exercise~\ref{ex:maze_rec}, and
+then display the two sections using the characters \verb^A^ and \verb^B^.  
+\end{exercise}
+

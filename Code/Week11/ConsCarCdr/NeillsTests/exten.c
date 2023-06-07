@@ -62,10 +62,10 @@ int main(void)
    /*--------------------------------------------------*/
    lisp* h1 = lisp_fromstring("(-1 -2 -3 -4)");
    lisp* h2 = lisp_fromstring("(1 2 (7) 3)");
-   atomtype acc = 1;
+   atomtype acc = 0;
    lisp_reduce(sms, h1, &acc);
    nassert(acc==-10);
-   acc = 1;
+   acc = 0;
    lisp_reduce(sms, h2, &acc);
    nassert(acc==13);
    acc = 0;
@@ -89,7 +89,7 @@ void atms(lisp* l, atomtype* accum)
    *accum = *accum + lisp_isatomic(l);
 }
 
-// To count number of atoms in list, including sub-lists
+// To sum atoms in list
 void sms(lisp* l, atomtype* accum)
 {
    // Could just add one (since each node must be atomic),

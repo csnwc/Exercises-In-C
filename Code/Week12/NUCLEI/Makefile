@@ -38,8 +38,8 @@ interp_s: nuclei.c linked.c general.c nuclei.h lisp.h general.h
 interp_v: nuclei.c linked.c general.c nuclei.h lisp.h general.h
 	$(CC) nuclei.c linked.c general.c $(VALG) -DINTERP -o interp_v $(LIBS)
 
-# For all .ncl files, run them and output result to a .pres (prase result) 
-# or .ires (interpretted result) file.
+# For all .ncl files, run them and output result to a .pres (parse result) 
+# or .ires (interpreted result) file.
 runall : ./parse_s ./interp_s $(PRES) $(IRES)
 
 %.pres:
