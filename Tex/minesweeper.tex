@@ -1,0 +1,96 @@
+\nsection{Minesweeper}
+
+The game {\it Minesweeper}
+\wwwurl{https://en.wikipedia.org/wiki/Minesweeper_(video_game)}
+is a logic puzzle game, played on a two-dimensional
+grid of squares. There are `mines' hidden in the grid, and other, numbered squares,
+tell you how many mines there are in that square's (eight-count) Moore neighbourhood.
+\wwwurl{https://en.wikipedia.org/wiki/Moore_neighborhood}
+
+In our version of the game, we'll be
+using just two rules to `solve' the grid by working out the unknown squares.
+\\[1em]
+{\bf Rule $1$}: If we've discovered all the mines on the board already, then any unknown cell
+can simply be numbered with the count of mines in its Moore neighbourhood.
+
+In the follwing grid,
+if we know the total number of mines in the grid is five and these have all been found:\\
+\begin{center}
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=gray!10}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=ocre!40]{?};} ] (A) {
+0&1&1& &0\\
+1&3&\textcolor{red}{X}&3&1\\
+1&\textcolor{red}{X}&\textcolor{red}{X}&\textcolor{red}{X}&1\\
+1&3&\textcolor{red}{X}&3&1\\
+0&1&1&1&0\\
+};
+\end{tikzpicture}
+\end{center}
+
+\noindent then the solution to the unknown square must be:\\
+\begin{center}
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=gray!10}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=ocre!40]{.};} ] (A) {
+0&1&1&1&0\\
+1&3&\textcolor{red}{X}&3&1\\
+1&\textcolor{red}{X}&\textcolor{red}{X}&\textcolor{red}{X}&1\\
+1&3&\textcolor{red}{X}&3&1\\
+0&1&1&1&0\\
+};
+\end{tikzpicture}
+\end{center}
+
+{\bf Rule $2$}: For an known, numbered square $n$, with $m$ unknowns and $n-m$ mines in its Moore neighbourhood,
+then those unknown squares must be mines.
+
+\noindent Applying Rule $2$ to this grid:\\
+\begin{center}
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=gray!10}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=ocre!40]{?};} ] (A) {
+0&1&1&1&0\\
+1&3&\textcolor{red}{X}&3&1\\
+1&\textcolor{red}{X}&\textcolor{red}{X}&\textcolor{red}{X}&1\\
+1&3& &3&1\\
+0&1&1&1&0\\
+};
+\end{tikzpicture}
+\end{center}
+
+\noindent at the middle square on the bottom row (for instance), yields:\\
+\begin{center}
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=gray!10}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=ocre!40]{.};} ] (A) {
+0&1&1&1&0\\
+1&3&\textcolor{red}{X}&3&1\\
+1&\textcolor{red}{X}&\textcolor{red}{X}&\textcolor{red}{X}&1\\
+1&3&\textcolor{red}{X}&3&1\\
+0&1&1&1&0\\
+};
+\end{tikzpicture}
+\end{center}
+
+\noindent {\bf Repeated} application of these rules will allow some (but not all) boards to be solved.
+
+\begin{exercise}
+
+Code for this exercise can be found in \wwwurl{https://github.com/csnwc/Exercises-In-C}
+\noindent then navigate into \verb^Code/Week4/Minesweeper^.
+
+Complete the file {\em ms.c} which, along with my files {\em
+ms.h} and {\em drv.c}, allows the puzzles to be solved.
+
+\noindent My file {\em ms.h} contains the function definitions
+which you'll have to implement in your {\bf ms.c} file.  My file
+{\em drv.c} contains the \verb^main()^ function to act as
+a driver to run the code.  Your file will contain many other functions
+as well as those specified, so you'll wish to test them as normal using
+the \verb^test()^ function.
+
+\noindent If all of these files are in the same directory, you can
+compile them using the \verb^Makefile^ given.
+
+\noindent Do not alter or resubmit {\em ms.h} or {\em
+drv.c} - my original versions will be used to compile the
+{\em ms.c} file that you create. Only submit {\em ms.c}
+
+\end{exercise}
