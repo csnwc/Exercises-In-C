@@ -2,8 +2,8 @@
 
 int main(void)
 {
-   driver();
    test();
+   driver();
    return 0;
 }
 
