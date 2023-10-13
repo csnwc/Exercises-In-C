@@ -44,6 +44,12 @@ int main(void)
    strmerge("123412341234", "1234", s);
    assert(strcmp(s, "123412341234")==0);
 
+   strmerge("samsams", "samsabc", s);
+   assert(strcmp(s, "samsamsabc")==0);
+
+   strmerge("sasasas", "sasbsms", s);
+   assert(strcmp(s, "sasasasbsms")==0);
+
    return 0;
 }
 \end{codesnippet}
