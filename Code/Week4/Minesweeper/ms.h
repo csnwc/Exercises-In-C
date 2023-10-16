@@ -22,7 +22,7 @@ typedef struct board {
 void driver(void);
 
 // Returns a board based on the minecout, width, height and grid (passed as a string)
-board make_board(int minecount, int width, int height, char inp[MAXSQ*MAXSQ+1]);
+board make_board(int totmines, int width, int height, char inp[MAXSQ*MAXSQ+1]);
 
 // Returns string correspnding to the boards grid
 void board2str(char s[MAXSQ*MAXSQ+1], board b);
@@ -31,7 +31,7 @@ void board2str(char s[MAXSQ*MAXSQ+1], board b);
 board solve_board(board b);
 
 // Make sure number of characters in string == width*height
-// Ensure only characters are from the set:   0123456789?X
+// Ensure only characters are from the set:   012345678?X
 // Ensure mines in string <= totmines
 bool syntax_check(unsigned totmines, unsigned width, unsigned height, char inp[MAXSQ*MAXSQ+1]);
 
