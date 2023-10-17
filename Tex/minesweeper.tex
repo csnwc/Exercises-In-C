@@ -10,7 +10,7 @@ tell you how many mines there are in that square's (eight-count) Moore neighbour
 In our version of the game, we'll be
 using just two rules to `solve' the grid by working out the unknown squares.
 \\[1em]
-{\bf Rule $1$}: If we've discovered all the mines on the board already, then any unknown cell
+{\bf Rule $1$ (Count the Mines)}: If we've discovered all the mines on the board already, then any unknown cell
 can simply be numbered with the count of mines in its Moore neighbourhood.
 
 In the follwing grid,
@@ -40,8 +40,8 @@ if we know the total number of mines in the grid is five and these have all been
 \end{tikzpicture}
 \end{center}
 
-{\bf Rule $2$}: For a known square having the number $n$, with $u$ unknown and $m$ known mines in its
-Moore neighbourhood, if $n = m + u$ and $u > 0$ then all unknown squares must be mines.
+{\bf Rule $2$ (Unknowns are Mines)}: For a known square having the number $n$, with $u$ unknown and $m$ known mines in its
+Moore neighbourhood, if $n = m + u$ and $u > 0$ then all $m$ unknown squares must be mines.
 
 \noindent Applying Rule $2$ to this grid:\\
 \begin{center}
