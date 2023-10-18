@@ -7,14 +7,16 @@ grid of squares. There are `mines' hidden in the grid, and other, numbered squar
 tell you how many mines there are in that square's (eight-count) Moore neighbourhood.
 \wwwurl{https://en.wikipedia.org/wiki/Moore_neighborhood}
 
-In our version of the game, we'll be
-using just two rules to `solve' the grid by working out the unknown squares.
+You will know in advance the width and height of the grid, and also the
+total number of mines in the completed (solved) grid.  In our version of
+the game, we'll be using just two rules to `solve' the grid by working
+out the unknown squares.
 \\[1em]
 {\bf Rule $1$ (Count the Mines)}: If we've discovered all the mines on the board already, then any unknown cell
 can simply be numbered with the count of mines in its Moore neighbourhood.
 
 In the follwing grid,
-if we know the total number of mines in the grid is five and these have all been found:\\
+if we somehow know in advance that the total number of mines in the grid is five, and if these have all been found:\\
 \begin{center}
 \begin{tikzpicture}
 \matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=gray!10}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=ocre!40]{?};} ] (A) {
