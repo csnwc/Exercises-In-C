@@ -76,7 +76,7 @@ void Neill_SDL_SetDrawColour(SDL_Simplewin *sw, Uint8 r, Uint8 g, Uint8 b)
 }
 
 /* Filled Circle centred at (cx,cy) of radius r, see :
-   http://content.gpwiki.org/index.php/SDL:Tutorials:Drawing_and_Filling_Circles */
+   https://en.wikipedia.org/wiki/Midpoint_circle_algorithm */
 void Neill_SDL_RenderFillCircle(SDL_Renderer *rend, int cx, int cy, int r)
 {
    double dy;
@@ -88,7 +88,7 @@ void Neill_SDL_RenderFillCircle(SDL_Renderer *rend, int cx, int cy, int r)
 }
 
 /* Circle centred at (cx,cy) of radius r, see :
-   http://content.gpwiki.org/index.php/SDL:Tutorials:Drawing_and_Filling_Circles */
+   https://en.wikipedia.org/wiki/Midpoint_circle_algorithm */
 void Neill_SDL_RenderDrawCircle(SDL_Renderer *rend, int cx, int cy, int r)
 {
    double dx, dy;
