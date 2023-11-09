@@ -1,0 +1,102 @@
+\nsection{The N-Queens Puzzle}
+
+In the game chess, the piece known as the Queen can take other pieces horizontally, vertically or diagonally~:
+
+\begin{center}
+\chessboard[
+  setwhite={Qd3},
+  pgfstyle=straightmove,
+  arrow=stealth,
+  linewidth=.2ex,
+  padding=1ex,
+  color=ocre!50,
+  pgfstyle=straightmove,
+  shortenstart=1ex,
+  showmover=false,
+  markmoves={d3-h7,d3-a6,d3-b1,d3-f1,d3-d8,d3-d1,d3-a3,d3-h3},
+]
+\end{center}
+
+The eight queens puzzle is the problem of placing eight chess queens
+on an $8\times 8$ chessboard so that no two queens threaten each other; thus,
+a solution requires that no two queens share the same row, column,
+or diagonal.
+\wwwurl{https://en.wikipedia.org/wiki/Eight_queens_puzzle}
+
+\noindent One possible solution for an $8\times 8$ board is~:
+
+\begin{center}
+\chessboard[
+  setwhite={Qa8,Qb4,Qc1,Qd3,Qe6,Qf2,Qg7,Qh5},
+  showmover=false,
+]
+\end{center}
+
+\noindent Since there must be one, and one only, queen in each file
+(column), the above board can be summarized using the queen's position
+on each rank (height) - the board above would be numbered $84136275$.
+
+\noindent
+Since finding all solutions may take a long time, it is normal to allow for board sizes other than $8\times 8$ (but always square) by specifying the size of the board, $n$.
+
+\begin{exercise}
+Write a program to find solutions to the $n$ queens problem, using a brute-force algorithm to find all possible solutions.
+You will use an array (list) of structures, each one containing the data for one board~:
+\begin{enumerate}
+\item Put the initial (empty) board into the front of this list, \verb^f=0^.
+\item Consider the board at the {\bf front} of the list (index \verb$f$).
+\item For this (parent) board, find the resulting (child) boards which can be created by
+placing one queen into the board into a position that doesn't check any other queens. For each of these
+child boards~:
+\begin{itemize}
+\item If a child is unique (i.e.\ it has not been seen before in the list), add it to the end of the list.
+\item If it has been seen before (a duplicate) ignore it.
+\item If it is a solution board, keep a record of the number of them (and possibly) print out a summary of this board.
+\end{itemize}
+\item Add one to $f$. If there are more boards in the list, go to step $2$.
+\end{enumerate}
+
+\noindent
+We will allow for board sizes other than $8\times 8$, but
+{\bf never} greater than $10\times 10$, as specified on the command line~:
+\begin{terminaloutput}
+$ ./8q 6
+4 solutions
+\end{terminaloutput}
+
+If the `verbose' flag is used, your program will also print out summaries of each solution~:
+\begin{terminaloutput}
+$ ./8q -verbose 6
+362514
+246135
+531642
+415263
+4 solutions
+\end{terminaloutput}
+
+\noindent
+Your program~:
+\begin{itemize}
+\item {\bf Must} use the algorithm detailed above (which is similar to a queue and therefore a breadth-first search). Do not use the other algorithms possible (e.g. best-first, permutations, etc.); the quality of your coding is being assessed against others taking the same approach.
+\item {\bf Must not} use dynamic arrays or linked lists. Since boards cannot be any larger than $10 \times 10$, you can create boards of this size, and only use a sub-part of them if the board required is smaller. The list of boards can be a fixed (large) size.
+\item {\bf Should} check for invalid board sizes specified, and report in a graceful way if there is a problem, aborting with \verb^exit(EXIT_FAILURE)^ if so.
+\item {\bf Should not} print anything else out to screen after successfully
+completing the search, except that which is shown above. Automated checking
+will be used during marking, and therefore the output must be precise.
+\item {\bf Should} call the function \verb^test()^ to perform any assertion testing etc.
+\item {\bf Should} be submitted by uploading a single \verb^8q.zip^ file to Blackboard, which will include (at least) \verb^8q.c^ and \verb^Makefile^ which allows me to compile your code by typing \verb^make 8q^ which creates \verb^8q^, the executable file.
+\end{itemize}
+
+\subsection*{Extension}
+
+Basic assignment = {\Large $90\%$}.
+Extension = {\Large $10\%$}.
+
+\noindent
+If you'd like to try an extension, make sure to put {\it extension.c} and an explanation of it in {\it extension.txt}
+as part of your submission. Update your \verb^Makefile^ so that we can build your code using \verb^make extension^ and run it with \verb^make extrun^.
+\noindent The extension could
+involve a faster search technique, better graphical display, user input
+or something else of your choosing.
+
+\end{exercise}

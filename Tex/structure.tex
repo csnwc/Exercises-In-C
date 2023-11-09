@@ -498,6 +498,28 @@ Remember to assert {\texttt test()} all of your functions.}%
 \usepackage{hyperref}
 \hypersetup{hidelinks,backref=true,pagebackref=true,hyperindex=true,colorlinks=false,breaklinks=true,urlcolor= ocre,bookmarks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
 
+%-----------------
+% Chessboards
+%-----------------
+\usepackage{chessboard}
+\storechessboardstyle{8x8}{%
+  maxfield=h8,
+  borderwidth=0mm,
+  boardfontsize=10pt,
+  %boardfontencoding=LSBC3,
+  color=white,
+  colorwhitebackfields,
+  color=black,
+  colorblackbackfields,
+  blackfieldmaskcolor=black,
+  whitepiececolor=ocre,
+  %whitepiecemaskcolor=ocre,
+  addfontcolors,
+  pgfstyle=border,
+  color=white,
+  %markregion=a1-h8,
+}
+
 %----------------------------------------------------------------------------------------
 %	CHAPTER HEADINGS
 %----------------------------------------------------------------------------------------
