@@ -1,3 +1,4 @@
+#pragma once
 /* Binary Sparse Arrays */
 
 #include <stdio.h>

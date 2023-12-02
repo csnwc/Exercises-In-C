@@ -16,7 +16,7 @@ int main(void)
       assert(bsa_set(b,i,i));
    }
    int p = 1;
-   for(int j=0; p<=MAX; j++){
+   while(p<=MAX){
       p = next_factor(b, p);
       for(int i=2*p; i<=MAX; i+=p){
          bsa_delete(b, i);
