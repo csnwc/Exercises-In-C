@@ -23,6 +23,7 @@ int main(void)
       }
    }
    bsa_foreach(print, b, &p);
+   bsa_free(b);
    return 0;
    
 }
