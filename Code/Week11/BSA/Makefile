@@ -20,7 +20,7 @@ isfactorial: bsa.h Alloc/specific.h Alloc/alloc.c isfactorial.c
 	$(CC) isfactorial.c Alloc/alloc.c -o isfactorial -I./Alloc $(PRODUCTION)
 
 sieve_s: bsa.h Alloc/specific.h Alloc/alloc.c sieve.c
-	$(CC) sieve.c Alloc/alloc.c -o sieve_s -I./Alloc $(PRODUCTION)
+	$(CC) sieve.c Alloc/alloc.c -o sieve_s -I./Alloc $(SANITIZE)
 
 sieve_v: bsa.h Alloc/specific.h Alloc/alloc.c sieve.c
 	$(CC) sieve.c Alloc/alloc.c -o sieve_v -I./Alloc $(VALGRIND)
