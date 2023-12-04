@@ -23,7 +23,7 @@ sieve_s: bsa.h Alloc/specific.h Alloc/alloc.c sieve.c
 	$(CC) sieve.c Alloc/alloc.c -o sieve_s -I./Alloc $(PRODUCTION)
 
 sieve_v: bsa.h Alloc/specific.h Alloc/alloc.c sieve.c
-	$(CC) sieve.c Alloc/alloc.c -o sieve_v -I./Alloc $(VALGRID)
+	$(CC) sieve.c Alloc/alloc.c -o sieve_v -I./Alloc $(VALGRIND)
 
 ## Only if you do an extension. Uncomment in all, extfibmemo_s and run.
 extfibmemo_s: bsa.h Extension/specific.h Extension/extension.c fibmemo.c
