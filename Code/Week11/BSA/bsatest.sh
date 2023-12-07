@@ -55,6 +55,14 @@ fi
 #    exit 1
 # fi
 
+# if [[ -f Extension/extension.txt ]]
+# then
+#    echo "PASS - found Extension/extension.txt"
+# else
+#    echo "ERROR - can't find Extension/extension.txt in the zip ???"
+#    exit 1
+# fi
+
 #wget Neill's version of other files
 wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/main/Code/Week11/BSA/Makefile
 wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/main/Code/Week11/BSA/bsa.h
