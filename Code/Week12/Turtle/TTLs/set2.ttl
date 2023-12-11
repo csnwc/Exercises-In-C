@@ -1,0 +1,5 @@
+START
+   SET A ( 0 )
+   SET B ( $A 1 + )
+   SET C ( $B 2 * )
+END

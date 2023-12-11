@@ -1,0 +1,9 @@
+START
+  LOOP D OVER { 1 2 3 4 5 6 7 8 }
+    LOOP C OVER { "RED" "GREEN" "YELLOW" "BLUE" }
+      COLOUR $C
+      FORWARD $D
+      RIGHT 90
+    END
+  END
+END

@@ -1,0 +1,31 @@
+<PROG>   ::= "START" <INSLST>
+
+<INSLST> ::= "END" | <INS> <INSLST>
+<INS>    ::= <FWD> | <RGT> | <COL> | <LOOP> | <SET>
+
+<FWD>    ::= "FORWARD <VARNUM>
+<RGT>    ::= "RIGHT" <VARNUM>
+<COL>    ::= "COLOUR" <VAR> | "COLOUR" <WORD>
+<LOOP>   ::= "LOOP" <LTR> "OVER" <LST>
+<SET>    ::= "SET" <LTR> "(" <PFIX>
+
+<VARNUM> ::= <VAR> | <NUM>
+% Variables e.g. $A, $B, $Z etc.
+<VAR>    ::= $<LTR>
+% One Uppercase letter
+<LTR>    ::= A, B ... Z
+% Any valid double (as defined by scanf("%lf"...)
+<NUM>    ::= 10 or -17.99 etc.
+
+% A single word (as defined by scanf("%s"...) with double-quotes around it
+% Valid colours include "BLACK", "RED", "GREEN", "BLUE",
+% "YELLOW", "CYAN", "MAGENTA", "WHITE"
+<WORD>   ::=  "RED" "BLUE" "HELLO!" "178"
+
+<LST>    ::= "{" <ITEMS>
+<ITEMS>  ::= "}" | <ITEM> <ITEMS>
+<ITEM>   ::= <VARNUM> | <WORD> 
+
+<PFIX>   ::= ")" | <OP> <PFIX> | <VARNUM> <PFIX>
+% A single mathematical operation character
+<OP>     ::= + - / *

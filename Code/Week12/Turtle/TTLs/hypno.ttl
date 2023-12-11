@@ -1,0 +1,11 @@
+START
+   SET A ( 3.0 )
+   LOOP H OVER { 1 2 3 4 5 6 }
+     LOOP C OVER { "RED" "GREEN" "BLUE" "MAGENTA" "CYAN" "YELLOW" }
+       COLOUR $C
+       SET A ( $A 0.25 + )
+       FORWARD $A
+       RIGHT 61.0
+     END
+   END
+END

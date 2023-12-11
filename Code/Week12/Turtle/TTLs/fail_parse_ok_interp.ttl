@@ -1,0 +1,5 @@
+START
+  LOOP C OVER { }
+    GARBAGE
+  END
+END

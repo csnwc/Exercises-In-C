@@ -1,0 +1,4 @@
+START
+  LOOP C OVER { "RED" "BLUE" "GREEN" }
+  END
+END

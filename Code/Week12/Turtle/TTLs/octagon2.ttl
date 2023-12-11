@@ -1,0 +1,6 @@
+START
+  LOOP A OVER { 1 2 3 4 5 6 7 8 }
+    FORWARD 5
+    RIGHT 45
+  END
+END

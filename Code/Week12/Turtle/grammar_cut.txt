@@ -1,0 +1,9 @@
+<PROG>   ::= "START" <INSLST>
+
+<INSLST> ::= "END" | <INS> <INSLST>
+<INS>    ::= <FWD> | <RGT>
+
+<FWD>    ::= "FORWARD <NUM>
+<RGT>    ::= "RIGHT" <NUM>
+
+<NUM>    ::= 10 or -17.99 etc.
