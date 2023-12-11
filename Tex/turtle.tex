@@ -87,7 +87,7 @@ END
 <INSLST> ::= "END" | <INS> <INSLST>
 <INS>    ::= <FWD> | <RGT> | <COL> | <LOOP> | <SET>
 
-<FWD>    ::= "FORWARD <VARNUM>
+<FWD>    ::= "FORWARD" <VARNUM>
 <RGT>    ::= "RIGHT" <VARNUM>
 <COL>    ::= "COLOUR" <VAR> | "COLOUR" <WORD>
 <LOOP>   ::= "LOOP" <LTR> "OVER" <LST>
@@ -104,7 +104,7 @@ END
 % A single word (as defined by scanf("%s"...) with double-quotes around it
 % Valid colours include "BLACK", "RED", "GREEN", "BLUE",
 % "YELLOW", "CYAN", "MAGENTA", "WHITE"
-<WORD>   ::=  "RED" "BLUE" "HELLO!" "178"
+<WORD>   ::=  "RED", "BLUE", "HELLO!" or  "178"
 
 <LST>    ::= "{" <ITEMS>
 <ITEMS>  ::= "}" | <ITEM> <ITEMS>
@@ -223,6 +223,9 @@ Submit a file \verb^testing.txt^ in the sub-directory \verb^Testing/^.
 
 \subsection*{Hints}
 \begin{itemize}
+
+\item Understand the noughts and ones example given in the notes.
+
 \item Don't try to write the entire program in one go. Try a cut
 down version of the grammar first, e.g.:
 {\small
@@ -232,7 +235,7 @@ down version of the grammar first, e.g.:
 <INSLST> ::= "END" | <INS> <INSLST>
 <INS>    ::= <FWD> | <RGT>
 
-<FWD>    ::= "FORWARD <NUM>
+<FWD>    ::= "FORWARD" <NUM>
 <RGT>    ::= "RIGHT" <NUM>
 
 <NUM>    ::= 10 or -17.99 etc.
@@ -242,27 +245,28 @@ down version of the grammar first, e.g.:
 \item The language is simply a sequence of words (even the braces),
 so use \verb^fscanf()^.
 
-\item Some issues, (e.g. drawing out-of-bounds)
-cannot explained by the formal
-grammar. Use your own common-sense, and explain what you have done.
+\item Some issues, (e.g. drawing out-of-bounds), incorrect postfix
+expressions cannot explained by the formal grammar. Use your own
+common-sense to decide how to reconcile these, and explain what you
+have done.
 
-\item Once your parser works, extend it to become an interpreter. DO NOT
-aim to parse the program first and then interpret it separately. Interpreting
-and parsing are inseparably bound together. Use our lectures notes for this
-and not those from other units such as Architecture which take a vert slightly
-different approach.
+\item Once your parser works, extend it to become an interpreter. DO
+NOT aim to parse the program first and then interpret it
+separately. Interpreting and parsing are inseparably bound together. Use
+our lectures notes for this and not those from other units such as
+Architecture which take a very slightly different approach.
 
-\item For the simple trigonometry required to compute the turtles destination,
-bear in mind that the \verb^cos()^ and \verb^sin()^ functions in C require parameters
-in radians and not degrees.
+\item For the simple trigonometry required to compute the turtles
+destination, bear in mind that the \verb^cos()^ and \verb^sin()^ functions
+in C require parameters in radians and not degrees.
 
-\item For the postscript/PDF part, since white ink is hard to see on white paper, I've
-redefined white ink to be slightly grey.
+\item The turtle always begins in the centre of the screen facing due
+north (upwards) and having a default white colour.  For the postscript/PDF
+part, since white ink is hard to see on white paper, I've redefined
+white ink to be slightly grey.
 
-\item The turtle begins in the centre of the screen facing due north (upwards).
-
-\item Start testing very early - this is a complex program to test and trying to
-do it (or explain it) near the end won't work.
+\item Start testing very early - this is a complex program to test and
+trying to do it (or explain it) near the end won't work.
 
 \end{itemize}
 

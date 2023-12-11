@@ -3,7 +3,7 @@
 <INSLST> ::= "END" | <INS> <INSLST>
 <INS>    ::= <FWD> | <RGT> | <COL> | <LOOP> | <SET>
 
-<FWD>    ::= "FORWARD <VARNUM>
+<FWD>    ::= "FORWARD" <VARNUM>
 <RGT>    ::= "RIGHT" <VARNUM>
 <COL>    ::= "COLOUR" <VAR> | "COLOUR" <WORD>
 <LOOP>   ::= "LOOP" <LTR> "OVER" <LST>
