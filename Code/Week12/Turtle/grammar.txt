@@ -6,7 +6,7 @@
 <FWD>    ::= "FORWARD" <VARNUM>
 <RGT>    ::= "RIGHT" <VARNUM>
 <COL>    ::= "COLOUR" <VAR> | "COLOUR" <WORD>
-<LOOP>   ::= "LOOP" <LTR> "OVER" <LST>
+<LOOP>   ::= "LOOP" <LTR> "OVER" <LST> <INSLST>
 <SET>    ::= "SET" <LTR> "(" <PFIX>
 
 <VARNUM> ::= <VAR> | <NUM>
