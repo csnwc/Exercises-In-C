@@ -6,7 +6,6 @@ START
         SET A ( $A 1.10 * )
         FORWARD $A
         RIGHT 72
-      END
     END
   END
 END
