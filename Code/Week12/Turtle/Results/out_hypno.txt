@@ -10,20 +10,20 @@
                   R RGGG   GB BBBB                 
                  R  RRR  GG  B BBBB                
                  R RR RGG   B BBBBB                
-                R  RR RR  GG BB CBBB               
-             Y  R R RR R G     CCCBB               
-             Y R  R RR R R     CC CCB              
-              Y YR R R R R     CCCC C              
-              Y Y YR  YR R     CCCCC               
-               Y YY Y  YYY    MMCC C               
-               Y Y Y Y   YY MMMCCCC                
-                Y Y Y Y   YMM MMC C                
-                Y Y  Y Y  MMMM CCC                 
-                 Y Y Y  YM MMMMCC                  
-                 Y Y  YMMMM    CC                  
-                  Y YMMMMMMMMMMC                   
-                  YMMMMMM      C                   
-                         MMMMMM                    
+                R  RR RR  GG BB MBBB               
+             Y  R R RR R G     MMMBB               
+             Y R  R RR R R     MM MMB              
+              Y YR R R R R     MMMM M              
+              Y Y YR  YR R     MMMMM               
+               Y YY Y  YYY    CCMM M               
+               Y Y Y Y   YY CCCMMMM                
+                Y Y Y Y   YCC CCM M                
+                Y Y  Y Y  CCCC MMM                 
+                 Y Y Y  YC CCCCMM                  
+                 Y Y  YCCCC    MM                  
+                  Y YCCCCCCCCCCM                   
+                  YCCCCCC      M                   
+                         CCCCCC                    
                                                    
                                                    
                                                    

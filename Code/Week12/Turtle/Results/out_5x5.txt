@@ -9,17 +9,17 @@
                                                    
                                                    
                          YYY                       
-                      YYY  MMM                     
-                     GY GMMYRYM                    
-                     GYG MG CCCM                   
-                     GY  MCC RMC                   
-                     GYYYMCY MR C                  
-                     GR  MC  M MC                  
-                     GGG  CMM M  C                 
-                      RRGGCCR M C                  
-                         CCRCC C                   
-                           CC  C                   
-                             CC                    
+                      YYY  CCC                     
+                     GY GCCYRYC                    
+                     GYG CG MMMC                   
+                     GY  CMM RCM                   
+                     GYYYCMY CR M                  
+                     GR  CM  C CM                  
+                     GGG  MCC C  M                 
+                      RRGGMMR C M                  
+                         MMRMM M                   
+                           MM  M                   
+                             MM                    
                                                    
                                                    
                                                    
