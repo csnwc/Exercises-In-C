@@ -33,37 +33,34 @@ e.g. each element has both a next and a previous pointer.
 Implement a SOLL using linked lists to implement these different policies
 and store strings.
 
-
-
 \begin{itemize}
-\item {\bf $70\%$}
-Write the files \verb^Linked/specific.h^ and \verb^Linked/linked.c^. Using
-the \verb^soll.mak^ makefile, you can compile this against the
+\item {\bf $55\%$}
+Write the files \verb^Linked/specific.h^ and \verb^Linked/linked.c^.
+Using the \verb^soll.mak^ makefile, you can compile this against the
 \verb^soll.h^ file and one of the test/driver files \verb^testsoll.c^,
 \verb^build.c^ or \verb^uniq.c^.
 
-The ADT should implement the standard functions: \verb^soll_init^,
-\verb^soll_add^, \verb^soll_remove^, \verb^soll_isin^,
-\verb^soll_tostring^, \verb^soll_size^ and \verb^soll_free^.  In addition,
-write \verb^soll_freq()^ which reports the frequency of access for a
-particular element. Therefore, each element of the list has the
+The ADT should implement the standard functions: \verb^soll_init()^,
+\verb^soll_add()^, \verb^soll_remove()^, \verb^soll_isin()^,
+\verb^soll_tostring()^, \verb^soll_size()^ and \verb^soll_free()^.
+In addition, write the function \verb^soll_freq()^ which reports
+the frequency of access for a particular element.
+Therefore, each element (structure) of the list has the
 overhead of keeping track of the number of times it has been accessed.
 
-
-\item {\bf $20\%$}
+\item {\bf $30\%$}
 Show a testing strategy on the above by submitting \verb^testing.txt^
 where you give details of
 unit testing, white/black-box testing done on your code. Describe any
 test-harnesses used. Convince me that every line of your C code
 has been tested.
 
-\item {\bf $10\%$}
+\item {\bf $15\%$}
 Show an extension to the project in a direction of
 your choice via \verb^extension.txt^.
 It should demonstrate your {\bf understanding} of some aspect
 of programming or S/W engineering. Make sure it's clear what has been
 done, why, and how to compile it.
 \end{itemize}
-
 
 \end{exercise}
