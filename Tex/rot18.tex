@@ -1,0 +1,36 @@
+\nsection{Rot18}
+
+
+
+ROT18 is an encryption algorithm made of the combination of ROT13 and
+ROT5. ROT13 replaces each letter in a string with the letter 13 places
+later in the alphabet, wrapping back to the beginning of the alphabet
+where necessary e.g. 'a' becomes 'n', 'b' becomes 'o', and 'n' becomes
+'a'. ROT5 replaces each digit in a string with the digit 5 greater,
+wrapping back to 0 where necessary e.g. '0' becomes '5', '1' becomes
+'6', and '5' becomes '0'.
+
+\wwwurl{https://www.boxentriq.com/code-breaking/rot13}
+
+\begin{exercise}
+
+Write the function whose "top-line" is:
+\begin{codesnippet}
+void rot(char str[])
+\end{codesnippet}
+
+\noindent that takes a string as input and encrypts it using the ROT18
+cipher. The function must preserve the case of any letters, and any
+characters that aren't letters or digits must be unaffected.
+
+When the string \verb^"Hello, World!"^ is encrypted, it becomes
+\verb^"Uryyb, Jbeyq!"^ and when ecrypted a second time, reverts to the
+original string.
+
+
+\begin{verbatim}
+Erzrzore:  fubeg shapgvbaf; ubhfr-fglyr ehyrf :-)
+\end{verbatim}
+
+\end{exercise}
+
