@@ -1,0 +1,128 @@
+\nsection{Crush It!}
+
+Match-3 tile games have become one of the world's most popular games.
+\wwwurl{https://en.wikipedia.org/wiki/Tile-matching_video_game}
+Such games use a rectangular grid (board)
+containing many tiles, of many different types
+(often colour, but here we will use letters). Where there are $3$ or
+more tiles of the same type in a line (horizontally or vertically),
+they are removed. Once all removals that are possible have occurred,
+the tiles above fall down to fill in the gaps. In our version, a large
+number of tiles are available above (and hidden from the player) which
+cannot be matched until they have fallen down into the playing area.
+
+In our version of the game:
+\begin{itemize}
+\item Matchable tiles are in the range $(A \ldots Z)$,
+although it's is common for only a small
+number (e.g. $A \ldots D$) to be used.
+\item The width of the board is always five tiles.
+\item The `playing' height of the board is six. Other tiles can be above this,
+but won't be matched until they have dropped down into one of the bottom six rows.
+\item The maximum number of rows the board ever needs to hold is $20$. 
+\item Matching (that is finding a horizonal or vertical line of the same tile)
+is done in `parallel' - if a tile is shared between two matches
+(e.g. the middle tile in a $3\times 3$ `+' pattern) both of these matches are
+removed.
+\end{itemize}
+
+An example of this is shown here:
+\begin{center}
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=ocre!30}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=gray!20]{.};} ] (A) {
+ & & & & \\
+\textcolor{red}{B}&\textcolor{red}{B}&\textcolor{red}{B}&D&B\\
+C&D&A&A&C\\
+D&A&A&B&D\\
+A&A&B&C&\textcolor{red}{A}\\
+A&B&C&D&\textcolor{red}{A}\\
+B&C&\textcolor{red}{A}&\textcolor{red}{A}&\textcolor{red}{A}\\
+};
+\end{tikzpicture}
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=ocre!30}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=gray!20]{.};} ] (A) {
+ & & & & \\
+.&.&.&D&B\\
+C&D&A&A&C\\
+D&A&A&B&D\\
+A&A&B&C&.\\
+A&B&C&D&.\\
+B&C&.&.&.\\
+};
+\end{tikzpicture}
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=ocre!30}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=gray!20]{.};} ] (A) {
+ & & & & \\
+.&.&.&.&.\\
+C&D&.&D&.\\
+D&A&A&A&.\\
+A&A&A&B&B\\
+A&B&B&C&C\\
+B&C&C&D&D\\
+};
+\end{tikzpicture}
+\end{center}
+\noindent (Left) Game board in it's initial state. Orange squares show were matches can be made. (Middle) Three matches are made - one for the $3$ horizonal `A' tiles, one for the three vertical `A' tiles and one for the three horizontal `B' tiles. (Right) Game board final state after tiles are dropped down. Not there are now more matches that can be made.
+
+
+\begin{exercise}
+
+Here we will write some (but not all) of the functionality necessary
+for a match-3 tile game.  Skeleton code may be found in~:
+\wwwurl{https://github.com/csnwc/Exercises-In-C}
+\noindent then navigate into \verb^Code/Week5/CrushIt^.
+
+Complete the files {\bf crushit.c} and {\bf mydefs.h} which, along with
+my files {\em crushit.h} and {\em driver.c}, implements some important
+functionality necessary for a game of this type.
+
+\noindent My file {\em crushit.h} contains the function definitions
+which you'll have to implement in your {\bf crushit.c} file.  My file
+{\em driver.c} contains the \verb^main()^ function to act as
+a driver to run the code.  Your file will contain many other functions
+as well as those specified, so you'll wish to test them as normal using
+a \verb^test()^ function.
+
+\noindent If all of these files are in the same directory, you can
+compile them using the \verb^Makefile^ given.
+
+\noindent The functions you need to complete include:
+
+\verb^initialise()^ - this takes a pointer to the board state, and
+a string.  The string can be a filename, but if this filename can't
+be opened, it is assumed to be a list of tiles to fill the board with,
+from the top down.  Such a string must contain complete rows of tiles,
+with no partial rows.
+
+\verb^match()^ - this takes a pointer to the board state, and removes
+all matches of $3$ or more tiles in a vertical or horizontal line.
+Removed tiles are replaces with the `.' (empty tile) character.
+
+\verb^dropblocks()^ - this takes a pointer to the board state, and makes
+any blocks that are above an empty tile fall down until all holes are
+filled in if it is possible to do so.
+
+\verb^tostring()^ - this takes a pointer to the board state, and a string
+and copies whole rows of the board into the string from the top downwards.
+The whole board isn't copied since most of the characters at the top
+are unused (hole) tiles. Therefore, we begin copying at the first row
+on which a non-hole tile appears.
+
+\noindent Hints:
+\begin{itemize}
+\item Do not begin by writing the file handling functionality -
+this cannot be tested, so use the string initialising option
+instead.
+\item To begin with, use you're own, simpler driver file - mine
+makes sense once everything is working, but may seem complex
+to begin with.
+\item Your \verb^crushit.c^ file should contain many other sub-functions
+which are used by the major ones specified. You can put anything in this
+file, provided it still compiles as specified.
+\item Do not alter or resubmit {\em crushit.h}, {\em Makefile} or
+{\em driver.c} - my original versions (or even slightly different
+ones) will be used to compile the {\em crushit.c} file that you adapt.
+\end{itemize}
+
+\end{exercise}
+

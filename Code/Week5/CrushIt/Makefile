@@ -1,0 +1,15 @@
+WARNS := -Wall -Wextra -Wfloat-equal -Wvla -std=c99
+DEBUG := -fsanitize=undefined -fsanitize=address -g3
+OPTIM := -O3
+
+crushit: crushit.c driver.c crushit.h mydefs.h
+	gcc driver.c crushit.c $(WARNS) $(OPTIM) -o crushit
+
+crushit_d: crushit.c driver.c crushit.h mydefs.h
+	gcc driver.c crushit.c $(WARNS) $(DEBUG) -o crushit_d
+
+run: crushit_d
+	./crushit_d
+
+clean:
+	rm -f crushit_d crushit
