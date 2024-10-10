@@ -32,7 +32,7 @@ be independent of the particular compiler used though. Sometimes it is helpful t
 If you have unused variables (for example) in your code, it doesn't matter whether your compiler happened to tell you about it or not - it's still wrong~!
 
 \item[BRACE] Always brace all functions, \verb^for^s, \verb^while^s, \verb^if/else^ etc.
-Somewhat contraversial, this ensures that `extra' lines tagged onto loops are
+Somewhat controversial, this ensures that `extra' lines tagged onto loops are
 dealt with correctly. For instance:
 \begin{codesnippet}
 while(i < 10)
@@ -50,7 +50,7 @@ while(i < 10){
 
 \item[GOTO] You do not use any of the keywords \verb^continue^, \verb^goto^ or \verb^break^. The one exception is inside \verb^switch^, where \verb^break^ is allowed because it is essential~!
 These keywords usually lead to tangled and complex `spaghetti' coding style.
-I often recommend that you rewrite the offending code uing functions, which {\bf can} have multiple \verb^return^s
+I often recommend that you rewrite the offending code using functions, which {\bf can} have multiple \verb^return^s
 in them.
 
 \item[NAMES] Meaningful identifiers. Make sure that functions names and variables having meaningful, but succinct,  names.
@@ -244,7 +244,7 @@ the two.  Therefore, if you write code that indexes it \verb^[col][row]^,
 or \verb^[x][y]^ it will confuse anyone else trying to understand (or
 reuse) your code. If you were to sketch a graph using \verb^(i,j)^ you'd
 almost certainly make $i$ the horizontal axis, and $j$ the vertical.
-Therfore, for any two variables it makes more sense to write \verb^[b][a]^
+Therefore, for any two variables it makes more sense to write \verb^[b][a]^
 or \verb^[j][i]^.
 
 \end{description}
