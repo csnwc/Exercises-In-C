@@ -16,9 +16,9 @@ However, if self-organisation is done via the {\it move-to-front} (MFT)
 policy, each time an element is accessed, it is moved to the start of the
 list. This means that the next time we search for the same element, it
 will be found more quickly, since it is near the start of the list. Once
-the element is found, this re-ordering also has a complextity of $O(1)$.
+the element is found, this re-ordering also has a complexity of $O(1)$.
 
-The MFT policy can sometimes be too aggresive; uncommon elements that
+The MFT policy can sometimes be too aggressive; uncommon elements that
 are searched for will move to the front, potentially displacing elements that
 are being searched for more frequently. An alternative is the
 {\it transpose} policy. When an element is accessed, it is moved one
