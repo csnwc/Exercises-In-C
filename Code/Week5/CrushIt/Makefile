@@ -1,4 +1,4 @@
-WARNS := -Wall -Wextra -Wfloat-equal -Wvla -std=c99
+WARNS := -Wall -Wextra -Wfloat-equal -Wvla -std=c99 -Wpedantic
 DEBUG := -fsanitize=undefined -fsanitize=address -g3
 OPTIM := -O3
 
