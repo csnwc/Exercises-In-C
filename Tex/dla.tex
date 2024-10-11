@@ -85,15 +85,15 @@ The output should be in plain text.
 
 
 In the basic version of a DLA, a particle `sticks' to the seed points when
-it gets adjacent to one. Here we introcude the probability of stickiness,
+it gets adjacent to one. Here we introduce the probability of stickiness,
 a number between $0$ and $1$, called $p_s$. The particle only sticks
-to a seed point with a probabilty of $p_s$; if
+to a seed point with a probability of $p_s$; if
 it doesn't stick it continues wandering. This allows for the patterns
 that emerge to be more hairy and solid:
 \wwwurl{http://paulbourke.net/fractals/dla/}
 
 \begin{exercise}
-Implement this stickiness concept by extending the program writen for Exercise~\ref{ex:dla}, allowing the user to specify a `stickiness' probablity via the command line using argv[1]. Here a value of $1.0$ means that the particle will always stick, and $0.5$ means that it will stick one time in $2$.
+Implement this stickiness concept by extending the program written for Exercise~\ref{ex:dla}, allowing the user to specify a `stickiness' probability via the command line using argv[1]. Here a value of $1.0$ means that the particle will always stick, and $0.5$ means that it will stick one time in $2$.
 \end{exercise}
 \noindent Here's an example when setting $p_s=0.25$:
 \begin{center}

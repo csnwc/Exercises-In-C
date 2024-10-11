@@ -45,7 +45,7 @@ The problem generally involves the board starting in a random state, and the use
 returning the board to the `ordered' $"12345678"$ state.
 
 In this problem, a solution could be found in many different ways; the solution could be recursive,
-or you could implement a queue to perform a breadth-first seach, or something more complex allowing
+or you could implement a queue to perform a breadth-first search, or something more complex allowing
 a depth-first search to measure `how close' (in some sense) it is to the correct solution. 
 
 \begin{exercise}
@@ -64,7 +64,7 @@ on.  This is, essentially, a queue.
 However, one problem with is that repeated boards may be put into the queue and
 `cycles' occur.  This soon creates an explosively large number of
 boards (several million).  You can solve this by only adding a board
-into the queue if an identical one does not already exisit in the queue.
+into the queue if an identical one does not already exist in the queue.
 A linear search is acceptable for this task of identifying duplicates.
 Each structure in the queue will contain (amongst other things)
 a board and a record of its parent board, i.e. the board that it was
@@ -74,7 +74,7 @@ Be advised that a solution requiring as `few' as $20$ moves may take
 $10$'s of minutes to compute. If the search is successful, display the solution
 to the screen using plain-text.
 
-Use the method described above and only this one. Use a static data structure to acheive
+Use the method described above and only this one. Use a static data structure to achieve
 this (arrays) and {\bf not} a dynamic method such as linked-lists; a (large) $1D$ array
 of structures is acceptable. Because this array needs to be
 so large, it's best to declare it in \verb^main()^ using something like:
@@ -85,7 +85,7 @@ static boards[NUMBOARDS];
 \end{exercise}
 
 \begin{exercise}
-Repeat Exercise~\ref{ex:basic8tile}, but use SDL for the ouput rather than plain-text.
+Repeat Exercise~\ref{ex:basic8tile}, but use SDL for the output rather than plain-text.
 \end{exercise}
 
 \begin{exercise}

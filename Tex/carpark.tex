@@ -27,7 +27,7 @@ move up and down, horizontal vehicles move left and right). These moves
 cannot be into, or across, another vehicle, nor into a bollard.
 
 Our aim is to get all the vehicles safely out of the car park.
-During a turn, one vehicle is allowed to move fowards or backwards one
+During a turn, one vehicle is allowed to move forwards or backwards one
 square.  Once the front of a vehicle touches an empty square on the edge
 of the car park, it is deemed to have exited the car park, and removed.
 
@@ -101,7 +101,7 @@ length $2$. Each vehicle must have a unique uppercase letter, the first of which
 We wil use a brute-force algorithm for searching over all moves for a
 solution~:
 \begin{enumerate}
-\item You will use an array (list) of structures, each one containg the data for one car park.
+\item You will use an array (list) of structures, each one containing the data for one car park.
 Note that you may choose to store the state of each car park, not as
 a 2D array, but as something that is easier to manipulate, e.g. an array
 of vehicles, including their position, orientation and whether they've exited or not.
@@ -179,7 +179,7 @@ Your program~:
 \item {\bf Should} check for invalid car park definition files, and report in a graceful way if there is a problem, aborting with \verb^exit(EXIT_FAILURE)^ if so.
 \item {\bf Should not} print anything else out to screen after successfully
 completing the search, except that which is shown above. Automated checking
-will be used during marking, and therefore the ouput must be precise.
+will be used during marking, and therefore the output must be precise.
 \item {\bf Should} call the function \verb^test()^ to perform any assertion testing etc.
 \end{itemize}
 
