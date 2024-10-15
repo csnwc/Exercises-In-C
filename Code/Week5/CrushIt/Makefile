@@ -11,6 +11,7 @@ crushit_d: crushit.c driver.c crushit.h mydefs.h
 run: crushit_d
 	./crushit_d
 
+# Your submission must contain exactly two files
 zip:
 	zip crushit.zip crushit.c mydefs.h
 
