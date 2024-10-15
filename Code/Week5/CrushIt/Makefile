@@ -11,5 +11,8 @@ crushit_d: crushit.c driver.c crushit.h mydefs.h
 run: crushit_d
 	./crushit_d
 
+zip:
+	zip crushit.zip crushit.c mydefs.h
+
 clean:
 	rm -f crushit_d crushit
