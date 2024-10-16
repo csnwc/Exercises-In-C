@@ -1,0 +1,84 @@
+#!/usr/bin/bash
+
+if [[ ! -e crushit.zip ]]; then
+   echo "Cannot find crushit.zip?"
+   exit
+fi
+
+l=`unzip -l crushit.zip|& egrep -v "^-"|tail -n+3 | head -n-1|wc -l`
+if (( $l != 2 )); then
+   echo "Expected 2 files in crushit.zip, found $l"
+   exit
+fi
+
+read -p "Warning: this script will delete all other relevant files from the current directory to get fresh versions from your crushit.zip and Neill's github. Do you wish to continue? (y/n): " choice
+if [[ "$choice" != "y" ]]; then
+   echo "Operation aborted by the user."
+   exit
+fi
+
+# Removes versions of your code that isn't in the zip file
+rm -f crushit.c
+rm -f mydefs.h
+
+unzip crushit.zip
+
+if [[ ! -e crushit.c ]]; then
+   echo "Cannot find crushit.c?"
+   exit
+fi
+
+if [[ ! -e mydefs.h ]]; then
+   echo "Cannot find mydefs.h?"
+   exit
+fi
+
+echo "Got crushit.c & mydefs.h"
+
+# Need a valid path to your own copy of my, original, unaltered files
+# Copy Neill's files here
+rm -f crushit.h
+rm -f driver.c
+rm -f Makefile
+rm -f *.txt
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week5/CrushIt/Makefile
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week5/CrushIt/driver.c
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week5/CrushIt/b1.txt
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week5/CrushIt/fourteen.txt
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week5/CrushIt/c.txt
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week5/CrushIt/lft.txt
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week5/CrushIt/a.txt
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week5/CrushIt/crushit.h
+
+make clean
+make crushit
+if [[ ! -e crushit ]]; then
+   echo "Failed to make crushit ?"
+   exit
+fi
+
+make crushit_d
+if [[ ! -e crushit_d ]]; then
+   echo "Failed to make crushit_d ?"
+   exit
+fi
+
+./crushit
+e=$?
+if (( $e == 0 )); then
+   echo "Ran crushit OK!"
+else
+   echo "Errors when running crushit?"
+   exit
+fi
+
+./crushit_d
+e=$?
+if (( $e == 0 )); then
+   echo "Ran crushit_d OK!"
+else
+   echo "Errors when running crushit_d?"
+   exit
+fi
+
+
