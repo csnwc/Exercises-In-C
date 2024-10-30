@@ -1,3 +1,5 @@
+// Change this file in any way you like
+// Do not alter driver.c / Makefile / md.h
 #pragma once
 
 #include <stdio.h>
@@ -13,14 +15,16 @@
 
 /*
 Here define struct state -
-mine included an array of
+t might look something like:
+
 struct board{
    2D array of tiles
    hawk
+   parent
 }
 
 struct state{
-    array of board[];
+    array of struct board[];
     etc.
 }
 */
