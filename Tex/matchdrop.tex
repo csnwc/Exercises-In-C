@@ -1,0 +1,123 @@
+\renewcommand{\A}{|[fill=black,text=white]|A}
+\renewcommand{\B}{|[fill=black,text=ocre]|B}
+\renewcommand{\C}{|[fill=black,text=green]|C}
+
+\nsection{Match Drop}
+
+The puzzle {\it Match Drop} consists of a $2D$ rectangular grid of
+tiles, all of which are labelled with an upper-case letter e.g. `$A$', `$B \ldots$ `$Z$'. Outside of this grid is another tile, known as the
+`hawk' tile:
+
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\A&  &  \\
+\A&\B&\C\\
+\A&\B&\C\\
+\C&\B&\A\\
+};
+\end{tikzpicture}
+
+\noindent The 'hawk' tile can be used to push down one column.
+The hawk becomes the top tile in this column, and the bottom tile of
+this column becomes the new hawk tile. The task is to roll one column
+at a time, so that every column contains the same letters.
+
+\noindent
+In the above example, if the hawk tile is played to push down the first
+column, then the new board now looks like:
+
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\C&  &  \\
+\A&\B&\C\\
+\A&\B&\C\\
+\A&\B&\A\\
+};
+\end{tikzpicture}
+
+\noindent
+Both the first and seond columns are now completed and are never
+altered again. Using the hawk on column three produces:
+
+\begin{tikzpicture}[every node/.style={anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\A&  &  \\
+\A&\B&\C\\
+\A&\B&\C\\
+\A&\B&\C\\
+};
+\end{tikzpicture}
+
+\noindent
+and our search for a finshed (completed) board is over.
+
+
+\begin{exercise}
+Write the functions specified in \verb^md.h^ that allows a board file
+to be read in, and computes the number of moves required to solve it.
+
+\noindent
+You may assume that the maximum height and width of a board is $6$.
+
+\noindent
+The brute-force algorithm for searching over all moves for a
+solution goes like this~:
+\begin{enumerate}
+\item You will use an \verb^alloc()^'d array (list) of boards.
+\item Put the initial board into the front of this list, \verb^f=0^.
+\item Consider the board at the {\bf front} of the list (index \verb$f$).
+\item For this (parent) board, find the resulting (child) boards 
+which can be created from all the possible column pushes (already
+completed columns are not altered). For each of these child boards:
+\begin{itemize}
+\item If this board is unique (i.e.\ it has not been seen before in the list), add it to the end of the list.
+\item If it has been seen before (it's a duplicate) ignore it.
+\item If it is the `final' board, stop and (possibly, print the solution).
+\end{itemize}
+\item Add one to $f$. If there are more boards in the list, go to step $3$.
+\end{enumerate}
+
+
+
+
+
+
+
+
+\noindent To help with printing out the correct moves, when a solution
+has been found, each board in the list will need to contain (amongst
+other things) a 2D grid of tiles, the hawk, and a record of its parent board, i.e. the board
+that it was created from. Since you're using an array, this could simply
+be the index of the array that was the parent.
+
+\noindent
+Your program~:
+\begin{itemize}
+\item {\bf Must} use the algorithm detailed above (which is similar to a queue and therefore a breadth-first search). Do not use the other algorithms possible (e.g. best-first, guided, recursive etc.); the quality of your coding is being assessed against others taking the same approach, and if you do something different it won't get any marks.
+\item {\bf Must not} use dynamic arrays or linked lists. Since boards cannot be any larger than $6 \times 6$, you can create boards of this size, and only use a sub-part of them if the board required is smaller. The list of boards can be a fixed (large) size (maybe $200,000$?)
+\item {\bf Should} be able to cope with invalid board definition files with a graceful exit.
+\item {\bf Should not} print anything out to screen after successfully
+completing the search, except when in verbose mode. Automated checking
+will be used during marking, and therefore the output must be very precise.
+For the \verb^driver.c^ file given, the verbose output is required for
+\verb^2moves.brd^, for which the verbose flag has been set in the 
+solve function. In this case, the output will look like:
+\begin{codesnippet}
+% ./md
+ABC
+ABC
+ABC
+CBA
+
+ABC
+ABC
+ABC
+ABA
+
+ABC
+ABC
+ABC
+ABC
+\end{codesnippet}
+
+\item {\bf Should} call the function \verb^test()^ to perform any assertion testing etc.
+\end{itemize}
+
+\end{exercise}
