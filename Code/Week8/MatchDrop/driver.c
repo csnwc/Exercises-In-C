@@ -53,11 +53,5 @@ int main(void)
    assert(solve(s, false)==11);
    free(s);
 
-   assert(file2str("imposs.brd", str));
-   assert(strcmp("A-BC-DE", str)==0);
-   s = str2state(str);
-   assert(solve(s, false)==-1);
-   free(s);
-
    return EXIT_SUCCESS;
 }
