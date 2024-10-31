@@ -12,7 +12,7 @@ state* str2state(const char* str)
    // Put contents of string into
    // first board of list in state.
    // ...
-   // return s;
+   // return state;
 }
 
 int solve(state* s, bool verbose)
@@ -23,4 +23,4 @@ void test(void)
 {
 }
 
-/* Lots of other functions, as required */
+/* Many of other functions, as required */

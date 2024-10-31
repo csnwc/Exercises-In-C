@@ -18,8 +18,8 @@ bool file2str(const char* fname, char* str);
 into the first board of a 'state' structure and
 returns it. 
 Args : String to be read.
-Returns: false is there are any problems;
-else returns true.
+Returns: NULL is there are any problems;
+else returns state.
 */
 state* str2state(const char* str);
 

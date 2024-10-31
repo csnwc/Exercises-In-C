@@ -15,7 +15,7 @@
 
 /*
 Here define struct state -
-t might look something like:
+it might look something like:
 
 struct board{
    2D array of tiles
