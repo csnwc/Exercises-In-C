@@ -21,7 +21,7 @@ PCAAA
    assert(tostring(&s, str) == true);
    assert(strcmp(str,    "PPPDPCDAACDAAPDAAPCAAPCDAPCAAA") == 0);
 
-   assert(initialise(&s, "../../BBBBB.brd") == true);
+   assert(initialise(&s, "./BBBBB.brd") == true);
    assert(tostring(&s, str) == true);
    assert(strcmp(str,    "BBBDBCDAACDAABDAABCAABCDABCAAA") == 0);
 
