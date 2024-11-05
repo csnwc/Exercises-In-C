@@ -1,0 +1,402 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% WEEK 12 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapterimage{../Pictures/ttl2.jpg}
+\chapter{Parsing Data}
+
+\newcommand{\bb}{white}
+\newcommand{\ff}{black}
+
+\newcommand{\sixel}[6]{%
+\begin{tikzpicture}[scale=0.333, every node/.style={scale=0.333}]
+\matrix[sixelstyle]
+{
+|[fill=#1]| \& |[fill=#2]| \\
+|[fill=#3]| \& |[fill=#4]| \\
+|[fill=#5]| \& |[fill=#6]| \\
+};
+\end{tikzpicture}%
+}
+
+\newcommand{\sepsix}[6]{%
+\begin{tikzpicture}[scale=0.333, every node/.style={scale=0.333}]
+\matrix[sepsixstyle]
+{
+|[fill=#1]| \& |[fill=#2]| \\
+|[fill=#3]| \& |[fill=#4]| \\
+|[fill=#5]| \& |[fill=#6]| \\
+};
+\end{tikzpicture}%
+}
+
+
+\input{mode7}
+
+\begin{exercise}
+Implement a teletext rendering system. The $1000$ character input
+file should be read in using \verb^argv[1]^.
+
+There are many ambiguities
+as to how various sequences of codes should be rendered. To help with
+this, several example files have been posted on the unit web page. 
+If there is still doubt, make a best-guess and state your assumptions
+in the code.
+
+Submit the testing you have undertaken, including examples and a description
+of your strategies. This should convince us that you have tested every line
+of code, and that it works correctly. If there are still issues/bugs state
+them clearly. Also, point out any bugs that you have successfully found using
+these approaches. Submit a file named \verb^testing.txt^, along with any other
+files you feel necessary in the appropriate directory.
+
+No particular strategy is mandated. You may wish to explore a couple and briefly
+discuss strengths and weaknesses. 
+
+Undertake an extension of your choosing. Examples of these include:
+\begin{itemize}
+\item A system that allows you to quickly author teletext pages (perhaps
+using a recursive-descent parser?)
+\item Automatic image to teletext conversion.
+\item Automatic (simple) html to teletext conversion (and/or vice-versa).
+\end{itemize}
+Remember, that the assessment is based on the quality of your coding, so choose
+something to demonstrate an aspect of programming or software engineering
+that you haven't had a chance to use in the main assignment. Submit a file named
+\verb^extension.txt^ outlining, in brief, your contribution. 
+
+\subsection*{Hints}
+
+\begin{itemize}
+\item Don't add graphics too early - the
+code is easier to test and debug with textual output to begin with.
+\item I advise you to use SDL for your graphics output. The library provided previously contained
+two functions to deal with printing characters~: \verb^Neill_SDL_ReadFont()^ and
+\verb^Neill_SDL_DrawString()^. The font file \verb^m7fixed.fnt^ provides the basic
+characters required here, but not the sixels. By understanding how the font data
+is rendered, the double height version of the characters should be relatively simple.
+\item Don't try to do all aspects of this at once - begin with coloured characters only. Add more
+advanced functionality later.
+\item Plan how you are going to store your data early in the design process.
+Does each character need its own data structure? Does each line? Can this be abstracted?
+\end{itemize}
+
+Please create a directory structure, so that I can easily find the
+different subsections.  Your testing strategy will be explained in
+\verb^testing.txt^, and your extension as \verb^extension.txt^. For
+the source and extension sections, make sure there's a
+\verb^Makefile^, so that I can easily build the code.
+
+\begin{verbatim}
+            ------Top Directory------
+            |            |          |           
+            |            |          |           
+            |            |          |            
+            |            |          |             
+          source      testing    extension   
+            |            |          |
+           ...          ...   extension.txt
+           ...          ...       ...
+         Makefile     Makefile    ...  
+                    testing.txt
+\end{verbatim}
+
+Bundle all of these up as one {\bf single} \verb^.zip^ submission -
+not one for each subsection.
+\end{exercise}
+
+\nsection{Guido van Robot}
+
+\begin{center}
+\includegraphics[scale=0.75]{./gnuLinuxGvR.jpg}
+\end{center}
+
+From \wwwurl{http://gvr.sourceforge.net/}
+{\small
+\begin{quote}
+Guido van Robot can face in one of four directions, north, east, south, and west. He turns only 90 degrees at a time, so he can't face northeast, for instance. In Guido's world, streets run east-west, and are numbered starting at 1. There are no zero or negative street numbers. Avenues run north-south, and are also numbered starting at 1, with no zero or negative avenue numbers. At the intersection of a street and avenue is a corner. Guido moves from one corner to the next in a single movement. Because he can only face in one of four directions, when he moves he changes his location by one avenue, or by one street, but not both!
+\end{quote}
+}
+
+\subsection*{Simple .wld File}
+
+\begin{verbatim}
+Robot 5 4 N 1
+Wall 3 2 N 6
+Wall 2 3 E 4
+Wall 3 6 N 6
+Wall 8 3 E 2
+Wall 8 6 E
+\end{verbatim}
+\begin{center}
+\includegraphics[scale=0.5]{../Pictures/GvRsimple1.jpg}
+\end{center}
+
+\subsection*{\bf Simple .gvr File}
+\begin{verbatim}
+move
+move
+move
+move
+turnoff
+\end{verbatim}
+\begin{center}
+\includegraphics[scale=0.5]{./GvRsimple2.jpg}
+\end{center}
+
+
+\subsection*{Do Loops}
+\begin{verbatim}
+do 2 :
+   putbeeper
+   move
+turnoff
+\end{verbatim}
+
+\subsection*{Conditional Loop}
+\begin{verbatim}
+while front_is_clear :
+   putbeeper
+   move
+turnoff
+\end{verbatim}
+
+\subsection*{Branching}
+\begin{verbatim}
+do 13 :
+   if front_is_clear :
+      putbeeper
+      move
+   else :
+      turnleft
+turnoff
+\end{verbatim}
+
+\subsection*{The Formal Grammar}
+{\small
+\begin{verbatim}
+<PROGRAM>   ::= <BLOCK>
+<BLOCK>     ::= "turnoff" |
+                "move" <BLOCK> |
+                "turnleft" <BLOCK> |
+                "pickbeeper" <BLOCK> |
+                "putbeeper" <BLOCK> |
+                <DO> <BLOCK> |
+                <WHILE> <BLOCK> |
+                <IF> <BLOCK>
+<DO>        ::= "do" <num> ":"
+                   <BLOCK>
+<WHILE>     ::= "while" <TEST> ":"
+                   <BLOCK>
+<IF>        ::= "if" <TEST> ":"
+                   <BLOCK> |
+              "if" <TEST> ":"
+                   <BLOCK>
+              "else" ":"
+                   <BLOCK>
+<TEST>      ::= <WALL> | <BEEP> | <COMPASS>
+\end{verbatim}
+}
+
+{\small
+\begin{verbatim}
+<WALL>      ::= "front_is_clear" |
+                "front_is_blocked" |
+                "left_is_clear" |
+                "left_is_blocked" |
+                "right_is_clear" |
+                "right_is_blocked"
+<BEEP>      ::= "next_to_a_beeper" |
+                "not_next_to_a_beeper" |
+                "any_beepers_in_beeper_bag" |
+                "no_beepers_in_beeper_bag"
+<COMPASS>   ::= "facing_north" |
+                "not_facing_north" |
+                "facing_south" |
+                "not_facing_south" |
+                "facing_east" |
+                "not_facing_east" |
+                "facing_west" |
+                "not_facing_west"
+\end{verbatim}
+}
+
+This ignores some Guido instructions, e.g. \verb^elseif^
+and \verb^define^. It also doesn't well explain how to spot
+the end of a \verb^DO^ etc. which is marked by a reduction in
+indentation.
+The definition of \verb^.wld^ files is so simple a recursive
+descent parser (and hence grammar) is not required.
+
+\begin{exercise}
+\begin{itemize}
+
+\item (25\%) To implement a recursive descent parser - this says
+whether or not the given \verb^.gvr^ and \verb^.wld^ follow the formal grammar or not.
+The input files are specified via \verb^argv[1]^ (\verb^.gvr^) and \verb^argv[2]^ (\verb^.wld^) .
+
+\item (25\%) To implement an interpreter, so that the instructions are
+executed. Printing the world and robot to screen
+using simple characters is fine, but many will wish to use SDL.
+
+\item (25\%) To show a testing strategy on the above -
+you should give details of
+white-box and black-box testing done on your code. Describe any
+test-harnesses used. Give examples of the output of many different
+programs. Convince me that every line of your C code
+has been tested.
+
+\item (25\%) To show an extension to the project in a direction of
+your choice. It should demonstrate your understanding of some aspect
+of programming or S/W engineering. If you extend the formal grammar
+make sure that you show the new, full grammar.
+
+Submit the program(s) and a Makefile so that I can:
+
+\item Compile the parser by typing `make parse'.
+\item Compile the interpreter by typing `make interp'.
+\item Compile the extension by typing `make extension'.
+\item Submit a test strategy report called test.txt. This will include
+sample outputs, any code written especially for testing etc.
+\item Submit an extension report called `extend.txt'. This is quite
+brief and explains the extension attempted.
+
+\item You need to be able to load a world file and a \verb^.gvr^
+and say if they are valid of not.
+\item Don't try to write the entire program in one go. Try a cut
+down version of the grammar first, e.g.:
+{\small
+\begin{verbatim}
+<PROGRAM>   ::= <BLOCK>
+<BLOCK>     ::= "turnoff" |
+                "move" <BLOCK> |
+                "turnleft" <BLOCK> |
+                "pickbeeper" <BLOCK> |
+                "putbeeper" <BLOCK>
+<DO>        ::= "do" <num> ":"
+                   <BLOCK>
+\end{verbatim}
+}
+\item Some issues, such as what happens if you hit a wall
+are not clear from the formal grammar. In this case, use your
+common sense, or do what the real program does.
+\end{itemize}
+\end{exercise}
+
+
+\input{nlab}
+
+\input{cawk}
+
+\begin{exercise}
+Write a C program to implement the above formal grammar. Your program
+should read in a cawk program (argv[1]) and expect the data
+file to be read from standard input (or from argv[2] if specified).
+
+The marks are split as follows:
+\begin{itemize}
+\item (25\%) To implement a recursive descent parser - this says
+whether or not a given CAWK program follows the formal grammar or not.
+
+\item (25\%) To implement an interpreter, so that the instructions are
+executed.
+
+\item (25\%) To show a testing strategy on the above -
+you should give details of
+white-box and black-box testing done on your code. Describe any
+test-harnesses used. Give examples of the output of many different
+cawk programs.
+
+\item (25\%) To show an extension to the project in a direction of
+your choice. It should demonstrate your understanding of some aspect
+of programming or S/W engineering. If you extend the formal grammar
+make sure that you show the new, full grammar.
+\end{itemize}
+
+Submit the program(s) and a Makefile so that I can:
+
+\begin{itemize}
+\item Compile the parser by typing `make parse'.
+\item Compile the interpreter by typing `make interp'.
+\item Compile the extension by typing `make extension'.
+\end{itemize}
+
+In addition:
+\begin{itemize}
+\item Submit a test strategy report called test.txt. This will include
+sample outputs, any code written especially for testing etc.
+\item Submit an extension report called `extend.txt'. This is quite
+brief and explains the extension attempted.
+\end{itemize}
+
+\end{exercise}
+
+\input{nal}
+\begin{exercise}
+\begin{itemize}
+
+\strut
+
+\item {\bf (40\%)}
+Implement a parser. The \verb^.nal^ file should be read in using
+\verb^argv[1]^.  If the file is parsed correctly, the only output should
+be:
+\begin{terminaloutput}
+Parsed OK
+\end{terminaloutput}
+
+\item {\bf (30\%)}
+Implement an interpreter, building on top of the parser in the
+manner described in the lectures. Do not write a brand new program -
+interpretation will be done alongside parsing.
+
+\item {\bf (20\%)}
+Submit the testing you have undertaken, including examples and a
+description of your strategies. This should convince us that you have
+tested every line of code, and that it works correctly. If there are
+still issues/bugs state them clearly. Also, point out any bugs that
+you have successfully found using these approaches. Submit a file named
+\verb^testing.txt^, along with any other files you feel necessary. Due
+to the recursive nature of this assignment testing is non-trivial -
+simply submitting many \verb^.nal^ files that `work' is not sufficient.
+No particular strategy is mandated. You may wish to explore a couple
+and briefly discuss strengths and weaknesses.
+
+\item {\bf (10\%)}
+Undertake an extension of your choosing.  Remember, that the assessment is
+based on the quality of your coding, so choose something to demonstrate
+an aspect of programming or software engineering that you haven't
+had a chance to use in the main assignment. Submit a file named
+\verb^extension.txt^ outlining, in brief, your contribution.
+\end{itemize}
+
+\subsection*{Hints}
+\begin{itemize}
+\item Don't try to write the entire program in one go. Try a cut
+down version of the grammar first. Build-up from the \verb^01s^
+example given in lectures.
+\item Some issues, such as what happens if you use an undefined variable,
+or if you use a variable before it is set, are not explained by the formal
+grammar. Use your own common-sense, and explain what you have done.
+\item Once your parser works, extend it to become an interpreter. DO NOT
+aim to parse the program first and then interpret it separately.
+Interpreting and parsing are inseparably bound together.
+\end{itemize}
+ 
+\subsection*{Submission}
+
+Your testing strategy will be explained in \verb^testing.txt^, and
+your extension as \verb^extension.txt^. For the parser, interpreter
+and extension sections , make sure there's one \verb^Makefile^, so that I
+can easily build the code using \verb^make parse^, \verb^make interp^
+and \verb^make extension^. I've given an example \verb^makefile^ in the
+usual place, but this is an example only - yours may be different.
+I wrote only one program \verb^nal.c^ and built the two
+different version by setting a \verb^#define^ {\bf via the makefile with}
+\verb^-DINTERP^. Inside the code itself \verb^#ifdef INTERP^ and \verb^#endif^ are used.
+Also make sure that basic testing is available using \verb^make testparse^ and \verb^make testinterp^.
+
+\noindent Place all the files required for your submission in a single \verb^.zip^ file called \verb^nal.zip^ - this file will not contain other zipped files.
+
+\end{exercise}
+
+\include{nuclei}
+
+\input{turtle}
