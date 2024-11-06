@@ -1,0 +1,90 @@
+#!/usr/bin/bash
+
+# run this script in the directory where you have your md.zip with: ./test.bsh
+# if you get a message about the script not being executable, run: chmod u+x test.bsh
+
+rm -fr tmptst
+
+if [[ ! -e md.zip ]]; then
+   echo "ERROR : Cannot find md.zip?"
+   exit
+fi
+
+mkdir tmptst
+cd tmptst
+cp ../md.zip .
+
+l=`unzip -l md.zip|& egrep -v "^-"|tail -n+3 | head -n-1|wc -l`
+if (( $l != 2 )); then
+   echo "ERROR : Expected 2 files in md.zip, found $l"
+   exit
+fi
+
+unzip md.zip
+
+if [[ ! -e md.c ]]; then
+   echo "ERROR : Cannot find md.c?"
+   exit
+fi
+
+if [[ ! -e mydefs.h ]]; then
+   echo "ERROR : Cannot find mydefs.h?"
+   exit
+fi
+
+echo "Got md.c & mydefs.h"
+
+# Need a valid path to your own copy of my, original, unaltered files
+# Copy Neill's files here
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week8/MatchDrop/0moves.brd
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week8/MatchDrop/10moves.brd
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week8/MatchDrop/11moves.brd
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week8/MatchDrop/2moves.brd
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week8/MatchDrop/4moves.txt
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week8/MatchDrop/9moves.brd
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week8/MatchDrop/Makefile
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week8/MatchDrop/driver.c
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week8/MatchDrop/imposs.brd
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week8/MatchDrop/md.h
+
+make md
+if [[ ! -e md ]]; then
+   echo "ERROR : Failed to make md?"
+   exit
+fi
+
+make md_d
+if [[ ! -e md_d ]]; then
+   echo "ERROR : Failed to make md_d?"
+   exit
+fi
+
+./md > output.txt 2>&1
+e=$?
+if (( $e == 0 )); then
+   echo "Ran md OK!"
+else
+   echo "ERROR : running md?"
+   exit
+fi
+
+echo -e "ABC\nABC\nABC\nCBA\n\nABC\nABC\nABC\nABA\n\nABC\nABC\nABC\nABC\n" > expected.txt
+
+if cmp -s output.txt expected.txt; then
+   echo "Output matched expected"
+else
+   echo "ERROR : Output does not match expected"
+   exit
+fi
+./md_d
+e=$?
+if (( $e == 0 )); then
+   echo "Ran md_d OK!"
+else
+   echo "ERROR : when running md_d?"
+   exit
+fi
+
+# Clean up
+cd ..
+rm -fr tmptst
