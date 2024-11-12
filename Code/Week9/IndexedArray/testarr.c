@@ -7,7 +7,7 @@
 int main(void)
 {
 
-   arr *a;
+   arr* a;
    printf("Basic Array Tests ... Start\n");
    /* Set up empty array */
    a = arr_init();

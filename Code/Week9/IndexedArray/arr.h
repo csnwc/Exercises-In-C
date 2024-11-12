@@ -16,8 +16,8 @@ typedef struct arr arr;
 /* Creates the empty array */
 arr* arr_init(void);
 /* Similar to l[n] = i, safely resizing if required */
-void arr_set(arr *l, int n, int i);
+void arr_set(arr* l, int n, int i);
 /* Similar to = l[n] */
-int arr_get(arr *l, int n);
+int arr_get(arr* l, int n);
 /* Clears all space used, and sets pointer to NULL */
-void arr_free(arr **l);
+void arr_free(arr** l);
