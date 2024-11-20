@@ -2,14 +2,14 @@
 \label{ex:t27}
 
 \noindent The Dictionary Abstract Data Type (ADT) allows words to be
-stored such that they may be efficiently checked later, to ensure that words
+stored in such that they may be efficiently checked later, to ensure that words
 have been spelled correctly etc. There are many ways of implementing the
 Dictionary ADT (binary trees, hash tables and so on), but here we look
 at a tree structure which has a dynamic collection of nodes.
 
 \noindent The 27-Way Tree has $27$ downward links, each
 corresponding to one of the letters $a \dots z$ and one to the
-apostrophe character.  This has many similarities with {\it tries}:
+apostrophe character \textquotesingle .  This has many similarities with {\it tries}:
 \wwwurl{https://en.wikipedia.org/wiki/Trie}
 
 \noindent Any word can be stored in the tree. You start at the top node,
@@ -17,7 +17,7 @@ and, given the first character follow the relevant downward pointer.
 So, if the first character is `a' you follow the first pointer down from
 the first node to another. If the next letter is `s' then you follow the
 $19^{th}$ downwards pointer from that node to the following one. Each
-pointer corresponds to a letter, and each level of the tree corresponds
+pointer corresponds to a letter (or the apostrophe), and each level of the tree corresponds
 to the length of a word.
 
 \begin{forest}
@@ -97,7 +97,7 @@ worth up to $10\%$ of the assignemnt:
 \begin{verbatim}
 unsigned dict_cmp(dict* p1, dict* p2);
 \end{verbatim}
-which count the least number of nodes you must traverse to move from one node
+which counts the least number of nodes you must traverse to move from one node
 to another in the tree. In the above figure, there are $7$ steps from `car'
 to `part'. The other is:
 \begin{verbatim}
@@ -106,7 +106,7 @@ void dict_autocomplete(const dict* p, const char* wd, char* ret);
 which returns the substring corresponding to the additional letters required to
 get from the \verb^wd^ to the most frequent word below it. In the figure, to
 autocomplete `car' would be the word `cart', so the additional letters required
-are simply `t' and this is stored in \verb^ret^.
+are simply `t', which is stored in \verb^ret^.
 
 \begin{itemize}
 
@@ -146,7 +146,7 @@ This should still ensure that the standard functionality in \verb^driver.c^
 can be compiled against it. This means you
 can ignore \verb^dict_autocomplete()^ and \verb^dict_cmp()^ since these
 analyse something very
-specific to the `shape' of the 27-Way Tree data structure.  Use your own
+specific about the `shape' of the 27-Way Tree data structure.  Use your own
 Makefile to achieve this, and put them in the sub-directory 
 \verb^Extension^.
 
@@ -154,7 +154,8 @@ If you do this, also submit \verb^extension.txt^ which details what you
 have done, the motivation for it, and how well it works in practice (or
 not), and comparing it with the original tree.
 This discussion (a few hundred words at most) is as (if not more)
-important than the code itself.
+important than the code itself. You may wish to discuss
+which of the two methods is better, in terms of actual speed, complexity, memory usage, testability etc.
 
 \noindent {\bf This worth $20\%$ of the marks.}
 
