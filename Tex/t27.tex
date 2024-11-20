@@ -8,7 +8,7 @@ Dictionary ADT (binary trees, hash tables and so on), but here we look
 at a tree structure which has a dynamic collection of nodes.
 
 \noindent The 27-Way Tree has $27$ downward links, each
-corresponding to one of the letters $a \dots z$ and one to the
+corresponding to one of the letters $a \ldots z$ and one to the
 apostrophe character \textquotesingle .  This has many similarities with {\it tries}:
 \wwwurl{https://en.wikipedia.org/wiki/Trie}
 
@@ -79,8 +79,8 @@ void dict_free(dict** p);
 \noindent The function \verb^dict_addword()^ allows a string to be
 inserted into the tree, and the node after marked as a terminal node.
 
-\noindent \verb^dict_spell()^ returns a pointer to the terminal
-node corresponding to the string (if it has been inserted) and \verb^NULL^
+\noindent \verb^dict_spell()^ returns a pointer to the terminal node
+corresponding to the string (if it has been inserted) and \verb^NULL^
 otherwise.
 
 \noindent \verb^dict_nodecount()^ returns the total number of nodes
@@ -112,25 +112,24 @@ are simply `t', which is stored in \verb^ret^.
 
 \begin{itemize}
 
-\item I've provided the structure that {\bf must} be used for this assignment.
-Do not attempt to change it. All functionality required is possible with
-this structure.
+\item I've provided the structure that {\bf must} be used for this
+assignment.  Do not attempt to change it. All functionality required is
+possible with this structure.
 
 \item For questions such as "but what about hyphenated words?" etc., look
 in the \verb^driver.c^ file. If I haven't tested for it in there, make a
 sensible decision as to what should happen. Provided that this file still
 operates correctly you can decide some of the edge-cases for yourself.
 
-\item Even if you don't get all the functions to work correctly, make
-sure the code still compiles by writing `dummy' functions as placeholders,
+\item Even if you don't get all the functions to work correctly, make sure
+the code still compiles by writing `dummy' functions as placeholders,
 even if some of the assertions fail. I'll test the basic functionality
 separately from the two advanced ones.
 
-\item This assignment is brand new. If minor typos
-etc. are unconvered as you complete the assignment I
-may update this documentation, or the online files
-provided. Please check regularly to make sure you
-are using the most recent version.
+\item This assignment is brand new. If minor typos etc. are uncovered
+as you complete the assignment I may update this documentation and/or
+the online files provided. Please check regularly to make sure you are
+using the most recent version.
 
 \end{itemize}
 
@@ -138,26 +137,24 @@ are using the most recent version.
 \noindent {\bf This is worth $80\%$ of the marks ($60\%+10\%+10\%$)}
 \vspace*{1ex}
 
-\noindent
-The manner in which you've been asked to implement the functionality above is {\bf very}
-specific. However, exactly the same functionality (adding/spell-checking etc.)
-could be implemented in very different ways (linked lists, BSTs, hashing etc.).
-As an extension, write a `rival' version to implement
-the standard functionality of these functions without using a 27-Way Tree.
-This should still ensure that the standard functionality in \verb^driver.c^
-can be compiled against it. This means you
-can ignore \verb^dict_autocomplete()^ and \verb^dict_cmp()^ since these
-analyse something very
-specific about the `shape' of the 27-Way Tree data structure.  Use your own
-Makefile to achieve this, and put them in the sub-directory 
-\verb^Extension^.
+\noindent The manner in which you've been asked to implement the
+functionality above is {\bf very} specific. However, exactly the same
+functionality (adding/spell-checking etc.)  could be implemented in very
+different ways (linked lists, BSTs, hashing etc.).  As an extension,
+write a `rival' version to implement the standard functionality of these
+functions without using a 27-Way Tree.  This should still ensure that the
+standard functionality in \verb^driver.c^ can be compiled against it. This
+means you can ignore \verb^dict_autocomplete()^ and \verb^dict_cmp()^
+since these analyse something very specific about the `shape' of the
+27-Way Tree data structure.  Use your own Makefile to achieve this,
+and put them in the sub-directory \verb^Extension^.
 
 If you do this, also submit \verb^extension.txt^ which details what you
-have done, the motivation for it, and how well it works in practice (or
-not), and comparing it with the original tree.
-This discussion (a few hundred words at most) is as (if not more)
-important than the code itself. You may wish to discuss
-which of the two methods is better, in terms of actual speed, complexity, memory usage, testability etc.
+have done, the motivation for it, and how well it works in practice
+(or not), and comparing it with the original tree.  This discussion
+(a few hundred words at most) is as (if not more) important than the
+code itself. You may wish to discuss which of the two methods is better,
+in terms of actual speed, complexity, memory usage, testability etc.
 
 \noindent {\bf This worth $20\%$ of the marks.}
 
