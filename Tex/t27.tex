@@ -20,6 +20,7 @@ $19^{th}$ downwards pointer from that node to the following one. Each
 pointer corresponds to a letter (or the apostrophe), and each level of the tree corresponds
 to the length of a word.
 
+\begin{center}
 \begin{forest}
 %for tree={s sep=10mm, inner sep=0, l=0}
 for tree={s sep=30mm}
@@ -47,6 +48,7 @@ for tree={s sep=30mm}
    ]
 ]
 \end{forest}
+\end{center}
 
 \noindent In the above diagram, the words `car', `cart' and `part' have
 been stored in such a 27-Way Tree. Since `car' is a substring of `cart'
@@ -114,7 +116,7 @@ are simply `t', which is stored in \verb^ret^.
 Do not attempt to change it. All functionality required is possible with
 this structure.
 
-\item For questions such as "but what about hyphenated words" etc., look
+\item For questions such as "but what about hyphenated words?" etc., look
 in the \verb^driver.c^ file. If I haven't tested for it in there, make a
 sensible decision as to what should happen. Provided that this file still
 operates correctly you can decide some of the edge-cases for yourself.

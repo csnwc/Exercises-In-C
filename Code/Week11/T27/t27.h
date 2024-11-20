@@ -14,7 +14,7 @@
 // to the user, and it's members should *never*
 // be used in e.g. driver.c
 struct dict {
-   // 'Down' pointers next letter of word a-z
+   // 'Down' pointers next letter of word a-z or '
    struct dict* dwn[ALPHA];
    /* The parent pointer, useful for
       traversing back up the tree */
@@ -32,7 +32,7 @@ dict* dict_init(void);
 
 /* Top of Dictionary = p,
    add word str. Return false
-   if p or str is NULL. or if word
+   if p or str is NULL, or if word
    is already in the dictionary.
    True otherwise.
 */
@@ -63,14 +63,14 @@ void dict_free(dict** p);
 */
 int dict_mostcommon(const dict* p);
 
-/* ADVANCED1
+/* CHALLENGE1
+   For two nodes, count the nodes that separate them */
+unsigned dict_cmp(dict* p1, dict* p2);
+
+/* CHALLENGE2
    For dictionary 'p', and word 'wd', find the
    path down to the most frequently used word
    below this node, adding these letters to 'ret'.
    (In the event of ties, use the word that comes
    first alphabetically). */
 void dict_autocomplete(const dict* p, const char* wd, char* ret);
-
-/* ADVANCED
-   For two nodes, count the nodes that separate them */
-unsigned dict_cmp(dict* p1, dict* p2);
