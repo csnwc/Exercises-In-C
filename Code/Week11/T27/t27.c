@@ -40,3 +40,7 @@ unsigned dict_cmp(dict* p1, dict* p2)
 void dict_autocomplete(const dict* p, const char* wd, char* ret)
 {
 }
+
+void test(void)
+{
+}

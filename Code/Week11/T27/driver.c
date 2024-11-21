@@ -4,6 +4,9 @@
 
 int main(void)
 {
+
+   test();
+
    dict* d = NULL;
    char str[MAXSTR];
 

@@ -74,3 +74,5 @@ unsigned dict_cmp(dict* p1, dict* p2);
    (In the event of ties, use the word that comes
    first alphabetically). */
 void dict_autocomplete(const dict* p, const char* wd, char* ret);
+
+void test(void);
