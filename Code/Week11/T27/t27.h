@@ -36,7 +36,7 @@ dict* dict_init(void);
    is already in the dictionary.
    True otherwise.
 */
-bool dict_addword(dict* p, const char* str);
+bool dict_addword(dict* p, const char* wd);
 
 /* The total number of nodes
    in the tree. */
