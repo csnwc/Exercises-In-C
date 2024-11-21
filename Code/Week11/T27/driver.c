@@ -105,7 +105,7 @@ int main(void)
    dict_addword(d, "part");
    dict_addword(d, "parted");
    dict_addword(d, "parter");
-   // 7 new nodes: p+a+r+t+e+d+terminal
+   // 7 new nodes: p+a+r+t+e+d+r
    assert(dict_nodecount(d)==16);
    // 5 car prefixed + 4 par prefixed
    assert(dict_wordcount(d)==9);
