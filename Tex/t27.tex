@@ -142,12 +142,13 @@ functionality above is {\bf very} specific. However, exactly the same
 functionality (adding/spell-checking etc.)  could be implemented in very
 different ways (linked lists, BSTs, hashing etc.).  As an extension,
 write a `rival' version to implement the standard functionality of these
-functions without using a 27-Way Tree.  This should still ensure that the
-standard functionality in \verb^driver.c^ can be compiled against it. This
-means you can ignore \verb^dict_autocomplete()^, \verb^dict_cmp()^ and
-\verb^dict_nodecount()^ since these analyse something very specific about
-the `shape' of the 27-Way Tree data structure.  Use your own Makefile
-to achieve this, and put them in the sub-directory \verb^Extension^.
+functions without using a 27-Way Tree.  This should still ensure that
+some of the standard functionality in \verb^driver.c^ can be compiled
+against it. This means you can ignore \verb^dict_autocomplete()^,
+\verb^dict_cmp()^ and \verb^dict_nodecount()^ since these analyse
+something very specific about the `shape' of the 27-Way Tree data
+structure.  Use your own Makefile to achieve this, and put them in the
+sub-directory \verb^Extension^.
 
 If you do this, also submit \verb^extension.txt^ which details what you
 have done, the motivation for it, and how well it works in practice
