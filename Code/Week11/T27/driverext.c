@@ -1,4 +1,4 @@
-#include "t27.h"
+#include "ext.h"
 
 #define MAXSTR 50
 

@@ -1,3 +1,5 @@
+#pragma once
+
 /* A 'tree 27' implementation
    of the Dictionary ADT */
 #include <stdio.h>
