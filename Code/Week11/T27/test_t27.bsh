@@ -1,0 +1,141 @@
+#!/usr/bin/bash
+
+# run this script in the directory where you have your t27.zip with: ./test_t27.bsh
+# if you get a message about the script not being executable, run: chmod u+x test_t27.bsh
+
+rm -fr tmptst
+
+if [[ ! -e t27.zip ]]; then
+   echo "ERROR: Cannot find t27.zip?"
+   exit
+fi
+
+mkdir tmptst
+cd tmptst
+cp ../t27.zip .
+
+# Check there is only 1 file in the zip, ignoring the 'Extension' directory if it exists
+l=`unzip -l t27.zip | tail -n+3 | head -n-1| awk '/^  / {print $4}' | grep -v '^Extension/' | wc -l`
+if (( $l != 1 )); then
+   echo "ERROR: Expected 1 file in t27.zip that isn't in the 'Extension' directory, found $l"
+   exit
+fi
+
+unzip t27.zip
+
+if [[ ! -e t27.c ]]; then
+   echo "ERROR: Cannot find t27.c?"
+   exit
+fi
+echo "SUCCESS: Got t27.c"
+
+# Copy Neill's files here
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week11/T27/driver.c
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week11/T27/t27.h
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week11/T27/Makefile
+wget https://raw.githubusercontent.com/csnwc/Data/refs/heads/main/Words/p-and-p-words.txt
+wget https://raw.githubusercontent.com/csnwc/Data/refs/heads/main/Words/wordle.txt
+wget https://raw.githubusercontent.com/csnwc/Data/refs/heads/main/Words/english_65197.txt
+
+# Check t27 and t27_d can be compiled
+make all
+if [[ ! -e t27 ]]; then
+   echo "ERROR: Failed to compile t27?"
+   exit
+fi
+if [[ ! -e t27_d ]]; then
+   echo "ERROR: Failed to compile t27_d?"
+   exit
+fi
+echo "SUCCESS: Compiled t27 and t27_d"
+
+# Check running t27 and t27_d both give a zero exit
+./t27
+e=$?
+if (( $e != 0 )); then
+   echo "ERROR: t27 has a non zero exit?"
+   exit
+fi
+./t27_d > output.txt 2>&1
+e=$?
+if (( $e != 0 )); then
+   echo "ERROR: t27_d has a non zero exit?"
+   exit
+fi
+if [[ -s output.txt ]]; then
+   echo "ERROR: t27_d doesn't run silently?"
+   exit
+fi
+echo "SUCCESS: Ran t27 and t27_d okay"
+
+echo "SUCCESS: All tests passed for standard assignment"
+
+# Advanced tests - comment this section out if you don't want to test these
+sed -i '/^\/\* Leave/d' driver.c
+sed -i '/^\*\//d' driver.c
+make t27_d
+./t27_d > output1.txt 2>&1
+e=$?
+if (( $e != 0 )); then
+   echo "ERROR: t27_d with advanced tests has a non zero exit?"
+   exit
+fi
+if [[ -s output1.txt ]]; then
+   echo "ERROR: t27_d with advanced tests doesn't run silently?"
+   exit
+fi
+echo "SUCCESS: Ran t27_d with advanced tests okay"
+
+# If 'Extension' directory doesn't exists, exit script
+if [[ ! Extension ]]; then
+   cd ..
+   rm -fr tmptst
+   exit
+fi
+
+# Check extension.txt exists and is less than 350 words
+if [[ ! -e Extension/extension.txt ]]; then
+   echo "ERROR : Cannot find extension.txt in 'Extension' directory?"
+   exit
+fi
+word_count=$(wc -w < Extension/extension.txt)
+if (( word_count > 350 )); then
+   echo "ERROR : extension.txt contains more than 350 words, found $word_count"
+   exit
+fi
+echo "SUCCESS : Got Extension/extension.txt"
+
+# Get Neill's extension file
+wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week11/T27/driverext.c
+
+ownMakefile=0
+if [[ -e Extension/Makefile ]]; then
+   ownMakefile=1
+   cd Extension
+   wget https://raw.githubusercontent.com/csnwc/Data/refs/heads/main/Words/p-and-p-words.txt
+   wget https://raw.githubusercontent.com/csnwc/Data/refs/heads/main/Words/wordle.txt
+   wget https://raw.githubusercontent.com/csnwc/Data/refs/heads/main/Words/english_65197.txt
+   wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week11/T27/driverext.c
+fi
+
+# Check ext can be compiled
+make ext
+if [[ ! -e ext ]]; then
+   echo "ERROR: Failed to compile ext?"
+   exit
+fi
+
+./ext
+e=$?
+if (( $e != 0 )); then
+   echo "ERROR: ext has a non zero exit?"
+   exit
+fi
+
+echo "SUCCESS: All tests passed for extension"
+
+if [[ $ownMakefile -eq 1 ]]; then
+   cd ..
+fi
+cd ..
+rm -fr tmptst
