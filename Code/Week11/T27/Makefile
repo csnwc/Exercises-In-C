@@ -17,5 +17,8 @@ run: t27
 rund: t27_d
 	./t27_d
 
+ext: Extension/ext.c ./driverext.c ./t27.h
+	gcc driverext.c Extension/ext.c -I.. -I. $(OPTIM) -o ext
+
 clean:
 	rm -f t27 t27_d
