@@ -21,4 +21,4 @@ ext: Extension/ext.c ./driverext.c Extension/ext.h
 	gcc driverext.c Extension/ext.c -I.. -I. $(OPTIM) -o ext
 
 clean:
-	rm -f t27 t27_d
+	rm -f t27 t27_d ext
