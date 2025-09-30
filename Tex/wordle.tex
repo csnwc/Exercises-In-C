@@ -1,0 +1,91 @@
+\nsection{Wordle}
+Online puzzles have grown in popularity, and one of the most widely played examples is {\em Wordle}:
+
+\wwwurl{https://www.nytimes.com/games/wordle/index.html}
+
+\noindent Wordle is a word-guessing game built around comparisons between a {\bf guess word} and the hidden {\bf answer word}, 
+both of which are five letters long. Each letter in the guess is checked against the answer, and feedback is given in three possible ways:
+\vspace{6pt}
+\begin{description}
+   \item [Green:]the guessed letter matches the answer letter in the same position. 
+   \item [Yellow:]the guessed letter is present somewhere in the answer but not in the correct position. 
+   \item [Unmarked:]the guessed letter does not appear in the answer at all.
+\end{description}
+
+\definecolor{wordlegreen}{HTML}{6AAA64}
+\definecolor{wordleyellow}{HTML}{C9B458}
+\definecolor{wordlegrey}{HTML}{D3D6DA}
+\vspace{6pt}
+
+\noindent A key detail is how repeated letters are treated. Suppose the hidden answer is \verb+WORLD+ and the guess is \verb+HELLO+:
+\begin{center}
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm}, column sep=-\pgflinewidth, row sep=-\pgflinewidth] {
+\node[fill=wordlegrey] {W}; & 
+\node[fill=wordlegrey] {O}; & 
+\node[fill=wordlegrey] {R}; & 
+\node[fill=wordlegrey] {L}; & 
+\node[fill=wordlegrey] {D}; \\
+\node[fill=wordlegrey] {H}; & 
+\node[fill=wordlegrey] {E}; & 
+\node[fill=wordlegrey] {L}; & 
+\node[fill=wordlegreen] {L}; & 
+\node[fill=wordleyellow] {O}; \\
+};
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+   \item The \verb+H+ in position 0 is unmarked.
+   \item The \verb+E+ in position 1 is unmarked.
+   \item The \verb+L+ in position 2 is unmarked, as the single \verb+L+ in the answer has already been ``used up" by a green match.
+   \item The \verb+L+ in position 3 is green, as it matches the \verb+L+ in the same position of the answer.
+   \item The \verb+O+ in position 4 is yellow, as it matches the \verb+O+ in position 1 of the answer.
+\end{itemize}
+\vspace{6pt}
+
+\noindent For another example, suppose the hidden answer is \verb+APPLE+ and the guess is \verb+ALLEY+:
+\begin{center}
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm}, column sep=-\pgflinewidth, row sep=-\pgflinewidth] {
+\node[fill=wordlegrey] {A}; & 
+\node[fill=wordlegrey] {P}; & 
+\node[fill=wordlegrey] {P}; & 
+\node[fill=wordlegrey] {L}; & 
+\node[fill=wordlegrey] {E}; \\
+\node[fill=wordlegreen] {A}; & 
+\node[fill=wordleyellow] {L}; & 
+\node[fill=wordlegrey] {L}; & 
+\node[fill=wordleyellow] {E}; & 
+\node[fill=wordlegrey] {Y}; \\
+};
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+   \item The \verb+A+ in position 0 is green, as it matches the \verb+A+ in the same position of the answer.
+   \item The \verb+L+ in position 1 is yellow, because there is an \verb+L+ in the answer (position 3).
+   \item The \verb+L+ in position 2 is unmarked, as the single \verb+L+ in the answer has already been ``used up" by the earlier yellow match.
+   \item The \verb+E+ in position 3 is yellow, as it matches the \verb+E+ in position 4 of the answer.
+   \item The \verb+Y+ in position 4 is unmarked.
+\end{itemize}
+\vspace{6pt}
+
+\noindent This avoids double-counting: once an occurrence of a letter in the answer has been matched, it cannot be reused for another match.
+
+\begin{exercise}
+\noindent Code for this exercise can be found in: \wwwurl{https://github.com/csnwc/Exercises-In-C/Code/Week3/Wordle}
+
+\noindent Complete the file {\bf wordle.c}, which together with my files {\em wordle.h} and {\em main.c}, allows Wordle guesses to be checked 
+using the case-insensitive functions whose ``top-lines" are:
+\begin{codesnippet}
+int num_greens(char answer[], char guess[])
+int num_yellows(char answer[], char guess[])
+\end{codesnippet}
+\noindent that each take two strings as input and, considering the first string as the answer and the second string as the guess, 
+returns the number of greens/yellows in the guess or -1 if there are any problems.
+\vspace{6pt}
+
+\noindent The file {\em wordle.c} currently contains standard AI-generated code, which must be edited so it passes any valid assertions. 
+The file {\em wordle.h} provides the function prototypes you must implement, while {\em main.c} contains the \verb+main()+ function 
+to run the code - a {\em Makefile} is provided to compile everything. The \verb+test()+ function should be used to check all functions your 
+code, including any ``helper" functions you may write. Do not alter or resubmit {\em wordle.h} or {\em main.c} - my originals will be used.
+\end{exercise}
