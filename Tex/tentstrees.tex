@@ -1,0 +1,152 @@
+\nsection{Tents \& Trees}
+
+Tents is a logic puzzle in which you work out where to place tents next to trees
+in a field:
+
+The rules are explained at:
+
+\wwwurl{https://www.puzzle-tents.com}
+
+\begin{itemize}
+\item Pair each tree with a tent adjacent horizontally or vertically (4-connected).
+This should be a 1 to 1 relation.
+\item Tents never touch each other even diagonally (8-connected)
+\item The clues outside the grid indicate the number of tents on that row/column.
+\end{itemize}
+\noindent The game consists of a {\bf square} board representing a field where every
+tile may be a `tree', a `tent', `grass' or unknown.
+Trees are represented by the character~`*', tents using~`+', grass with~`.' and unknowns as~`~'.
+An example of a completed puzzle is shown here:
+\begin{center}
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=ocre!30}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=ocre!5]{};} ] (A) {
+\node[fill=white,draw=white]{~};&
+\node[fill=white,draw=white]{1};&
+\node[fill=white,draw=white]{2};&
+\node[fill=white,draw=white]{0};&
+\node[fill=white,draw=white]{1};&
+\node[fill=white,draw=white]{2};&
+\node[fill=white,draw=white]{1};\\
+\node[fill=white,draw=white]{2};&*& & & & &*\\
+\node[fill=white,draw=white]{0};& & & & &*& \\
+\node[fill=white,draw=white]{1};& & & & & & \\
+\node[fill=white,draw=white]{1};& & &*& & &*\\
+\node[fill=white,draw=white]{1};& & & & & & \\
+\node[fill=white,draw=white]{2};& &*&*& & & \\
+};
+\end{tikzpicture}
+\hspace*{1cm}
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=ocre!20}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=ocre!20]{.};} ] (A) {
+\node[fill=white,draw=white]{~};&
+\node[fill=white,draw=white]{1};&
+\node[fill=white,draw=white]{2};&
+\node[fill=white,draw=white]{0};&
+\node[fill=white,draw=white]{1};&
+\node[fill=white,draw=white]{2};&
+\node[fill=white,draw=white]{1};\\
+\node[fill=white,draw=white]{2};&*&+&.&.&+&*\\
+\node[fill=white,draw=white]{0};&.&.&.&.&*&.\\
+\node[fill=white,draw=white]{1};&.&.&.&.&+&.\\
+\node[fill=white,draw=white]{1};&.&+&*& &.&*\\
+\node[fill=white,draw=white]{1};&.&.&.&.&.&+\\
+\node[fill=white,draw=white]{2};&+&*&*&+&.&.\\
+};
+\end{tikzpicture}
+\end{center}
+\noindent (Left) Puzzle as defined - only the trees are given to begin
+with, all other tiles are unknown. There are $7$ tents to be found,
+the number of them in total per row and column is also shown. (Right)
+The solved puzzle after applying some simple logic.
+
+
+\begin{exercise}
+
+We will implement five rules which will allow {\bf some}, but {\bf not}
+all, puzzles to be solved:
+
+\begin{enumerate}
+
+\item If a row or column already has the correct number of tents, all
+unknowns $\rightarrow$ grass.
+
+\item Any unknown cell not 4-connected to a tree $\rightarrow$ grass.
+
+\item If the number of unknown cells equals the number of tents required,
+all unknowns $\rightarrow$ tents.
+
+\item Any unknown cell 8-connected to a tent $\rightarrow$ grass.
+
+\item For any tree and its 4-connected cells, if there is exactly one
+unknown and zero tents, then that unknown $\rightarrow$ tent.
+
+\end{enumerate}
+
+\noindent Some skeleton code may be found in~:
+\wwwurl{https://github.com/csnwc/Exercises-In-C} \noindent then navigate
+into \verb^Code/Week5/TentsTrees^.
+
+You may assume that:
+\begin{itemize}
+
+\item The size of the board is always square. Its exact size is {\tt
+\#defined} (via the Makefile).
+
+\item You will never be expected to solve a board any larger than $9x9$.
+\end{itemize}
+
+Complete the file {\bf tt.c} which, along with
+my files {\em driver.c} and {\em tentstrees.h}, implements some important
+functionality necessary for a game of this type.
+
+\noindent My file {\em tentstrees.h} contains the function definitions
+which you'll have to implement in your {\bf tt.c} file. My file
+{\em driver.c} contains the \verb^main()^ function to act as a driver to
+run the code. Your file will contain many other functions as well as those
+specified, so you'll wish to test them as normal using a \verb^test()^
+function.
+
+\noindent If all of these files are in the same directory, you can
+compile them using the \verb^Makefile^ given.
+
+\noindent The functions you need to complete include:
+
+\verb^inputboard()^ - this takes a string corresponding to the initial
+state of the board (including row seperator characters `|',
+two strings containing the number of tents in each
+column/row, and a pointer to the board state to be filled in. It returns
+a Boolean, true if all is OK, false if the number of characters in the
+input is incorrect, or if the total number of tents in the rows is
+different to that in the columns, or if incorrect characters have been
+used - see the assertions for more examples of failure.
+
+\verb^solve()^ - this takes a pointer to the board state, and returns
+a Boolean, depending on whether the five rules, applied repeatedly,
+can solve this board or not.
+
+\verb^board2str()^ - this takes a copy of the board state, and
+copies this board into the string, in the same format as required for
+\verb^inputboard^. It returns a Boolean, with a NULL string causing
+a failure.
+
+\noindent Hints:
+\begin{itemize}
+
+\item To begin with use your own, simpler driver file - mine makes sense
+once everything is working, but may seem complex to begin with.
+
+\item Your \verb^tt.c^ file should contain many other sub-functions
+which are used by the major ones specified. You can put anything in this
+file, provided it still compiles as specified.
+
+\item Do not alter or resubmit {\em driver.c}, {\em Makefile} or
+{\em tentstrees.h} - my original versions (and variants) will be
+used to compile the {\em tt.c} file that you write.
+
+\item If you have questions such as {\em "What happens if a NULL pointer is passed
+to solve()"} - I'm happy for you to make your own judgement, provided that your code
+does something graceful i.e. cannot be crashed.
+
+\end{itemize}
+
+\end{exercise}
