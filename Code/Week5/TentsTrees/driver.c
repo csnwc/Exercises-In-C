@@ -15,7 +15,7 @@ int main(void)
       assert(inputboard("*    *|    * |      |  *  *|       | **   ","120121", "201112", &b)==false);
       // Invalid square ('N')
       assert(inputboard("*    *|    * |  N   |  *  *|      | **   ", "120121", "201112", &b)==false);
-      // Only unknown or tent squares allowed on input, not grass
+      // Only unknown or tree squares allowed on input, not grass
       assert(inputboard("*    *|    * | ...  |  *  *|      | **   ", "120121", "201112", &b)==false);
       // Total tens per row (6), not same as per column (7)
       assert(inputboard("*    *|    * |      |  *  *|      | **   ", "120121", "201111", &b)==false);
