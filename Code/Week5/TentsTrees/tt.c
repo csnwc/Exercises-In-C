@@ -18,10 +18,3 @@ bool board2str(board b, char* s)
 {
    return true;
 }
-
-
-
-void test(void);
-bool inputboard(char* s, char* top, char* side, board* p);
-bool solve(board* p);
-bool board2str(board b, char* s);
