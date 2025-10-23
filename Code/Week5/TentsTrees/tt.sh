@@ -1,7 +1,8 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
-# run this script in the directory where you have your tt.c
-# if you get a message about the script not being executable, run: chmod u+x tt.sh
+# usage: ./tt.sh
+# must be in the directory where you have your tt.c!
+# permission denied or not executable, run: chmod u+x tt.sh
 
 rm -fr tmptst
 
@@ -14,7 +15,7 @@ mkdir tmptst
 cd tmptst
 cp ../tt.c .
 
-# Copy Neill's original (unaltered) files here
+# copy Neill's original (unaltered) files here
 wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week5/TentsTrees/Makefile
 wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week5/TentsTrees/driver.c
 wget https://raw.githubusercontent.com/csnwc/Exercises-In-C/refs/heads/main/Code/Week5/TentsTrees/tentstrees.h
@@ -36,6 +37,9 @@ echo "SUCCESS: Made tt6_d and tt4_d with gcc okay"
 # modify Makefile to try clang
 sed -i '3s/^/#/' Makefile
 sed -i '4s/^#//' Makefile
+
+# rm first, so it actually recompiles with clang
+make clean
 
 make tt6_d
 if [[ ! -e tt6_d ]]; then
@@ -80,8 +84,24 @@ fi
 
 echo "SUCCESS: Ran tt6_d and tt4_d okay"
 
-# example of how to compile with different BSIZE
-# gcc tt8.c driver.c -DBSIZE=8 -o tt8_d -Wall -Wextra -pedantic -std=c99 -Wfloat-equal -Wvla -g3 -fsanitize=address -fsanitize=undefined
+# example how to compile with different BSIZE (uncomment below - only compiles)
+
+# gcc tt.c driver.c -DBSIZE=8 -o tt8_d -Wall -Wextra -pedantic -std=c99 -Wfloat-equal -Wvla -g3 -fsanitize=address -fsanitize=undefined
+# if [[ ! -e tt8_d ]]; then
+#    echo "ERROR : Failed to make tt8_d with gcc?"
+#    exit
+# fi
+
+# example if you want to use your own Makefile (replace tt8_d with your Makefile command)
+
+# if [[ ! -e ../Makefile ]]; then
+#    echo "ERROR : Cannot find your Makefile?"
+#    exit
+# fi 
+# rm Makefile
+# cp ../Makefile .
+
+# make tt8_d
 # if [[ ! -e tt8_d ]]; then
 #    echo "ERROR : Failed to make tt8_d with gcc?"
 #    exit
