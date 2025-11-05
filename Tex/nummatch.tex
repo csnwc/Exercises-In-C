@@ -1,0 +1,140 @@
+\nsection{NumMatch}
+
+
+The game {\it Number Match} consists of a $2D$ rectangular grid of
+numbers. The aim is to remove all of the numbers from the grid by finding
+`matches' for pairs of numbers, which are either the same (e.g.~a $4$
+with a $4$), or which total to ten (e.g.~a $3$ with a $7$).  Pairs also
+need to be connected by being adjacent to each other ($8$-connected),
+or else have no other numbers between them, so in the following grid:
+\begin{center}
+% 22812
+% 68728
+% 54759
+% 94692
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=ocre!30}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=ocre!5]{.};} ] (A) {
+2&2&8&1&2\\
+6&8&7&2&8\\
+5&4&7&5&9\\
+9&4&6&9&2\\
+};
+\end{tikzpicture}
+\end{center}
+we could match a $7$ with a $7$:
+\begin{center}
+% 22812
+% 68.28
+% 54.59
+% 94692
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=ocre!30}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=ocre!5]{.};} ] (A) {
+2&2&8&1&2\\
+6&8& &2&8\\
+5&4& &5&9\\
+9&4&6&9&2\\
+};
+\end{tikzpicture}
+\end{center}
+opening up the possibility of matching the $8$ with the $2$:
+\begin{center}
+% 22812
+% 6...8
+% 54.59
+% 94692
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=ocre!30}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=ocre!5]{.};} ] (A) {
+2&2&8&1&2\\
+6& & & &8\\
+5&4& &5&9\\
+9&4&6&9&2\\
+};
+\end{tikzpicture}
+\end{center}
+If we now match the $4$ with the $4$:
+\begin{center}
+% 22812
+% 6...8
+% 5..59
+% 9.692
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=ocre!30}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=ocre!5]{.};} ] (A) {
+2&2&8&1&2\\
+6& & & &8\\
+5& & &5&9\\
+9& &6&9&2\\
+};
+\end{tikzpicture}
+\end{center}
+then this frees up the `long' diagonal match of the $1$ with the $9$:
+\begin{center}
+% 228.2
+% 6...8
+% 5..59
+% ..692
+\begin{tikzpicture}
+\matrix[matrix of nodes,nodes={draw=black, anchor=center, minimum size=.6cm,fill=ocre!30}, column sep=-\pgflinewidth, row sep=-\pgflinewidth, , execute at empty cell={\node[draw=black,text=black,fill=ocre!5]{.};} ] (A) {
+2&2&8& &2\\
+6& & & &8\\
+5& & &5&9\\
+ & &6&9&2\\
+};
+\end{tikzpicture}
+\end{center}
+If you are careful with the order in which you do the matching, it's possible to 
+match all of the numbers.
+
+\begin{exercise}
+Write the functions specified in \verb^nm.h^ that allow a board to
+be created by flood-filling the board with random numbers
+from $1 \ldots 9$ (\verb^randfill()^), \verb^take()^ to remove valid
+pairs, and \verb^solve()^ which decides whether the board is solvable
+or not.
+
+\noindent You may assume that the height of the board is $4$ cells,
+and the width is $5$.
+
+\noindent
+The brute-force algorithm for searching over all moves for a
+solution goes like this~:
+\begin{enumerate}
+\item You will use a large array (list) of boards.
+\item Put the initial board into the front of this list, \verb^f=0^.
+\item Consider the board at the {\bf front} of the list (index \verb$f$).
+\item For this (parent) board, find the resulting (child) boards 
+which can be created from all the possible valid matches of number
+pairs. For each of these child boards:
+\begin{itemize}
+\item If this board is unique (i.e.\ it has not been seen before in the list), add it to the end of the list.
+\item If it has been seen before (it's a duplicate) ignore it.
+\item If it is the `final' board, stop.
+\end{itemize}
+\item Add one to $f$. If there are more boards in the list, go to step $3$.
+\end{enumerate}
+
+\noindent
+Your program~:
+\begin{itemize}
+\item {\bf Must} use the algorithm detailed above (which is similar to a queue and therefore a breadth-first search). Do not use the other algorithms possible (e.g. best-first, guided, recursive etc.); the quality of your coding is being assessed against others taking the same approach, and if you do something different it won't get any marks.
+\item {\bf Must not} use dynamic arrays or linked lists.
+The list of boards can be a fixed (large) size ($100,000$?)
+\item {\bf Should not} print anything out to screen after successfully
+completing the search.
+\item {\bf Should} call implement the function \verb^test()^ to perform any assertion testing, (including tests of any of your helper functions).
+\item Should run silently (except in the case of an \verb^EXIT_FAILURE^).
+\end{itemize}
+
+
+\subsection*{Extension}
+
+Basic assignment = {\Large $90\%$}.
+Extension = {\Large $10\%$}.
+
+\noindent
+{\bf If} you get your program working, there's a small extension available.
+Recode your program so that it executes as quickly as possible in files
+called \verb^ext.c^ and \verb^ext_mydefs.h^.
+For this I will compute the time taken for your code to solve
+a series of complex boards using \verb^/usr/bin/time^.
+\end{exercise}
+
