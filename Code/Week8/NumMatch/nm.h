@@ -17,7 +17,7 @@ typedef struct pair pair;
 generated to fill the board row-wise,
 left to right, top down. Each number = rand()%9+1.
 rand() is compiler dependent, but I've tested this
-with gcc and clang.
+with gcc and clang on WSL2 and the lab machines.
 */
 board randfill(int n);
 
