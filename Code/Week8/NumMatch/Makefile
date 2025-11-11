@@ -20,6 +20,6 @@ rund: nm_d
 clean:
 	rm -f nm nm_d extension
 
-extension: ext.c ext_nm.h driver.c ext_mydefs.h
-	$(CC) driver.c ext.c $(CFLAGS) $(OPTIMIZE) -o extension
+extension: ext.c ext_nm.h ext_driver.c ext_mydefs.h
+	$(CC) ext_driver.c ext.c $(CFLAGS) $(OPTIMIZE) -o extension
 
