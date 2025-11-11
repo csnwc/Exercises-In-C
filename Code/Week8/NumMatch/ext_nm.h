@@ -11,7 +11,7 @@ struct pair {
 typedef struct pair pair;
 
 // mydefs.h : You create this
-#include "mydefs.h"
+#include "ext_mydefs.h"
 
 /* n is used to seed srand(). Then numbers are
 generated to fill the board row-wise,
@@ -25,7 +25,7 @@ board randfill(int n);
 in the board p are a valid match or not i.e.
 they are the same or sum to ten, and are either
 touching, or are on a straight line with no other
-numbers between. If true, removes that pair.
+numbers between.
 */
 bool take(board* p, pair z);
 
