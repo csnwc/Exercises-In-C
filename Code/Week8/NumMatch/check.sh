@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# usage: ./nm.sh
+# usage: ./check.sh
 # must be in the directory where you have your nm.zip!
-# permission denied or not executable, run: chmod u+x nm.sh
+# permission denied or not executable, run: chmod u+x check.sh
 
 rm -fr tmptst
 
