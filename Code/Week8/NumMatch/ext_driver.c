@@ -2,7 +2,7 @@
 
 int main(void)
 {
-   test();
+   //test();
    board b = randfill(6);
    // 18866
    // 62725
