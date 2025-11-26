@@ -5,10 +5,10 @@ Sometimes it is known in advance that you need an array-type data
 structure, but that it will be populated very sparsely i.e. very few
 of the locations will be used. This is extrememly memory inefficient;
 using one large array for this would be wasteful, since most of the
-memory would be redundant. Here we investigate one of the many ways of
-creating an alternative, where we trade-off speed for compactness: 
-the Compact Sparse Array (CSA) which aims to
-be memory efficient for sparsely occupied arrays.
+memory would be redundant. Here we investigate one of the many ways
+of creating an alternative, where we trade-off speed for memory:
+Compact Sparse Arrays (CSA) which aim to be memory efficient for sparsely
+occupied arrays.
 
 \begin{figure}[ht]
 \centering{
@@ -25,13 +25,13 @@ and corresponding indices) of a section of the array compactly. A block
 contains:
 \begin{itemize}
 \item A 64-bit mask (represented using the type
-\verb^uinit64_t^) showing which of the cells of the arrays are in use.
+\verb^uint64_t^) showing which of the cells of the arrays are in use.
 \item a (\verb^realloc()^'d) integer array storing the values, ordered by their index.
 \item an index offset (a multiple of $64$) showing what part of the overall array that block represents
 e.g. the block that contains indices $0 \ldots 63$ would have an offset of 0, block that contains
 indices $64 \ldots 127$ would have an offset of $64$, and so on.
 \end{itemize}
-The CSA structure consists of a \verb^realloc()^'d array of blocks,
+The CSA structure consists of a \verb^realloc()^'d array of blocks (ordered by their \verb^offset^),
 and a counter, $n$, storing the total number of blocks in use.
 
 \begin{exercise}

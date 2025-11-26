@@ -5,11 +5,11 @@ csa* csa_init()
 {
 }
 
-bool csa_get(csa* c, int indx, int* val)
+bool csa_get(csa* c, int idx, int* val)
 {
 }
 
-bool csa_set(csa* c, int indx, int val)
+bool csa_set(csa* c, int idx, int val)
 {
 }
 
@@ -17,7 +17,7 @@ void csa_tostring(csa* c, char* s)
 {
 }
 
-void csa_free(csa** p)
+void csa_free(csa** l)
 {
 }
 
