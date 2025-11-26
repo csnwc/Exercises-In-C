@@ -1,0 +1,101 @@
+\nsection{Compressed Sparse Arrays}
+\label{ex:csa}
+
+Sometimes it is known in advance that you need an array-type data
+structure, but that it will be populated very sparsely i.e. very few
+of the locations will be used. This is extrememly memory inefficient;
+using one large array for this would be wasteful, since most of the
+memory would be redundant. Here we investigate one of the many ways of
+creating an alternative, where we trade-off speed for compactness: 
+the Compact Sparse Array (CSA) which aims to
+be memory efficient for sparsely occupied arrays.
+
+\begin{figure}[ht]
+\centering{
+%\includegraphics[clip,trim=0cm 3cm 0cm 3cm,width=1.00\textwidth,page=1]{../Pictures/csa.pdf}
+\includegraphics[clip,width=1.00\textwidth,page=1]{../Pictures/csa.pdf}
+}
+\caption{The Compressed Sparse Array. A dynamically allocated array of `blocks' stores indices/values
+for the array, $64$ values at a time.}
+\label{fig:csa}
+\end{figure}
+
+The main part of the CSA is a 'block' - a way of storing the values (
+and corresponding indices) of a section of the array compactly. A block
+contains:
+\begin{itemize}
+\item A 64-bit mask (represented using the type
+\verb^uinit64_t^) showing which of the cells of the arrays are in use.
+\item a (\verb^realloc()^'d) integer array storing the values, ordered by their index.
+\item an index offset (a multiple of $64$) showing what part of the overall array that block represents
+e.g. the block that contains indices $0 \ldots 63$ would have an offset of 0, block that contains
+indices $64 \ldots 127$ would have an offset of $64$, and so on.
+\end{itemize}
+The CSA structure consists of a \verb^realloc()^'d array of blocks,
+and a counter, $n$, storing the total number of blocks in use.
+
+\begin{exercise}
+Write an ADT to implement the \verb^csa.h^ given.  Write the
+source files \verb^mydefs.h^ and \verb^csa.c^ such that
+the driver files \verb^driver.c^ and \verb^fibmemo.c^
+work correctly.  Ensure that this all works with my \verb^Makefile^
+which {\bf must be} used {\bf unaltered}.  The basic operations are~:
+\begin{verbatim}
+csa* csa_init();
+bool csa_set(csa* c, int idx, int val);
+bool csa_get(csa* c, int idx, int* n);
+void csa_tostring(csa* c, char* s);
+void csa_free(csa** l);
+\end{verbatim}
+
+\noindent The function \verb^csa_set()^ allows an integer to be written to a
+particular index. If it's the first index for a particular block, this will
+trigger the creation of the memory for this block.
+
+\noindent \verb^csa_get()^ returns a Boolean showing whether \verb^idx^
+is in use or not. If it is, the integer value is copied into n.
+
+\noindent \verb^csa_tostring()^ allows a character based version of the CSA to be produced,
+showing each block in turn.
+
+\begin{itemize}
+
+\item You will use \verb^realloc()^ for the CSA - blocks are created
+only as and when required. No linked lists are used for this assignment.
+
+\item Even if you don't get all the functions to work correctly, make
+sure the code still compiles by writing `dummy' functions as placeholders,
+even if some of the assertions fail.
+
+\item  This assignment is brand new. If minor typos etc. are uncovered
+as you complete the assignment we may update this documentation and/or
+the online files provided. Please check regularly to make sure you are
+using the most recent version.
+
+\end{itemize}
+
+\noindent {\bf This is worth $80\%$ of the marks.}
+\vspace*{1ex}
+
+\noindent
+Two extensions are availale, each worth $10\%$.
+\begin{verbatim}
+void csa_foreach(void (*func)(int* p, int* acc), csa* c, int* ac);
+\end{verbatim}
+Allows the user to pass a function, which is in turn passed a pointer
+to all the values in the array. This would allow the user to, for instance,
+sum up the values, double them all etc. The \verb^driver.c^ file shows some
+examples of this, and \verb^isfactorial.c^ uses this to find a range of
+factorials.
+
+\begin{verbatim}
+bool csa_delete(csa* c, int idx);
+\end{verbatim}
+Array elements can be deleted, and memory freed up if blocks
+are no longer used. If all the elements are deleted, you don't really
+need \verb^csa_free()^ since all the blocks have been freed, and simply
+calling \verb^free()^ on the csa structure should be enough.
+This allows the file \verb^sieve.c^ to be used to compute
+a range of prime numbers.
+
+\end{exercise}
