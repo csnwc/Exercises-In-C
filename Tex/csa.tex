@@ -20,7 +20,7 @@ for the array, $64$ values at a time.}
 \label{fig:csa}
 \end{figure}
 
-The main part of the CSA is a 'block' - a way of storing the values (
+The main part of the CSA is a `block' - a way of storing the values (
 and corresponding indices) of a section of the array compactly. A block
 contains:
 \begin{itemize}
@@ -41,7 +41,7 @@ the driver files \verb^driver.c^ and \verb^fibmemo.c^
 work correctly.  Ensure that this all works with my \verb^Makefile^
 which {\bf must be} used {\bf unaltered}.  The basic operations are~:
 \begin{verbatim}
-csa* csa_init();
+csa* csa_init(void);
 bool csa_set(csa* c, int idx, int val);
 bool csa_get(csa* c, int idx, int* n);
 void csa_tostring(csa* c, char* s);
@@ -78,7 +78,7 @@ using the most recent version.
 \vspace*{1ex}
 
 \noindent
-Two extensions are availale, each worth $10\%$.
+Two extensions are available, each worth $10\%$.
 \begin{verbatim}
 void csa_foreach(void (*func)(int* p, int* acc), csa* c, int* ac);
 \end{verbatim}

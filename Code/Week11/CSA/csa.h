@@ -25,7 +25,7 @@ struct csa {
 };
 typedef struct csa csa;
 
-csa* csa_init();
+csa* csa_init(void);
 
 // Adds a new index/value, or overwrites
 // the value if the index already exists.
