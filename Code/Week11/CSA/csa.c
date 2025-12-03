@@ -1,7 +1,7 @@
 #include "csa.h"
 #include "mydefs.h"
 
-csa* csa_init()
+csa* csa_init(void)
 {
 }
 
