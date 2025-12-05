@@ -12,7 +12,7 @@ if [[ ! -e csa.zip ]]; then
 fi
 
 # count files in the zip (list files, count lines)
-num_files=`unzip -Z1 csa.zip | wc -l`
+num_files=$(( `unzip -Z1 csa.zip | wc -l` ))
 if [[ $num_files == 2 ]]; then
    # expected mydefs.h and csa.c
    echo "SUCCESS: Found 2 files in csa.zip as expected"
