@@ -4,10 +4,17 @@
 #include <string.h>
 #include <assert.h>
 
-void strmerge(const char* s1, const char* s2, char*s3);
+void test(void);
+void strmerge(const char s1[], const char s2[], char s3[]);
+
+int main(void)
+{
+   test();
+   return EXIT_SUCCESS;
+}
 
 #define LARGESTRING 1000
-int main(void)
+void test(void)
 {
 
    char s[LARGESTRING];
@@ -39,5 +46,7 @@ int main(void)
    strmerge("sasasas", "sasbsms", s);
    assert(strcmp(s, "sasasasbsms")==0);
 
-   return 0;
+   // Add any additional tests here 
+
 }
+
