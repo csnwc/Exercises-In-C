@@ -4,19 +4,10 @@ These style rules ensure your code is as-correct-as-can-be with the aid
 of the compiler and other tools:
 \begin{description}
 \item[FLAGS] Having no warnings (or errors!) when compiling and executing with the flags:\\
-For array bounds checking, \verb^NULL^ pointers being dereferenced etc:
+For array bounds checking, \verb^NULL^ pointers being dereferenced, leak checking etc:
 \begin{terminaloutput}
 -Wall -Wextra -Wfloat-equal -Wvla -pedantic -std=c99
 -fsanitize=undefined -fsanitize=address -g3
-\end{terminaloutput}
-For memory leaks:
-\begin{terminaloutput}
--Wall -Wextra -Wfloat-equal -Wvla -pedantic -std=c99
--g3
-\end{terminaloutput}
-then run:
-\begin{terminaloutput}
-valgrind --leak-check=full ./myexec
 \end{terminaloutput}
 For `final' production-ready code:
 \begin{terminaloutput}
@@ -27,7 +18,8 @@ For `final' production-ready code:
 You can use more flags than this, obviously, but these will
 make sure a few of the essential warnings that commonly indicate
 the presence of bugs and leaks are checked. These guidelines are meant to
-be independent of the particular compiler used though. Sometimes it is helpful to use many compilers too, e.g. \verb^gcc^ and \verb^clang^.
+be independent of the particular compiler used though.
+Sometimes it is helpful to use many compilers too, e.g. \verb^gcc^ and \verb^clang^.
 
 If you have unused variables (for example) in your code, it doesn't matter whether your compiler happened to tell you about it or not - it's still wrong~!
 
