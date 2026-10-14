@@ -17,7 +17,7 @@
 
 Crowns (sometimes called Queens or Star Battle) is a logic puzzle in
 which you place crowns on a board so that there is only one Crown per row,
-column, and coloured region.  Each row, column, and colored region must
+column, and coloured region.  Each row, column, and coloured region must
 contain exactly one Crown symbol (Queen).  Crown symbols cannot be placed
 in adjacent cells, including the eight cells immediately neighbouring
 the crown.
@@ -58,7 +58,7 @@ the yellow region, so many cells have been crossed out:
 
 There are other some simple rules you could think of to help you find
 a solution.  These include the {\bf singleton} rule; any row, column or colour
-region having no current crown, and only one unkown, must have a crown
+region having no current crown, and only one unknown, must have a crown
 in that cell. Here, one column has only one unknown, and so we know we should place
 a crown in the highlighted cell:
 \begin{center}
@@ -110,16 +110,6 @@ one exists.
 \wwwurl{https://github.com/csnwc/Exercises-In-C} then navigate
 into \verb^Code/Week5/Crowns^.
 
-You may assume that:
-\begin{itemize}
-
-\item The size of the board is always square.
-The maximum exact size is {\tt \#defined} in \verb^crowns.h^.
-
-\item The `colour' of regions is represented by characters chosen
-on input e.g. (`w', `r', `g')
-
-\end{itemize}
 
 Complete the file {\bf crowns.c} which, along with
 my files {\em driver.c} and {\em crowns.h}, implements some important
@@ -137,6 +127,7 @@ compile them using the \verb^Makefile^ given.
 
 \noindent The functions you need to complete include:
 
+\vspace{1em}
 \verb^bool str2board(board* b, char* s);^
 s is a string defining the board, two characters per cell.
 The first is the region character, and the second is how
@@ -146,62 +137,79 @@ rows. Returns \verb^true^ if the string can be parsed, \verb^false^
 otherwise. Don't check whether the board is solvable or not - if the
 user wants to input an unsolvable $3\times3$ board, let them.
 
+\vspace{1em}
 \verb^bool board2str(char* str, const board* b);^
 Given a board b, write the `stringified' version of it
 into str.
 
+\vspace{1em}
 \verb^int count_unknowns(board b);^
 For a given board count the number of unknowns
 (i.e. cells which are not marked as crossed or crowns).
 
+\vspace{1em}
 \verb^bool rule1(board* b);^
 Takes a board b and adds all the crosses induced by
 crowns placed in it. Returns \verb^true^ if any changes are
 made, \verb^false^ otherwise.
 
 
+\vspace{1em}
 \verb^bool rule2(board* b);^
-Takes a board b and adds adds any crowns due to any row, column, or
+Takes a board b and adds any crowns due to any row, column, or
 region having only one unknown remaining.  Repeatedly applies this rule,
 and then rule one until no more changes are possible. Returns \verb^true^ if
 any changes have been made at all, or \verb^false^ otherwise.
 
+\vspace{1em}
 \verb^bool rule3(board* b);^
-Takes a board b and adds adds crosses to any squares that would cause
-another region to have no squares available for crowns. Repeatedly
-applies this until no more changes are possible.  Returns \verb^true^ if any
+Takes a board \verb^b^ and adds crosses to any cells that would cause
+another region to have no cells available for crowns. Repeatedly applies
+this until no more changes are possible.  Returns \verb^true^ if any
 changes have been made at all, or \verb^false^ otherwise.
 
 
 
-\verb^bool rule5(board* b);^
+\vspace{1em}
 \verb^bool lut(int sz, int n, char str[]);^
-By compiling with \verb^lut.o^ you are provided the fucntion \verb^lut()^,
-which returns a string corresponding to the nth legal solution to a
-board of size sz into str. You can iterate over all these solutions,
-until \verb^lut()^ returns \verb^false^ to show that there are no more
-solutions. This forms the basis for \verb^rule5()^. Returns \verb^false^ when
-n becomes too large for a particular board size.
+By compiling with \verb^lut.o^ you are provided the function \verb^lut()^,
+which fills the string \verb^str^ corresponding to the $n^{th}$
+legal solution to a board of size \verb^sz^. You can iterate over all
+these solutions, until \verb^lut()^ returns \verb^false^ to show that
+there are no more solutions. This forms the basis for \verb^rule5()^.
+If \verb^sz^ is less than $4$, or greater than the maximum board size,
+\verb^false^ is returned.  Returns \verb^false^ when \verb^n^ becomes too
+large for a particular board size; e.g. a board of size $4$ has only $2$
+possible solutions.
 
-
+\verb^bool rule5(board* b);^
+Takes a board \verb^b^ and, using all possible solutions available by
+iterating \verb^lut()^ finds the correct solution and completes the board.
+Returns \verb^true^ if a soliution is possible, or \verb^false^ otherwise.
 
 \noindent Hints:
 \begin{itemize}
 
-\item To begin with use your own, simpler driver file - mine makes sense
-once everything is working, but may seem complex to begin with.
+\item The size of the board is always square.
+The maximum exact size is {\tt \#defined} in \verb^crowns.h^.
+
+\item The `colour' of regions is represented by characters chosen
+on input e.g. (`w', `r', `g')
+
+\item To begin with, use your own, simpler driver file - mine makes
+sense once everything is working, but may seem complex to begin with.
 
 \item Your \verb^crowns.c^ file should contain many other sub-functions
 which are used by the major ones specified. You can put anything in this
 file, provided it still compiles as specified.
 
-\item Do not alter or resubmit {\em driver.c}, {\em Makefile} or
-{\em crowns.h} - my original versions (and variants) will be
+\item Do not alter or resubmit {\em driver.c}, {\em Makefile} or {\em
+crowns.h} - my versions (and possibly, other, similar versions) will be
 used to compile the {\em crowns.c} file that you write.
 
 \item If you have questions such as {\em "What happens if a NULL pointer is passed
-to solve()"} - I'm happy for you to make your own judgement, provided that your code
-does something graceful i.e. cannot be crashed.
+to solve()"} - I'm happy for you to make your own judgement, provided
+that your code does something graceful i.e. cannot be crashed.
 
 \item Your submitted \verb^crowns.c^ will not print anything to screen.
 
