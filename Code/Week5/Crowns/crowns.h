@@ -57,7 +57,7 @@ int count_unknowns(board b);
 */
 bool rule1(board* b);
 
-/* Takes a board b and adds any crowns due to any
+/* Takes a board b and adds adds any crowns due to any
    row, column, or region having only one unknown remaining.
    Repeatedly applies this rule, and then rule one until no
    more changes are possible. Returns true if any changes have
@@ -65,8 +65,8 @@ bool rule1(board* b);
 */
 bool rule2(board* b);
 
-/* Takes a board b and adds crosses to any cells that
-   would cause another region to have no cells available for
+/* Takes a board b and adds adds crosses to any squares that
+   would cause another region to have no squares available for
    crowns. Repeatedly applies this until no more changes are
    possible.  Returns true if any changes have been made at all,
    or false otherwise.
@@ -80,6 +80,7 @@ bool rule3(board* b);
    for a particular board size.
 */
 bool lut(int sz, int n, char str[]);
+
 /* Compute all possible solutions for board b, using lut()
    Fills b with the solution and returns true if one can
    be found, false otherwise.
@@ -109,7 +110,7 @@ Blank out row, column, 8-neighbours and all others in 'A' region:
 
 
 Rule2: (Singletons) Any row, column OR region with only one unknown
-cell remaining will have a Crown added to that cell.  Apply this rule
+square remaining will have a Crown added to that square.  Apply this rule
 (and Rule 1 if appropriate) repeatedly until no changes can be made.
 
 Rule3: (Add Crosses) If putting a crown in a cell of one region (and
