@@ -103,7 +103,7 @@ works correctly.
 
 Here we will implement a few of the rules which might be required
 for a full version of the game, including some that would help
-provide hints to a player, and one that always guarentees a solution if
+provide hints to a player, and one that always guarantees a solution if
 one exists.
 
 \noindent Some skeleton code may be found in~:
@@ -129,6 +129,7 @@ compile them using the \verb^Makefile^ given.
 
 \vspace{1em}
 \verb^bool str2board(board* b, char* s);^
+
 s is a string defining the board, two characters per cell.
 The first is the region character, and the second is how
 this cell is marked either `~' for unknown, `X' for crossed
@@ -139,16 +140,19 @@ user wants to input an unsolvable $3\times3$ board, let them.
 
 \vspace{1em}
 \verb^bool board2str(char* str, const board* b);^
+
 Given a board b, write the `stringified' version of it
 into str.
 
 \vspace{1em}
 \verb^int count_unknowns(board b);^
+
 For a given board count the number of unknowns
 (i.e. cells which are not marked as crossed or crowns).
 
 \vspace{1em}
 \verb^bool rule1(board* b);^
+
 Takes a board b and adds all the crosses induced by
 crowns placed in it. Returns \verb^true^ if any changes are
 made, \verb^false^ otherwise.
@@ -156,36 +160,41 @@ made, \verb^false^ otherwise.
 
 \vspace{1em}
 \verb^bool rule2(board* b);^
+
 Takes a board b and adds any crowns due to any row, column, or
 region having only one unknown remaining.  Repeatedly applies this rule,
-and then rule one until no more changes are possible. Returns \verb^true^ if
+and then rule1 until no more changes are possible. Returns \verb^true^ if
 any changes have been made at all, or \verb^false^ otherwise.
 
 \vspace{1em}
 \verb^bool rule3(board* b);^
-Takes a board \verb^b^ and adds crosses to any cells that would cause
-another region to have no cells available for crowns. Repeatedly applies
-this until no more changes are possible.  Returns \verb^true^ if any
-changes have been made at all, or \verb^false^ otherwise.
 
+Takes a board \verb^b^ and adds crosses to any cells that, if they had a
+crown placed there instead, would cause another region to have no cells
+available for crowns. Repeatedly applies this until no more changes
+are possible.  Returns \verb^true^ if any changes have been made at all,
+or \verb^false^ otherwise.
 
 
 \vspace{1em}
 \verb^bool lut(int sz, int n, char str[]);^
-By compiling with \verb^lut.o^ you are provided the function \verb^lut()^,
-which fills the string \verb^str^ corresponding to the $n^{th}$
-legal solution to a board of size \verb^sz^. You can iterate over all
-these solutions, until \verb^lut()^ returns \verb^false^ to show that
-there are no more solutions. This forms the basis for \verb^rule5()^.
-If \verb^sz^ is less than $4$, or greater than the maximum board size,
-\verb^false^ is returned.  Returns \verb^false^ when \verb^n^ becomes too
-large for a particular board size; e.g. a board of size $4$ has only $2$
-possible solutions.
+
+By compiling with \verb^lut.o^ you are provided with the function
+\verb^lut()^, which fills the string \verb^str^ corresponding to the
+$n^{th}$ legal solution to a board of size \verb^sz^ (ignoring region
+colours).  You can iterate over all these solutions, until \verb^lut()^
+returns \verb^false^ to show that there are no more solutions. This
+forms the basis for \verb^rule5()^.  If \verb^sz^ is less than $4$,
+or greater than the maximum board size, \verb^false^ is returned.
+Returns \verb^false^ when \verb^n^ becomes too large for a particular
+board size; e.g. a board of size $4$ has only $2$ possible solutions.
 
 \verb^bool rule5(board* b);^
+
+This is the brute-force rule for finding the (hopefully, unique) solution.
 Takes a board \verb^b^ and, using all possible solutions available by
 iterating \verb^lut()^ finds the correct solution and completes the board.
-Returns \verb^true^ if a soliution is possible, or \verb^false^ otherwise.
+Returns \verb^true^ if a solution is possible, or \verb^false^ otherwise.
 
 \noindent Hints:
 \begin{itemize}
@@ -193,8 +202,9 @@ Returns \verb^true^ if a soliution is possible, or \verb^false^ otherwise.
 \item The size of the board is always square.
 The maximum exact size is {\tt \#defined} in \verb^crowns.h^.
 
-\item The `colour' of regions is represented by characters chosen
-on input e.g. (`w', `r', `g')
+\item The `colour' of each cell/region is represented by characters
+chosen on input e.g. (`w', `r', `g'). Each cell also has a character
+corresponding to its current state (crowm, cross, unknown);
 
 \item To begin with, use your own, simpler driver file - mine makes
 sense once everything is working, but may seem complex to begin with.
@@ -207,15 +217,15 @@ file, provided it still compiles as specified.
 crowns.h} - my versions (and possibly, other, similar versions) will be
 used to compile the {\em crowns.c} file that you write.
 
-\item If you have questions such as {\em "What happens if a NULL pointer is passed
-to solve()"} - I'm happy for you to make your own judgement, provided
-that your code does something graceful i.e. cannot be crashed.
+\item If you have questions such as {\em "What happens if a NULL pointer
+is passed to solve()"} - I'm happy for you to make your own judgement,
+provided that your code does something graceful i.e. cannot be crashed.
 
 \item Your submitted \verb^crowns.c^ will not print anything to screen.
 
-\item This exercise is about solving this logic puzzle exactly as specified.
-For now, I'm not interested in you finding other, better rules etc. It's a programming assignment
-above all else.
+\item This exercise is about solving this logic puzzle exactly as
+specified.  For now, I'm not interested in you finding other, better
+rules etc. It's a programming assignment above all else.
 
 \end{itemize}
 
