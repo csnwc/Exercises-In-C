@@ -33,12 +33,12 @@ typedef struct board board;
 */
 void test(void);
 
-/* s is a string defining the board, two characters per cell.
+/* str is a string defining the board, two characters per cell.
    The first is the region character, and the second is how
    this cell is marked either ' ' for unknown, 'X' for crossed
    and '*' for crown. 
 */
-bool str2board(board* b, char* s);
+bool str2board(board* b, char* str);
 
 /* Given a board b, write the 'stringified' version of it
    into str. If str or b are NULL, return false, true otherwise.

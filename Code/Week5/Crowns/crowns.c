@@ -5,12 +5,12 @@ void test(void)
 
 }
 
-bool str2board(board* b, char* s)
+bool str2board(board* b, char* str)
 {
 
 }
 
-bool board2str(char* s, const board* b)
+bool board2str(char* str, const board* b)
 {
 
 }
@@ -20,24 +20,24 @@ int count_unknowns(board b)
 
 }
 
-bool rule1(board* c)
+bool rule1(board* b)
 {
 
 }
 
 
-bool rule2(board* c)
+bool rule2(board* b)
 {
 
 }
 
-bool rule3(board* c)
+bool rule3(board* b)
 {
 
 }
 
 
-bool rule5(board* d)
+bool rule5(board* b)
 {
 
 }
