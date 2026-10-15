@@ -189,6 +189,7 @@ or greater than the maximum board size, \verb^false^ is returned.
 Returns \verb^false^ when \verb^n^ becomes too large for a particular
 board size; e.g. a board of size $4$ has only $2$ possible solutions.
 
+\vspace{1em}
 \verb^bool rule5(board* b);^
 
 This is the brute-force rule for finding the (hopefully, unique) solution.
@@ -204,7 +205,7 @@ The maximum exact size is {\tt \#defined} in \verb^crowns.h^.
 
 \item The `colour' of each cell/region is represented by characters
 chosen on input e.g. (`w', `r', `g'). Each cell also has a character
-corresponding to its current state (crowm, cross, unknown);
+corresponding to its current state (crown, cross, unknown).
 
 \item To begin with, use your own, simpler driver file - mine makes
 sense once everything is working, but may seem complex to begin with.
@@ -218,7 +219,7 @@ crowns.h} - my versions (and possibly, other, similar versions) will be
 used to compile the {\em crowns.c} file that you write.
 
 \item If you have questions such as {\em "What happens if a NULL pointer
-is passed to solve()"} - I'm happy for you to make your own judgement,
+is passed to rule1()"} - I'm happy for you to make your own judgement,
 provided that your code does something graceful i.e. cannot be crashed.
 
 \item Your submitted \verb^crowns.c^ will not print anything to screen.
