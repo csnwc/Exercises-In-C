@@ -19,6 +19,8 @@ void test(void)
 
    char s[LARGESTRING];
 
+   // Add any additional tests here 
+
    strmerge("Hello World!", "World! & Everyone.", s);
    assert(strcmp(s, "Hello World! & Everyone.")==0);
 
@@ -46,7 +48,6 @@ void test(void)
    strmerge("sasasas", "sasbsms", s);
    assert(strcmp(s, "sasasasbsms")==0);
 
-   // Add any additional tests here 
 
 }
 
