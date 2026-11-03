@@ -1,0 +1,128 @@
+\renewcommand{\X}{|[fill=black,   text=white]|+}
+\renewcommand{\O}{|[fill=white,   text=black]|O}
+\renewcommand{\d}{|[fill=gray!50 ,text=ocre] |.}
+\nsection{Yin Yang}
+
+
+The puzzle {\it Yin Yang}~:
+\wwwurl{https://www.puzzle-yin-yang.com/}
+
+\noindent consists of a $2D$ rectangular grid of cells - black ('+'), white ('O') or
+unknown ('.').
+\begin{center}
+\begin{tikzpicture}[every node/.style={draw=black,anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\X&\d&\X&\d&\X\\
+\d&\d&\O&\d&\X\\
+\O&\X&\X&\X&\d\\
+\O&\d&\d&\O&\X\\
+\X&\d&\X&\d&\d\\
+};
+\end{tikzpicture}
+\end{center}
+The aim is to change all the unknowns to either black or white
+such that:
+
+\begin{enumerate}
+\item All black cells should be $4$-connected together (up, down,
+left, right) into one single region.
+\item All white cells should be $4$-connected together (up, down,
+left, right) into one single region.
+\item $2\times 2$ areas of the same colour are not allowed.
+\begin{center}
+\begin{tikzpicture}[every node/.style={draw=black,anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\X&\X\\
+\X&\X\\
+};
+\end{tikzpicture}
+\hspace*{0.5in}
+\begin{tikzpicture}[every node/.style={draw=black,anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\O&\O\\
+\O&\O\\
+};
+\end{tikzpicture}
+\end{center}
+\end{enumerate}
+
+\noindent From these somewhat simple rules, another constraint emerges, that no
+$2\times 2$ area can have diagonally opposed colours. Therefore, 
+the following $2\times 2$ areas are not allowed either~:
+\begin{center}
+\begin{tikzpicture}[every node/.style={draw=black,anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\X&\O\\
+\O&\X\\
+};
+\end{tikzpicture}
+\hspace*{0.5in}
+\begin{tikzpicture}[every node/.style={draw=black,anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\O&\X\\
+\X&\O\\
+};
+\end{tikzpicture}
+\end{center}
+
+One approach to solving such a puzzle is via a brute-force algorithm, exploring all possible
+(valid) combinations of black and white cells. Doing this can lead to the correct solution
+of the grid above~:
+\begin{center}
+\begin{tikzpicture}[every node/.style={draw=black,anchor=base,text depth=.5ex,text height=2ex,text width=1em,outer sep=0pt,align=center,inner sep=0pt}] \matrix [matrix of nodes,draw=white,nodes in empty cells] {
+\X&\X&\X&\X&\X\\
+\O&\O&\O&\O&\X\\
+\O&\X&\X&\X&\X\\
+\O&\O&\O&\O&\X\\
+\X&\X&\X&\X&\X\\
+};
+\end{tikzpicture}
+\end{center}
+
+
+\begin{exercise}
+Write the functions specified in \verb^yy.h^ that allows grids to
+be read from file, converted to a string, and the number
+of solutions available computed.
+
+\noindent
+The brute-force algorithm for searching all moves for a
+solution goes like this~:
+\begin{enumerate}
+\item You will use a large array (list) of grids.
+\item Put the initial grid into the front of this list, \verb^f=0^.
+\item Consider the grid at the {\bf front} of the list (index \verb$f$).
+\item For this (parent) grid, create the two `child' grids which can be made 
+by filling the {\bf next} unknown cell with either black or white.
+\begin{itemize}
+\item If this grid is valid (see $2\times 2$ rules above), add it to the end of the list.
+\item If this is the `final' grid (i.e. all unknown cells have been filled in and there is
+exactly one contiguous black region and exactly one contiguous white region), then add
+one to the number of possible (valid) solutions.
+\end{itemize}
+\item Add one to $f$. If there are more grids in the list, go to step $3$.
+\item If not, return the number of possible solutions found.
+\end{enumerate}
+
+\noindent
+Your program~:
+\begin{itemize}
+\item {\bf Should} use the algorithm detailed above (which is similar to a queue and therefore a breadth-first search). Do not use the other algorithms possible; the quality of your coding is being assessed against others taking the same approach, and if you do something different it won't get any marks.
+\item {\bf Should} run silently (except in the case of an \verb^EXIT_FAILURE^, maybe due to an \verb^alloc()^ error).
+\item {\bf Should} implement the function \verb^test()^ to perform any assertion testing, (including tests of your helper functions). If you create new grid files (other than the ones I provde) make sure these are submitted as part of your \verb^.zip^ file.
+\item Should {\bf NOT} use linked lists.
+The list of grids can be a fixed (large) size (I used $250,000$)
+\item Should {\bf NOT} print anything out to screen after successfully
+completing the search.
+\end{itemize}
+
+
+\subsection*{Extension}
+
+Basic assignment = {\Large $90\%$}.
+Extension = {\Large $10\%$}.
+
+\noindent
+{\bf If} you get your program working, there's a small extension available.
+Recode your program so that it executes as quickly as possible in files
+called \verb^ext.c^ and \verb^ext_mydefs.h^.
+For this I will compute the time taken for your code to solve
+a series of complex grids using \verb^/usr/bin/time^.
+No algorithm is specified for this and no coding rules need to be followed,  
+except that it must compile using the flags I've specified (without warnings).
+\end{exercise}
