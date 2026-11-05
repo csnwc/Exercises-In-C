@@ -10,8 +10,8 @@
 #define MAXG 10
 
 #define UNK '.'
-#define BLK 'O'
-#define WHT '+'
+#define BLK '+'
+#define WHT 'O'
 
 struct grid{
    // The square grid
