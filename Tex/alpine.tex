@@ -13,10 +13,6 @@ to compute which `bucket' the key/value pair will be stored into, and
 the remaining $7$-bits ($h_2$) are used as a `fingerprint' to enable
 fast lookup.
 
-Each bucket is filled from the front, probing right until an empty slot is found. You skip over tombstoned slots.
-If a bucket becomes full, insertion continues in the next bucket along.
-
-
 \begin{figure}[ht]
 \centering{
 \includegraphics[clip,width=1.00\textwidth,page=1]{../Pictures/alpinehash.pdf}
@@ -31,6 +27,11 @@ for a key, its value, and a control byte. This control byte has its top
 bit set to zero for a valid entry, or set to one if the slot is empty
 or has been deleted (tombstoned). For a valid entry the control byte has
 a zero top bit and the remaining bits are the corresponding $h_2$ bits.
+
+\noindent
+Each bucket is filled from the front, probing right until an empty slot
+is found. Tombstoned (deleted) slots are skipped.  If a bucket becomes
+full, insertion continues with the next bucket along.
 
 \noindent
 This h$_2$ hash can be used as quick check as to whether that key exists
