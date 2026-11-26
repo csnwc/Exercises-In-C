@@ -12,6 +12,9 @@ void _printdetail(ahash* a);
 
 int main(void)
 {
+
+   test();
+
    char  key[MAXKV];
    char val1[MAXKV];
    char val2[MAXKV];
