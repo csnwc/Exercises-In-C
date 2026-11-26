@@ -23,3 +23,7 @@ void ahash_free(ahash** p)
 char* ahash_ctrl(const ahash* a, char* ret)
 {
 }
+
+void test(void)
+{
+}

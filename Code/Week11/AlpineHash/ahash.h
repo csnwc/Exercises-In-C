@@ -85,3 +85,5 @@ bool ahash_delete(ahash** a, const char* key);
 // is "0xF0" i.e. left-most bit is set.
 // Function returns pointer to ret, to enable easier use of strcmp().
 char* ahash_ctrl(const ahash* a, char* ret);
+
+void test(void);
