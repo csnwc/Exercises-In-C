@@ -12,9 +12,6 @@ void _printdetail(ahash* a);
 
 int main(void)
 {
-
-   test();
-
    char  key[MAXKV];
    char val1[MAXKV];
    char val2[MAXKV];
@@ -130,8 +127,8 @@ int main(void)
    ahash_ctrl(a, ctl);
    assert(!strcmp(ctl, "F800|C000|C000|E000"));
    assert(ahash_delete(&a, "00"));
-   // A deleted key is still marked as "In Use"
-   assert(strcmp(ahash_ctrl(a, ctl), "F800|C000|C000|E000"));
+   // After deletion, it's not in use anymore 
+   assert(!strcmp(ahash_ctrl(a, ctl), "7800|C000|C000|E000"));
 
    // Delete most keys, table will be shrunk
    for(int i=1; i<11; i++){

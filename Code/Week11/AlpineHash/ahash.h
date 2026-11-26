@@ -82,8 +82,6 @@ bool ahash_delete(ahash** a, const char* key);
 // Return a string corresponding to which slots in a control string
 // are in use (not EMPTY OR TOMBSTONE).
 // When only one slot is in use (and one bucket) the output in ret
-// is "0xF0" i.e. left-most bit is set.
+// is "0x80" i.e. left-most bit is set.
 // Function returns pointer to ret, to enable easier use of strcmp().
 char* ahash_ctrl(const ahash* a, char* ret);
-
-void test(void);
